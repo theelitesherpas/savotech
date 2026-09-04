@@ -4,22 +4,96 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Logo from "./logo";
 
-const NAV = [
-  { label: "Services", href: "/#services", anchor: true },
-  { label: "Hire Resources", href: "/#hire", anchor: true },
-  { label: "Industries", href: "/#industries", anchor: true },
-  { label: "Case Study", href: "/#work", anchor: true },
-  { label: "Resources", href: "/resources/" },
-  { label: "Contact Us", href: "/#contact", anchor: true },
+type NavItem = {
+  label: string;
+  href: string;
+  children?: [string, string][];
+};
+
+const NAV: NavItem[] = [
+  {
+    label: "Services",
+    href: "/#services",
+    children: [
+      ["AI Agent Development", "/ai-agents/"],
+      ["Web Development", "/#services"],
+      ["Mobile App Development", "/#services"],
+      ["UI/UX Design", "/#services"],
+      ["Cloud & DevOps", "/#services"],
+      ["Data & Analytics", "/#services"],
+    ],
+  },
+  {
+    label: "Hire Resources",
+    href: "/#hire",
+    children: [
+      ["AI & ML Engineers", "/#hire"],
+      ["Frontend Developers", "/#hire"],
+      ["Backend Developers", "/#hire"],
+      ["Full Stack Developers", "/#hire"],
+      ["Mobile Developers", "/#hire"],
+      ["DevOps & QA Engineers", "/#hire"],
+    ],
+  },
+  {
+    label: "Industries",
+    href: "/#industries",
+    children: [
+      ["Healthcare", "/#industries"],
+      ["FinTech & Banking", "/#industries"],
+      ["Ecommerce & Retail", "/#industries"],
+      ["Real Estate", "/#industries"],
+      ["Logistics & Supply Chain", "/#industries"],
+      ["Energy & Utilities", "/#industries"],
+    ],
+  },
+  {
+    label: "Case Study",
+    href: "/#work",
+    children: [
+      ["MediBridge Health", "/#work"],
+      ["GulfPay", "/#work"],
+      ["Sahm AI Support Desk", "/#work"],
+      ["RideLink", "/#work"],
+      ["ClearLedger", "/#work"],
+      ["EduSpring", "/#work"],
+    ],
+  },
+  {
+    label: "Resources",
+    href: "/resources/",
+    children: [
+      ["Blog & Engineering Notes", "/resources/"],
+      ["Case Studies", "/#work"],
+      ["FAQs", "/#faq"],
+      ["Client Portal", "/portal/"],
+    ],
+  },
+  { label: "Contact Us", href: "/#contact" },
 ];
+
+const Caret = () => (
+  <svg className="caret" viewBox="0 0 12 12" aria-hidden="true">
+    <path
+      d="M2.5 4.5 6 8l3.5-3.5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
+  const [openDrop, setOpenDrop] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [accOpen, setAccOpen] = useState(false);
+  const [openAcc, setOpenAcc] = useState<string | null>(null);
   const megaRef = useRef<HTMLDivElement>(null);
   const megaBtnRef = useRef<HTMLButtonElement>(null);
+  const dropRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -29,15 +103,28 @@ export default function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    if (!megaOpen) return;
+    if (!megaOpen && !openDrop) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key !== "Escape") return;
+      if (megaOpen) {
         setMegaOpen(false);
         megaBtnRef.current?.focus();
       }
+      if (openDrop) {
+        const label = openDrop;
+        setOpenDrop(null);
+        dropRefs.current[label]?.focus();
+      }
     };
     const onClick = (e: MouseEvent) => {
-      if (megaRef.current && !megaRef.current.contains(e.target as Node)) setMegaOpen(false);
+      const t = e.target as Node;
+      if (megaOpen && megaRef.current && !megaRef.current.contains(t) && !megaBtnRef.current?.contains(t)) setMegaOpen(false);
+      if (openDrop) {
+        const btn = dropRefs.current[openDrop];
+        const panel = btn?.parentElement?.querySelector(".nav-drop");
+        if (btn?.contains(t) || panel?.contains(t)) return;
+        setOpenDrop(null);
+      }
     };
     document.addEventListener("keydown", onKey);
     document.addEventListener("mousedown", onClick);
@@ -45,7 +132,7 @@ export default function SiteHeader() {
       document.removeEventListener("keydown", onKey);
       document.removeEventListener("mousedown", onClick);
     };
-  }, [megaOpen]);
+  }, [megaOpen, openDrop]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -69,19 +156,13 @@ export default function SiteHeader() {
                 className="nav-drop-btn"
                 aria-expanded={megaOpen}
                 aria-controls="aiMega"
-                onClick={() => setMegaOpen((v) => !v)}
+                onClick={() => {
+                  setOpenDrop(null);
+                  setMegaOpen((v) => !v);
+                }}
               >
                 AI
-                <svg className="caret" viewBox="0 0 12 12" aria-hidden="true">
-                  <path
-                    d="M2.5 4.5 6 8l3.5-3.5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <Caret />
               </button>
               <div className="mega" id="aiMega" ref={megaRef} hidden={!megaOpen}>
                 <div className="mega-grid">
@@ -123,11 +204,62 @@ export default function SiteHeader() {
                 </div>
               </div>
             </li>
-            {NAV.map((n) => (
-              <li key={n.label}>
-                <a href={n.href}>{n.label}</a>
-              </li>
-            ))}
+            {NAV.map((n) =>
+              n.children ? (
+                <li
+                  key={n.label}
+                  onMouseEnter={() => {
+                    setMegaOpen(false);
+                    setOpenDrop(n.label);
+                  }}
+                  onMouseLeave={() => setOpenDrop((cur) => (cur === n.label ? null : cur))}
+                >
+                  <button
+                    ref={(el) => {
+                      dropRefs.current[n.label] = el;
+                    }}
+                    className="nav-drop-btn"
+                    aria-expanded={openDrop === n.label}
+                    aria-controls={`drop-${n.label.replace(/\s+/g, "")}`}
+                    onClick={() => {
+                      setMegaOpen(false);
+                      setOpenDrop((cur) => (cur === n.label ? null : n.label));
+                    }}
+                  >
+                    {n.label}
+                    <Caret />
+                  </button>
+                  <div
+                    className="nav-drop"
+                    id={`drop-${n.label.replace(/\s+/g, "")}`}
+                    hidden={openDrop !== n.label}
+                  >
+                    {n.children.map(([label, href]) => (
+                      <a key={label} className="nav-drop-link" href={href}>
+                        {label}
+                      </a>
+                    ))}
+                    <a className="nav-drop-link nav-drop-all" href={n.href}>
+                      All {n.label}
+                      <svg viewBox="0 0 16 16" aria-hidden="true">
+                        <path
+                          d="M2 8h11M9 3.5 13.5 8 9 12.5"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </li>
+              ) : (
+                <li key={n.label}>
+                  <a href={n.href}>{n.label}</a>
+                </li>
+              )
+            )}
           </ul>
         </nav>
 
@@ -162,22 +294,13 @@ export default function SiteHeader() {
           <li>
             <button
               className="mobile-acc"
-              aria-expanded={accOpen}
-              onClick={() => setAccOpen((v) => !v)}
+              aria-expanded={openAcc === "AI"}
+              onClick={() => setOpenAcc((cur) => (cur === "AI" ? null : "AI"))}
             >
               AI
-              <svg className="caret" viewBox="0 0 12 12" aria-hidden="true">
-                <path
-                  d="M2.5 4.5 6 8l3.5-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <Caret />
             </button>
-            <ul className="mobile-sub" hidden={!accOpen}>
+            <ul className="mobile-sub" hidden={openAcc !== "AI"}>
               <li>
                 <Link href="/ai-agents/" onClick={() => setMobileOpen(false)}>
                   AI Agents <span className="pro-badge">PRO</span>
@@ -200,13 +323,35 @@ export default function SiteHeader() {
               </li>
             </ul>
           </li>
-          {NAV.map((n) => (
-            <li key={n.label}>
-              <a href={n.href} onClick={() => setMobileOpen(false)}>
-                {n.label}
-              </a>
-            </li>
-          ))}
+          {NAV.map((n) =>
+            n.children ? (
+              <li key={n.label}>
+                <button
+                  className="mobile-acc"
+                  aria-expanded={openAcc === n.label}
+                  onClick={() => setOpenAcc((cur) => (cur === n.label ? null : n.label))}
+                >
+                  {n.label}
+                  <Caret />
+                </button>
+                <ul className="mobile-sub" hidden={openAcc !== n.label}>
+                  {n.children.map(([label, href]) => (
+                    <li key={label}>
+                      <a href={href} onClick={() => setMobileOpen(false)}>
+                        {label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li key={n.label}>
+                <a href={n.href} onClick={() => setMobileOpen(false)}>
+                  {n.label}
+                </a>
+              </li>
+            )
+          )}
         </ul>
         <Link className="btn-login btn-block-login" href="/portal/" onClick={() => setMobileOpen(false)}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
