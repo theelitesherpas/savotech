@@ -94,12 +94,12 @@ const NAV: NavItem[] = [
       href: "/#hire",
     },
     children: [
-      ["AI & ML Engineers", "/#hire"],
-      ["Frontend Developers", "/#hire"],
-      ["Backend Developers", "/#hire"],
-      ["Full Stack Developers", "/#hire"],
-      ["Mobile Developers", "/#hire"],
-      ["DevOps & QA Engineers", "/#hire"],
+      ["AI & ML Engineers", "/hire/ai-ml-engineers/"],
+      ["Frontend Developers", "/hire/frontend-developers/"],
+      ["Backend Developers", "/hire/backend-developers/"],
+      ["Full Stack Developers", "/hire/full-stack-developers/"],
+      ["Mobile Developers", "/hire/mobile-developers/"],
+      ["DevOps & QA Engineers", "/hire/devops-qa-engineers/"],
     ],
   },
   {

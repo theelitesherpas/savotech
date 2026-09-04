@@ -3658,3 +3658,130 @@ textarea { resize: vertical; }
 }
 .city-opt.hl { background: var(--tint-blue); }
 .city-opt.sel { color: var(--blue-text); font-weight: 700; }
+
+/* ================= hire pages ================= */
+.hire-hero .svc-hire-ctas .btn-ghost { border-color: rgba(255, 255, 255, 0.45); color: #fff; }
+.hire-hero .svc-hire-ctas .btn-ghost:hover { color: #fff; }
+
+/* plans: ink band */
+.hire-plans { background: var(--ink); }
+.hire-plans .section-head h2 { color: #fff; }
+.hire-plans .lead { color: var(--muted-light); }
+.plan-cycle { display: flex; gap: 0.7rem; justify-content: center; margin-bottom: 1.8rem; }
+.plan-cycle .chip { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.18); color: var(--muted-light); }
+.plan-cycle .chip.sel { background: var(--white); border-color: var(--white); color: var(--ink); }
+.plan-save {
+  margin-left: 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(43, 217, 38, 0.18);
+  color: #7ee08a;
+}
+.plan-cycle .chip.sel .plan-save { background: var(--tint-green); color: var(--green-text); }
+.plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.plan-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--r-lg);
+  padding: 1.7rem 1.6rem 1.8rem;
+  display: grid;
+  gap: 0.35rem;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+.plan-card:hover { border-color: rgba(255, 255, 255, 0.3); transform: translateY(-3px); }
+.plan-card.is-active { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.4); }
+.plan-flag {
+  position: absolute;
+  top: -0.8rem;
+  left: 1.4rem;
+  background: var(--green);
+  color: #0c2b0d;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+}
+.plan-card h3 { color: #fff; font-size: 1.05rem; }
+.plan-price { color: #fff; font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 800; font-variant-numeric: tabular-nums; }
+.plan-price span { font-size: 0.85rem; font-weight: 500; color: var(--muted-light); }
+.plan-total { color: var(--muted-light); font-size: 0.84rem; }
+.plan-card ul { list-style: none; display: grid; gap: 0.5rem; margin: 1rem 0 1.4rem; }
+.plan-card li { color: #d6d6de; font-size: 0.86rem; display: flex; gap: 0.5rem; align-items: baseline; }
+.plan-card li::before { content: ""; width: 6px; height: 6px; border-radius: 2px; background: var(--blue); flex: none; transform: translateY(-1px); }
+.plan-card .btn-login { background: transparent; border-color: rgba(255, 255, 255, 0.35); color: #fff; justify-self: start; }
+.plan-card .btn-login:hover { color: #fff; }
+.plan-card .btn-primary { justify-self: start; }
+.plan-fine { text-align: center; color: var(--muted-light); font-size: 0.86rem; margin-top: 1.8rem; }
+.plan-fine strong { color: #fff; }
+
+/* tech chips on light bg */
+.svc-chips.on-light { margin-top: 0; }
+.svc-chip-light {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: 999px;
+  padding: 0.5rem 1.05rem;
+  transition: border-color 0.16s ease, color 0.16s ease;
+}
+.svc-chip-light:hover { border-color: var(--blue); color: var(--blue-text); }
+
+/* other roles photo grid */
+.role-photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.role-photo-card {
+  position: relative;
+  display: block;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--ink);
+}
+.role-photo-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.35) contrast(1.02);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+}
+.role-photo-card:hover img { transform: scale(1.05); filter: grayscale(0); }
+.role-photo-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 14, 0) 30%, rgba(10, 10, 14, 0.82) 100%);
+}
+.role-photo-body {
+  position: absolute;
+  left: 1.2rem; right: 1.2rem; bottom: 1.05rem;
+  color: #fff;
+  display: grid;
+  gap: 0.3rem;
+}
+.role-photo-body strong { font-size: 1.05rem; }
+.role-photo-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #b9c1ff;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.role-photo-cta svg { width: 13px; height: 13px; }
+.role-photo-card:hover .role-photo-cta { opacity: 1; transform: none; }
+
+@media (max-width: 980px) {
+  .plan-grid, .role-photo-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .plan-grid, .role-photo-grid { grid-template-columns: 1fr; }
+  .plan-card .btn, .plan-card .btn-login { justify-self: stretch; text-align: center; }
+}

@@ -41,6 +41,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
+    ...["ai-ml-engineers", "frontend-developers", "backend-developers", "full-stack-developers", "mobile-developers", "devops-qa-engineers"].map((slug) => ({
+      url: ORIGIN + "/hire/" + slug + "/",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     ...["generative-ai", "consulting", "machine-learning"].map((slug) => ({
       url: ORIGIN + "/ai/" + slug + "/",
       lastModified: new Date(),
