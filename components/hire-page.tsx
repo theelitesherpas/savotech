@@ -1,15 +1,48 @@
 import Link from "next/link";
 import Reveal from "./reveal";
 import HirePlans from "./hire-plans";
+import HireRateCompare from "./hire-rate-compare";
 import SvcWork from "./svc-work";
-import { HIRE_ROLES, type HireRole } from "@/lib/hire-data";
+import { HIRE_ROLES, CLIENT_QUOTES, type HireRole } from "@/lib/hire-data";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+const MODELS = [
+  {
+    t: "Dedicated engineer",
+    d: "One senior engineer embedded in your team, long term.",
+    points: ["Works only on your product", "Your tools, standups and rituals", "Direct daily communication", "Scale up or down with notice"],
+    best: "Most engagements",
+    hot: true,
+  },
+  {
+    t: "Managed pod",
+    d: "Three to five engineers plus a Savo tech lead running delivery.",
+    points: ["Lead included at no premium", "Backfill handled by us", "Sprint planning and QA built in", "Ideal for 2+ engineers"],
+    best: "Fast roadmaps",
+    hot: false,
+  },
+  {
+    t: "Time and material",
+    d: "Flexible capacity for evolving scopes and audits.",
+    points: ["Start from 20 hours a week", "Weekly reporting", "Great for rescue work", "Convert to dedicated anytime"],
+    best: "Uncertain scope",
+    hot: false,
+  },
+];
+
+const INDUSTRIES = ["Healthcare", "FinTech & Banking", "Ecommerce & Retail", "Logistics & Fleet", "Education", "Energy & Utilities"];
+
+const PROCESS_TAIL = {
+  t: "Ongoing support",
+  d: "Quarterly performance reviews, a Savo lead overseeing delivery and instant free replacement if anyone underperforms.",
+};
 
 /** Shared template for every dedicated hire resources page. */
 export default function HirePageView({ role }: { role: HireRole }) {
   const r = role;
   const others = HIRE_ROLES.filter((x) => x.slug !== r.slug);
+  const steps = [...r.process, PROCESS_TAIL];
 
   return (
     <>
@@ -47,24 +80,121 @@ export default function HirePageView({ role }: { role: HireRole }) {
         </div>
       </section>
 
-      {/* ---------- what you get ---------- */}
+      {/* ---------- snapshot + why checklist: split panel ---------- */}
+      <section className="section section-light">
+        <div className="wrap hire-split">
+          <aside className="hire-snapshot">
+            <Reveal>
+              <p className="page-kicker">At a glance</p>
+              <h2>The Savo standard.</h2>
+              <dl>
+                <div>
+                  <dt>Seniority</dt>
+                  <dd>Mid to senior, 5 to 10 years</dd>
+                </div>
+                <div>
+                  <dt>Timezone</dt>
+                  <dd>4+ hours daily overlap with you</dd>
+                </div>
+                <div>
+                  <dt>Trial</dt>
+                  <dd>Two weeks, paid, cancel anytime</dd>
+                </div>
+                <div>
+                  <dt>Replacement</dt>
+                  <dd>Free and instant, forever</dd>
+                </div>
+                <div>
+                  <dt>IP and code</dt>
+                  <dd>100% yours from commit one</dd>
+                </div>
+                <div>
+                  <dt>Security</dt>
+                  <dd>NDA, least privilege access</dd>
+                </div>
+              </dl>
+              <Link className="btn btn-primary" href="/start-your-project/">Get matched profiles</Link>
+            </Reveal>
+          </aside>
+          <div className="hire-why">
+            <Reveal delay={0.08}>
+              <h2>Why teams keep our {r.short.toLowerCase()} engineers for years.</h2>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <ul className="hire-checklist">
+                {r.checklist.map((c) => (
+                  <li key={c}>
+                    <span className="hc-tick" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" fill="none">
+                        <path d="m3 8.6 3.2 3.2L13 4.8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="lead">{r.intro[1]}</p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- solutions our role delivers ---------- */}
+      <section className="section section-alt">
+        <div className="wrap">
+          <div className="section-head">
+            <Reveal>
+              <h2>What our {r.short.toLowerCase()} engineers take off your plate.</h2>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="lead">
+                Hire for one of these or all of them. The scope is yours; the seniority is ours.
+              </p>
+            </Reveal>
+          </div>
+          <div className="hire-solutions">
+            {r.solutions.map((s, i) => (
+              <Reveal key={s} delay={0.03 * (i % 3)}>
+                <div className="hire-sol">
+                  <span className={`hs-ico n${i % 3}`} aria-hidden="true">
+                    <svg viewBox="0 0 20 20" fill="none">
+                      <path d="m4 10.4 4 4L16 5.6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span>{s}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- engagement models ---------- */}
       <section className="section section-light">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
-              <h2>What you get.</h2>
+              <h2>Three ways to engage.</h2>
             </Reveal>
             <Reveal delay={0.08}>
-              <p className="lead">{r.intro[1]}</p>
+              <p className="lead">Same engineers, same rates. Pick the shape that fits how you work.</p>
             </Reveal>
           </div>
-          <div className="svc-grid">
-            {r.skills.map((d, i) => (
-              <Reveal key={d.t} delay={0.05 * (i % 2)}>
-                <article className="svc-card">
-                  <span className={`svc-num n${i % 3}`}>{String(i + 1).padStart(2, "0")}</span>
-                  <h3>{d.t}</h3>
-                  <p>{d.d}</p>
+          <div className="hire-models">
+            {MODELS.map((m, i) => (
+              <Reveal key={m.t} delay={0.06 * i}>
+                <article className={`hire-model${m.hot ? " is-hot" : ""}`}>
+                  {m.hot && <span className="plan-flag">Most chosen</span>}
+                  <h3>{m.t}</h3>
+                  <p>{m.d}</p>
+                  <ul>
+                    {m.points.map((p) => (
+                      <li key={p}>{p}</li>
+                    ))}
+                  </ul>
+                  <span className="hm-best">Best for: {m.best}</span>
                 </article>
               </Reveal>
             ))}
@@ -72,22 +202,36 @@ export default function HirePageView({ role }: { role: HireRole }) {
         </div>
       </section>
 
-      {/* ---------- engagement flow ---------- */}
+      {/* ---------- plans + global rate compare: ink ---------- */}
+      <HirePlans monthly={r.monthly} role={r.title} />
+      <section className="section hire-rates">
+        <div className="wrap">
+          <div className="section-head">
+            <Reveal>
+              <h2>What the same {r.short.toLowerCase()} engineer costs worldwide.</h2>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="lead">
+                Seniority, English fluency and overlap held constant. Geography is the only variable.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal delay={0.1}>
+            <HireRateCompare monthly={r.monthly} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- hiring process ---------- */}
       <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
-              <h2>How we start, and every stage after.</h2>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="lead">
-                Hiring should feel like adding a teammate, not signing a contract. Here is the
-                exact path from first call to a running team.
-              </p>
+              <h2>From first call to running team, in five stages.</h2>
             </Reveal>
           </div>
-          <ol className="svc-process">
-            {r.process.map((p, i) => (
+          <ol className="svc-process steps-5">
+            {steps.map((p, i) => (
               <Reveal key={p.t} delay={0.05 * i}>
                 <li>
                   <span className="svc-step-dot" aria-hidden="true" />
@@ -99,34 +243,14 @@ export default function HirePageView({ role }: { role: HireRole }) {
           </ol>
           <Reveal delay={0.2}>
             <div className="svc-hire-ctas center">
-              <Link className="btn btn-primary" href="/start-your-project/">Start the first step</Link>
+              <Link className="btn btn-primary" href="/start-your-project/">Start stage one today</Link>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ---------- plans: ink ---------- */}
-      <HirePlans monthly={r.monthly} role={r.title} />
-
-      {/* ---------- projects ---------- */}
-      <section className="section section-light">
-        <div className="wrap">
-          <div className="section-head">
-            <Reveal>
-              <h2>Work our {r.short.toLowerCase()} teams shipped.</h2>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="lead">Products these engineers build and maintain today.</p>
-            </Reveal>
-          </div>
-          <Reveal delay={0.1}>
-            <SvcWork items={r.portfolio} />
-          </Reveal>
-        </div>
-      </section>
-
       {/* ---------- technologies ---------- */}
-      <section className="section section-alt">
+      <section className="section section-light">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -146,8 +270,46 @@ export default function HirePageView({ role }: { role: HireRole }) {
         </div>
       </section>
 
-      {/* ---------- other roles: photo grid ---------- */}
-      <section className="section section-light" id="roles">
+      {/* ---------- projects ---------- */}
+      <section className="section section-alt">
+        <div className="wrap">
+          <div className="section-head">
+            <Reveal>
+              <h2>Work our {r.short.toLowerCase()} teams shipped.</h2>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="lead">Products these engineers build and maintain today.</p>
+            </Reveal>
+          </div>
+          <Reveal delay={0.1}>
+            <SvcWork items={r.portfolio} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- industries ---------- */}
+      <section className="section section-light">
+        <div className="wrap">
+          <div className="section-head">
+            <Reveal>
+              <h2>Industries they know already.</h2>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="lead">Your engineer arrives fluent in your domain&apos;s rules and rituals.</p>
+            </Reveal>
+          </div>
+          <Reveal delay={0.1}>
+            <div className="hire-industries">
+              {INDUSTRIES.map((ind, i) => (
+                <span key={ind} className={`hire-ind n${i % 3}`}>{ind}</span>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- other roles photo grid ---------- */}
+      <section className="section section-alt" id="roles">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -179,36 +341,37 @@ export default function HirePageView({ role }: { role: HireRole }) {
         </div>
       </section>
 
-      {/* ---------- why hire us ---------- */}
-      <section className="section section-alt">
+      {/* ---------- testimonials ---------- */}
+      <section className="section section-light">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
-              <h2>Why teams hire our developers.</h2>
+              <h2>What hiring teams say.</h2>
             </Reveal>
           </div>
-          <div className="svc-grid">
-            {r.why.map((w, i) => (
-              <Reveal key={w.t} delay={0.05 * (i % 2)}>
-                <article className="svc-card">
-                  <span className={`svc-num n${i % 3}`}>{String(i + 1).padStart(2, "0")}</span>
-                  <h3>{w.t}</h3>
-                  <p>{w.d}</p>
-                </article>
+          <div className="svc-quotes">
+            {CLIENT_QUOTES.map((q, i) => (
+              <Reveal key={q.name} delay={0.05 * i}>
+                <figure className={`svc-quote q${i % 3}`}>
+                  <blockquote>“{q.quote}”</blockquote>
+                  <figcaption>
+                    <span className="svc-quote-photo">
+                      <img src={`${BP}${q.img}`} alt={q.name} loading="lazy" />
+                    </span>
+                    <span>
+                      <strong>{q.name}</strong>
+                      <span>{q.role}</span>
+                    </span>
+                  </figcaption>
+                </figure>
               </Reveal>
             ))}
           </div>
-          <Reveal delay={0.16}>
-            <div className="svc-hire-ctas center">
-              <Link className="btn btn-primary btn-lg" href="/start-your-project/">Hire a {r.short.toLowerCase()} engineer</Link>
-              <Link className="btn btn-ghost btn-lg" href="/contact/">Ask us anything</Link>
-            </div>
-          </Reveal>
         </div>
       </section>
 
       {/* ---------- FAQ ---------- */}
-      <section className="section section-light" id="faq">
+      <section className="section section-alt" id="faq">
         <div className="wrap wrap-narrow">
           <div className="section-head">
             <Reveal>

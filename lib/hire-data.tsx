@@ -11,6 +11,8 @@ export type HireRole = {
   process: { t: string; d: string }[];
   stack: { n: string }[];
   tech: string[];
+  solutions: string[];
+  checklist: string[];
   monthly: number; // INR per month, dedicated senior
   portfolio: { name: string; meta: string; img: string; stat: string }[];
   why: { t: string; d: string }[];
@@ -48,6 +50,8 @@ export const HIRE_ROLES: HireRole[] = [
     ],
     stack: [{ n: "Python" }, { n: "LangChain" }, { n: "PyTorch" }, { n: "pgvector" }, { n: "Airflow" }, { n: "MLflow" }, { n: "AWS" }, { n: "FastAPI" }],
     tech: ["Python", "LangChain", "LlamaIndex", "PyTorch", "scikit-learn", "pgvector", "Pinecone", "Airflow", "Feast", "MLflow", "FastAPI", "Docker", "AWS"],
+    solutions: ["Custom AI agents and copilots", "RAG knowledge systems", "LLM app integration", "Forecasting and prediction models", "Recommendation engines", "Anomaly and fraud detection", "Computer vision pipelines", "Speech and text intelligence", "Model evaluation and MLOps"],
+    checklist: ["Shipped LLM features to production, not just notebooks", "Arabic and English NLP experience", "Evaluation suites and guardrails as a habit", "Cost aware inference architecture", "Your data stays in your cloud", "4+ hours daily overlap with your team", "Two week paid trial before commitment", "Free instant replacement, forever"],
     monthly: 120000,
     portfolio: [
       { name: "Sahm AI Support Desk", meta: "Arabic + English agent · GCC telecom", img: "/work/sahm.jpg", stat: "96% auto-resolved" },
@@ -102,6 +106,8 @@ export const HIRE_ROLES: HireRole[] = [
     ],
     stack: [{ n: "React" }, { n: "Next.js" }, { n: "TypeScript" }, { n: "Tailwind" }, { n: "Storybook" }, { n: "Playwright" }, { n: "Vercel" }, { n: "Figma" }],
     tech: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux", "Zustand", "GraphQL", "Storybook", "Jest", "Playwright", "Vercel", "Figma"],
+    solutions: ["React and Next.js product builds", "Design systems and component libraries", "Legacy frontend modernisation", "Performance and Core Web Vitals rescue", "Accessibility upgrades to WCAG 2.2 AA", "Headless commerce storefronts", "Dashboard and data visualisation UIs", "PWA development", "Frontend architecture reviews"],
+    checklist: ["Pixel perfect Figma to code, verified", "98+ average Lighthouse scores shipped", "Accessibility is a default, not a phase", "Component libraries your team adopts", "Real device testing on 20+ models", "4+ hours daily overlap with your team", "Two week paid trial before commitment", "Free instant replacement, forever"],
     monthly: 85000,
     portfolio: [
       { name: "MediBridge Health", meta: "Patient portal · 40+ clinics", img: "/work/medibridge.jpg", stat: "40+ clinics live" },
@@ -156,6 +162,8 @@ export const HIRE_ROLES: HireRole[] = [
     ],
     stack: [{ n: "Node.js" }, { n: "Python" }, { n: "PostgreSQL" }, { n: "Redis" }, { n: "GraphQL" }, { n: "Docker" }, { n: "AWS" }, { n: "Terraform" }],
     tech: ["Node.js", "TypeScript", "Python", "Go", "PostgreSQL", "MongoDB", "Redis", "Kafka", "GraphQL", "gRPC", "Docker", "Kubernetes", "AWS", "Terraform"],
+    solutions: ["API design and development", "Microservices and monolith rescue", "Payment and billing integrations", "Database design and tuning", "Third party API integrations", "Authentication and security hardening", "Event driven architecture", "Cloud cost optimisation", "Backend audits and rescue missions"],
+    checklist: ["PCI, HIPAA aligned and GDPR ready", "Test driven development as default", "Documentation engineers actually read", "Regulated production traffic experience", "Your data stays in your cloud", "4+ hours daily overlap with your team", "Two week paid trial before commitment", "Free instant replacement, forever"],
     monthly: 90000,
     portfolio: [
       { name: "GulfPay", meta: "Payments platform · GCC", img: "/work/gulfpay.jpg", stat: "PCI DSS ready" },
@@ -210,6 +218,8 @@ export const HIRE_ROLES: HireRole[] = [
     ],
     stack: [{ n: "React" }, { n: "Next.js" }, { n: "Node.js" }, { n: "TypeScript" }, { n: "PostgreSQL" }, { n: "Docker" }, { n: "AWS" }, { n: "Playwright" }],
     tech: ["React", "Next.js", "TypeScript", "Node.js", "Express", "NestJS", "PostgreSQL", "Prisma", "Redis", "Docker", "AWS", "Playwright"],
+    solutions: ["MVP builds from zero to launch", "Full feature development end to end", "SaaS product development", "Marketplace and portal builds", "Internal tools and admin panels", "API plus UI for new products", "Technology migrations", "Team augmentation with glue", "Product rescue and re-platforming"],
+    checklist: ["One owner per feature, no handoffs", "Frontend, backend and deploy in one head", "Product judgment, asks why first", "Startup velocity with senior discipline", "Works directly with your designer", "4+ hours daily overlap with your team", "Two week paid trial before commitment", "Free instant replacement, forever"],
     monthly: 95000,
     portfolio: [
       { name: "ClearLedger", meta: "Full product build · UK fintech", img: "/work/clearledger.jpg", stat: "Open banking ready" },
@@ -264,6 +274,8 @@ export const HIRE_ROLES: HireRole[] = [
     ],
     stack: [{ n: "React Native" }, { n: "Flutter" }, { n: "Swift" }, { n: "Kotlin" }, { n: "Firebase" }, { n: "Fastlane" }, { n: "Detox" }, { n: "Node.js" }],
     tech: ["React Native", "Flutter", "Expo", "Swift", "Kotlin", "Firebase", "Realm", "SQLite", "Fastlane", "Detox", "App Store Connect", "Play Console"],
+    solutions: ["iOS and Android app development", "React Native and Flutter builds", "Native module development", "App rescue and modernisation", "Offline first field apps", "In app payments and subscriptions", "Push, analytics and growth stacks", "App store optimisation", "Wearables and IoT companions"],
+    checklist: ["Weekly store releases as a rhythm", "99.5%+ crash free sessions maintained", "200+ store approvals navigated", "Real device lab across three regions", "Backend fluent: APIs, auth, push", "4+ hours daily overlap with your team", "Two week paid trial before commitment", "Free instant replacement, forever"],
     monthly: 90000,
     portfolio: [
       { name: "GulfPay", meta: "GCC digital wallet", img: "/work/gulfpay.jpg", stat: "PCI DSS ready" },
@@ -318,6 +330,8 @@ export const HIRE_ROLES: HireRole[] = [
     ],
     stack: [{ n: "AWS" }, { n: "Kubernetes" }, { n: "Terraform" }, { n: "Docker" }, { n: "GitHub Actions" }, { n: "ArgoCD" }, { n: "Playwright" }, { n: "Grafana" }],
     tech: ["AWS", "GCP", "Kubernetes", "Terraform", "Docker", "ArgoCD", "GitHub Actions", "Grafana", "Prometheus", "Loki", "Playwright", "k6", "Cloudflare"],
+    solutions: ["AWS landing zones and guardrails", "Kubernetes build and operations", "CI/CD pipeline engineering", "Infrastructure as code with Terraform", "Test automation frameworks", "Performance and load testing", "Observability and on call setup", "Cloud cost reduction programmes", "Security and compliance automation"],
+    checklist: ["31% average cloud cost saved", "11 minute median deploy times", "PCI and SOC audit ready setups", "Restore drills, not just backups", "Runbooks and docs you inherit", "4+ hours daily overlap with your team", "Two week paid trial before commitment", "Free instant replacement, forever"],
     monthly: 95000,
     portfolio: [
       { name: "GulfPay", meta: "PCI DSS infrastructure · GCC", img: "/work/gulfpay.jpg", stat: "PCI DSS ready" },
@@ -343,6 +357,27 @@ export const HIRE_ROLES: HireRole[] = [
       { t: "FinOps for scaleups", d: "The first 90 days of cloud cost discipline.", time: "7 min read" },
     ],
     photo: "/work/eduspring.jpg",
+  },
+];
+
+export const CLIENT_QUOTES = [
+  {
+    quote: "Savo rebuilt our patient portal in four months. Uptime has been flawless. Their support agent now resolves 70% of tier 1 tickets before a human sees them.",
+    name: "Dr. Reem Al Otaibi",
+    role: "CIO · Healthcare group · Riyadh",
+    img: "/team/client1.jpg",
+  },
+  {
+    quote: "The dedicated team model just works. Same engineers for two years running. They know our codebase better than we do.",
+    name: "James Whitfield",
+    role: "CTO · Logistics scaleup · Sydney",
+    img: "/team/client2.jpg",
+  },
+  {
+    quote: "Transparent pricing, weekly demos, zero surprises. Their instant estimator quoted our build within 5% of the final invoice.",
+    name: "Ananya Iyer",
+    role: "VP Product · FinTech · Bengaluru",
+    img: "/team/client3.jpg",
   },
 ];
 
