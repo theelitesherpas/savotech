@@ -894,18 +894,37 @@ textarea { resize: vertical; }
   position: relative;
   padding: 1.6rem;
   border-radius: var(--r-lg);
-  background: var(--ink-2);
-  border: 1px solid var(--line-dark);
-  border-top: 2px solid var(--blue);
+  --g1: #7c3aed;
+  --g2: #2563eb;
+  background:
+    radial-gradient(135% 105% at 88% -12%, color-mix(in srgb, var(--g1) 30%, transparent) 0%, transparent 56%),
+    radial-gradient(125% 95% at -12% 112%, color-mix(in srgb, var(--g2) 22%, transparent) 0%, transparent 54%),
+    var(--ink-2);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  overflow: hidden;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
-/* tricolor top bars rotate across the fleet */
-.agents-grid > div:nth-child(3n+2) .agent-card { border-top-color: var(--red); }
-.agents-grid > div:nth-child(3n) .agent-card { border-top-color: var(--green); }
+/* AI gradient beam across the top of each card */
+.agent-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, var(--g1), var(--g2), transparent 130%);
+}
+/* aurora palettes rotate across the fleet */
+.agents-grid > div:nth-child(6n+1) .agent-card { --g1: #7c3aed; --g2: #2563eb; }
+.agents-grid > div:nth-child(6n+2) .agent-card { --g1: #2563eb; --g2: #06b6d4; }
+.agents-grid > div:nth-child(6n+3) .agent-card { --g1: #a855f7; --g2: #ec4899; }
+.agents-grid > div:nth-child(6n+4) .agent-card { --g1: #06b6d4; --g2: #10b981; }
+.agents-grid > div:nth-child(6n+5) .agent-card { --g1: #8b5cf6; --g2: #06b6d4; }
+.agents-grid > div:nth-child(6n) .agent-card { --g1: #ec4899; --g2: #8b5cf6; }
 .agent-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.8);
-  border-color: rgba(255, 255, 255, 0.26);
+  border-color: color-mix(in srgb, var(--g1) 55%, transparent);
+  box-shadow:
+    0 18px 42px -16px rgba(0, 0, 0, 0.6),
+    0 0 34px -6px color-mix(in srgb, var(--g1) 38%, transparent);
 }
 .agent-avatar {
   width: 58px; height: 58px;
@@ -1356,31 +1375,7 @@ textarea { resize: vertical; }
 .hire-note a { color: var(--blue-text); font-weight: 600; }
 
 /* estimator */
-/* agents section, light variant (homepage): white cards on paper */
-.ai-section-light .agent-card {
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-top: 2px solid var(--blue);
-  box-shadow: var(--shadow-lift);
-}
-.ai-section-light .agent-card:hover {
-  border-color: var(--ink);
-  box-shadow: var(--shadow-lift-lg);
-}
-.ai-section-light .agent-avatar {
-  background: var(--paper-2);
-  border: 1px solid var(--line);
-}
-.ai-section-light .agent-card h3 { color: var(--ink); }
-.ai-section-light .agent-card > p { color: var(--muted); }
-.ai-section-light .tags li {
-  color: var(--muted);
-  border-color: var(--line);
-  background: var(--paper);
-}
-.ai-section-light .agent-foot { border-top: 1px solid var(--line); }
-.ai-section-light .agent-cta { color: var(--blue-text); }
-.ai-section-light .live-dot { color: var(--muted); }
+/* agents section, homepage: dark aurora cards on the paper section */
 .ai-section-light .agents-note { color: var(--muted); }
 .ai-section-light .agents-note a { color: var(--blue-text); }
 
