@@ -149,6 +149,19 @@ export default function SiteFooter() {
 
         <div className="footer-contact">
           <div className="fc-item">
+            <span className="fc-monument" aria-hidden="true">
+              <svg viewBox="0 0 64 44" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M32 2.5V5" />
+                <path d="M32 5.5c3.6 4.3 5.4 7.7 5.4 10.9 0 3.3-2.3 5.6-5.4 5.6s-5.4-2.3-5.4-5.6c0-3.2 1.8-6.6 5.4-10.9Z" />
+                <path d="M17 40V24h30v16" />
+                <path d="M27.5 40v-8.2c0-2.7 9-2.7 9 0V40" />
+                <path d="M21.5 40v-5.5M42.5 40v-5.5" />
+                <path d="M10 40V16M54 40V16" />
+                <path d="M8.5 16h3M52.5 16h3" />
+                <path d="m9 16 1-2.5 1 2.5M53 16l1-2.5 1 2.5" />
+                <path d="M6 40h52" />
+              </svg>
+            </span>
             <h3>India · HQ</h3>
             <p>
               Savo Technologies Pvt. Ltd.
@@ -157,6 +170,16 @@ export default function SiteFooter() {
             </p>
           </div>
           <div className="fc-item">
+            <span className="fc-monument" aria-hidden="true">
+              <svg viewBox="0 0 64 44" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m44 2 1.4 2L44 6.4 42.6 4Z" />
+                <path d="m38 12 4.5-6.5" />
+                <circle cx="33" cy="13.5" r="3.2" />
+                <path d="M30 11.5 27.5 7.5M33 10.5V6M36 11.5 38.5 7.5" />
+                <path d="M33 17c-5.5 4.5-8 10.5-8.6 21h17.2C41 27.5 38.5 21.5 33 17Z" />
+                <path d="M21 38h24M23.5 42h19M25 38v4M41 38v4" />
+              </svg>
+            </span>
             <h3>USA</h3>
             <p>
               Delivery &amp; client success
@@ -165,6 +188,15 @@ export default function SiteFooter() {
             </p>
           </div>
           <div className="fc-item">
+            <span className="fc-monument" aria-hidden="true">
+              <svg viewBox="0 0 64 44" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 40C21 22 28 10 43 4" />
+                <path d="M43 4C36 14 32.5 26 32.5 40" />
+                <path d="M24.5 31.5c3-.6 5.5-1.4 8-2.6" />
+                <path d="M27.5 24.5c2.6-.8 5-1.9 7.3-3.4" />
+                <path d="M6 40h52M14 43h36" />
+              </svg>
+            </span>
             <h3>Saudi Arabia &amp; GCC</h3>
             <p>
               Delivery &amp; client success
@@ -173,6 +205,17 @@ export default function SiteFooter() {
             </p>
           </div>
           <div className="fc-item">
+            <span className="fc-monument" aria-hidden="true">
+              <svg viewBox="0 0 64 44" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="32" cy="18" r="5" />
+                <path d="M32 15v3.2l2.6 1.3" />
+                <path d="M26.5 23.5 32 8.5l5.5 15" />
+                <path d="M25 23.5h14" />
+                <path d="M26.5 23.5V42M37.5 23.5V42" />
+                <path d="M30 30v3.5M34 30v3.5" />
+                <path d="M22 42h20" />
+              </svg>
+            </span>
             <h3>United Kingdom</h3>
             <p>
               Delivery &amp; client success
@@ -181,6 +224,14 @@ export default function SiteFooter() {
             </p>
           </div>
           <div className="fc-item">
+            <span className="fc-monument" aria-hidden="true">
+              <svg viewBox="0 0 64 44" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 38c4.5-18 15-24.5 21.5-23.5C23 19 17 27 15.5 38" />
+                <path d="M21 38c4-17 15-24.5 21-23.5-7.5 5-13.5 13-14.5 23.5" />
+                <path d="M33 38c4-15.5 13.5-22 18.5-21-6 5-11 12-12 21" />
+                <path d="M6 38h52M10 42h44" />
+              </svg>
+            </span>
             <h3>Australia</h3>
             <p>
               Delivery &amp; client success
