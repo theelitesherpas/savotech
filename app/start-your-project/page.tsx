@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/reveal";
 import StartYourProjectPanel from "@/components/start-panel";
+import DirectChannels from "@/components/direct-channels";
 
 export const metadata: Metadata = {
   title: "Start Your Project",
@@ -123,31 +124,7 @@ export default function StartYourProjectPage() {
                   </Link>
                 </div>
 
-                <div className="start-aside-card">
-                  <div className="aside-head">
-<div className="aside-ico ico-red" aria-hidden="true">{NEXT_ICONS.chat}</div>
-                  <h3>Talk to us directly</h3>
-                  </div>
-                  <div className="contact-lines">
-                    <a href="mailto:hello@savotechnologies.com">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <rect x="3.5" y="5.5" width="17" height="13" rx="2.2" />
-                        <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
-                      </svg>
-                      hello@savotechnologies.com
-                    </a>
-                    <a href="tel:+910000000000">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d="M6.8 3.8 9 3.2c.7-.2 1.4.2 1.7.9l1 2.4c.2.6.1 1.3-.4 1.7l-1.3 1.2a12.6 12.6 0 0 0 4.6 4.6l1.2-1.3c.4-.5 1.1-.6 1.7-.4l2.4 1c.7.3 1.1 1 .9 1.7l-.6 2.2c-.2.7-.8 1.2-1.5 1.2C11.6 18.4 5.6 12.4 5.6 5.3c0-.7.5-1.3 1.2-1.5Z" />
-                      </svg>
-                      +91 00000 00000
-                    </a>
-                  </div>
-                  <p className="start-aside-note">
-                    Existing client?{" "}
-                    <Link className="text-cta" href="/portal/">Client Login</Link>
-                  </p>
-                </div>
+                <DirectChannels showPortalNote />
 
                 <div className="start-aside-card">
                   <div className="aside-head">
