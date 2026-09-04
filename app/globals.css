@@ -517,19 +517,25 @@ textarea { resize: vertical; }
 .nav-toggle {
   display: none;
   flex-direction: column;
-  gap: 5px;
-  padding: 10px;
-  border-radius: var(--r-sm);
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0 12px;
+  border-radius: 12px;
+  -webkit-tap-highlight-color: transparent;
 }
+.nav-toggle:active { background: var(--paper-2); }
 .nav-toggle .bar {
-  width: 22px; height: 2px;
+  width: 23px; height: 2.5px;
   background: var(--ink);
   border-radius: 2px;
   transition: transform 0.25s ease, opacity 0.2s ease;
 }
-.nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
 
 .mobile-nav {
   position: fixed;
@@ -2645,6 +2651,7 @@ textarea { resize: vertical; }
   .industries-grid { grid-template-columns: repeat(4, 1fr); }
   .primary-nav { display: none; }
   .nav-toggle { display: flex; }
+  .header-actions { margin-left: auto; }
 }
 
 @media (max-width: 1024px) {
@@ -2714,4 +2721,25 @@ textarea { resize: vertical; }
 @media (max-width: 380px) {
   .trust-grid { grid-template-columns: 1fr; }
   .stat + .stat { border-left: 0; border-top: 1px solid var(--line); padding-top: 1.2rem; }
+}
+
+/* ---------- iPhone / small screens: tap targets and rhythm ---------- */
+@media (max-width: 640px) {
+  .section { padding-block: 3.5rem; }
+  .agent-cta,
+  .work-link,
+  .role-foot .text-cta,
+  .agents-note a,
+  .fc-contact a,
+  .fc-login {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .role-foot { display: flex; align-items: center; }
+  .role-foot .text-cta { padding: 0 0.35rem; margin-inline: -0.35rem; }
+  .work-link { padding-top: 0.55rem; }
+  .fc-contact { gap: 0.15rem; }
+  .agents-note { line-height: 2.4; }
 }
