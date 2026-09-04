@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/reveal";
+import CareersHero from "@/components/careers-hero";
 import CareersApply from "@/components/careers-form";
 import { TEAM_STATS } from "@/lib/careers-data";
 
@@ -16,44 +17,28 @@ export const metadata: Metadata = {
   },
 };
 
-const PERKS = [
-  { t: "Remote first, always", d: "Work from anywhere in India, with quarterly onsites in Indore and Ahmedabad." },
-  { t: "Learning budget", d: "₹50,000 a year for courses, conferences and books. No approval theatre." },
-  { t: "Health cover for family", d: "Insurance that includes parents, plus your choice of equipment." },
+const STACK = [
+  "React", "Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL",
+  "Kubernetes", "Terraform", "AWS", "Flutter", "React Native", "Figma",
+  "LangChain", "Redis", "GraphQL", "Playwright",
 ];
 
 export default function CareersPage() {
   return (
     <>
-      <section className="section section-light start-hero">
-        <div className="wrap">
-          <div className="section-head" style={{ marginBottom: "2.5rem" }}>
-            <Reveal>
-              <p className="page-kicker">Careers</p>
-              <h1>Do the best work of your career.</h1>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="lead">
-                Small senior teams, real products in healthcare, fintech and AI. No body shopping,
-                no bench, no status meetings that could have been a sentence.
-              </p>
-            </Reveal>
-          </div>
+      <CareersHero />
 
-          <Reveal delay={0.12}>
-            <div className="guarantee-grid">
-              {PERKS.map((g, i) => (
-                <div key={g.t} className={`guarantee-card g-${i + 1}`}>
-                  <h3>{g.t}</h3>
-                  <p>{g.d}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
+      <div className="stack-marquee" aria-hidden="true">
+        <div className="stack-track">
+          {[...STACK, ...STACK].map((s, i) => (
+            <span key={i} className={`stack-chip${i % 3 === 1 ? " c2" : i % 3 === 2 ? " c3" : ""}`}>
+              {s}
+            </span>
+          ))}
         </div>
-      </section>
+      </div>
 
-      <section className="section section-light" style={{ paddingTop: 0 }}>
+      <section className="section section-light" id="openings">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -61,21 +46,15 @@ export default function CareersPage() {
             </Reveal>
             <Reveal delay={0.08}>
               <p className="lead">
-                Every role is a direct full time position with Savo Technologies, paid in INR.
-                Not sure you fit one perfectly? Apply anyway, the form is ten minutes.
+                Every role is a direct, full time position with Savo Technologies. Expand a role
+                for the detail, hit apply, and the form appears right here. Not a perfect fit?
+                Apply anyway, one honest paragraph beats a perfect checklist.
               </p>
             </Reveal>
           </div>
           <Reveal delay={0.1}>
             <CareersApply />
           </Reveal>
-          <p className="careers-footnote">
-            No matching role today?{" "}
-            <Link href="mailto:careers@savotechnologies.com" className="text-cta">
-              Write to careers@savotechnologies.com
-            </Link>{" "}
-            and tell us what you would want to build here.
-          </p>
 
           <div className="team-stats" aria-label="Team at a glance">
             {TEAM_STATS.map((s) => (
@@ -85,6 +64,14 @@ export default function CareersPage() {
               </div>
             ))}
           </div>
+
+          <p className="careers-footnote">
+            No matching role today?{" "}
+            <Link href="mailto:careers@savotechnologies.com" className="text-cta">
+              Write to careers@savotechnologies.com
+            </Link>{" "}
+            and tell us what you would want to build here.
+          </p>
         </div>
       </section>
     </>

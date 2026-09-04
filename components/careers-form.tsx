@@ -108,6 +108,7 @@ const FILTERS: [string, string][] = [
 export default function CareersApply({ initialRole }: Props) {
   const [filter, setFilter] = useState("all");
   const [openRole, setOpenRole] = useState<string | null>(null);
+  const [applied, setApplied] = useState<string | null>(null);
   const visible = ROLES.filter((r) => filter === "all" || r.cat === filter);
   const [role, setRole] = useState(initialRole ?? ROLES[0].title);
   const [experience, setExperience] = useState("1 to 3 years");
@@ -137,7 +138,10 @@ export default function CareersApply({ initialRole }: Props) {
 
   const pickRole = (title: string) => {
     setRole(title);
-    document.getElementById("apply")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setApplied(title);
+    requestAnimationFrame(() => {
+      document.getElementById("apply")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   };
 
   const submit = async (e: React.FormEvent) => {
@@ -264,46 +268,41 @@ export default function CareersApply({ initialRole }: Props) {
         })}
       </div>
 
-      <div className="start-grid" id="apply">
-        <div className="start-card">
-          <div className="start-card-head">
-            <h2>Apply now</h2>
-            <p>Ten minutes, one form, no portals to create accounts on.</p>
-          </div>
-
-          {done ? (
-            <div className="career-done">
-              <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-                <circle cx="24" cy="24" r="21" stroke="currentColor" strokeWidth="2" />
-                <path d="m15 24.5 6 6L33 18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <h3>Application received.</h3>
-              <p>
-                A senior engineer reviews every application personally. Expect a reply within two
-                business days, either way. Meanwhile, meet the agent fleet your work could power.
-              </p>
-              <Link className="btn btn-ghost-sm" href="/ai-agents/">
-                Meet our AI agents
-              </Link>
+      {applied && (
+        <div className="start-grid apply-panel" id="apply">
+          <div className="start-card">
+            <div className="start-card-head apply-head">
+              <div>
+                <h2>Apply: {applied}</h2>
+                <p>Ten minutes, one form, no accounts to create.</p>
+              </div>
+              <button
+                type="button"
+                className="role-apply"
+                onClick={() => setApplied(null)}
+              >
+                ← All roles
+              </button>
             </div>
-          ) : (
-            <form className="start-form" onSubmit={submit} noValidate>
-              <fieldset className="est-step">
-                <legend>{Ico.spark}Role you are applying for</legend>
-                <div className="chip-row">
-                  {ROLES.map((r) => (
-                    <button
-                      type="button"
-                      key={r.title}
-                      className={`chip${role === r.title ? " sel" : ""}`}
-                      aria-pressed={role === r.title}
-                      onClick={() => setRole(r.title)}
-                    >
-                      {r.title}
-                    </button>
-                  ))}
-                </div>
-              </fieldset>
+
+            {done ? (
+              <div className="career-done">
+                <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                  <circle cx="24" cy="24" r="21" stroke="currentColor" strokeWidth="2" />
+                  <path d="m15 24.5 6 6L33 18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <h3>Application received.</h3>
+                <p>
+                  An engineer reviews every application personally. Expect a reply within two
+                  business days, either way. Meanwhile, meet the agent fleet your work could
+                  power.
+                </p>
+                <Link className="btn btn-ghost-sm" href="/ai-agents/">
+                  Meet our AI agents
+                </Link>
+              </div>
+            ) : (
+              <form className="start-form" onSubmit={submit} noValidate>
 
               <div className="lead-grid">
                 <div className={`field f-wrap${errors.name ? " has-error" : ""}`}>
@@ -514,8 +513,7 @@ export default function CareersApply({ initialRole }: Props) {
                   {busy ? "Submitting application" : "Submit Application"}
                 </button>
                 <p className="est-fine">
-                  Read by a senior engineer within two business days. Your details are never
-                  shared outside Savo Technologies.
+                  Read by an engineer who ships, with a personal reply within two business days. Your details never leave Savo Technologies.
                 </p>
               </div>
               {failed && (
@@ -524,47 +522,11 @@ export default function CareersApply({ initialRole }: Props) {
                   careers@savotechnologies.com directly.
                 </p>
               )}
-            </form>
-          )}
+</form>
+            )}
+          </div>
         </div>
-
-        <aside className="start-aside">
-          <div className="start-aside-card">
-            <div className="aside-head">
-              <div className="aside-ico" aria-hidden="true">{Ico.clock}</div>
-              <h3>How we hire</h3>
-            </div>
-            <ol className="start-steps">
-              <li>
-                <strong>Application review</strong>
-                <span>Two business days, personal reply either way.</span>
-              </li>
-              <li>
-                <strong>Technical conversation</strong>
-                <span>60 minutes on real problems, not trick puzzles.</span>
-              </li>
-              <li>
-                <strong>Pairing session</strong>
-                <span>A paid two hour session on a small real task.</span>
-              </li>
-              <li>
-                <strong>Offer and start</strong>
-                <span>Written offer within a week of the final round.</span>
-              </li>
-            </ol>
-          </div>
-          <div className="start-aside-card start-aside-ink">
-            <div className="aside-head">
-              <div className="aside-ico" aria-hidden="true">{Ico.mail}</div>
-              <h3>Questions first?</h3>
-            </div>
-            <p>
-              Write to <a href="mailto:careers@savotechnologies.com">careers@savotechnologies.com</a>{" "}
-              and a human replies, usually the same day.
-            </p>
-          </div>
-        </aside>
-      </div>
+      )}
     </>
   );
 }
