@@ -345,8 +345,8 @@ textarea { resize: vertical; }
   z-index: 60;
   min-width: 296px;
   padding: 0.6rem;
-  background: var(--ink);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: var(--white);
+  border: 1px solid var(--line);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-lift-lg);
 }
@@ -370,7 +370,7 @@ textarea { resize: vertical; }
   gap: 0.6rem;
   padding: 0.58rem 0.72rem;
   border-radius: 9px;
-  color: var(--muted-light);
+  color: #3f3f49;
   font-size: 0.88rem;
   font-weight: 500;
   white-space: nowrap;
@@ -401,19 +401,19 @@ textarea { resize: vertical; }
   opacity: 0;
   transition: opacity 0.16s ease, transform 0.16s ease;
 }
-.nav-drop .nav-drop-link:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
+.nav-drop .nav-drop-link:hover { background: var(--paper-2); color: var(--ink); }
 .nav-drop-link:hover::before { opacity: 1; transform: scale(1.4); }
 .nav-drop-link:hover::after { opacity: 0.85; transform: rotate(45deg) translateX(0) scale(1); }
 .nav-drop .nav-drop-all {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--line);
   margin-top: 0.45rem;
   padding-top: 0.75rem;
-  color: #ff5c5c;
+  color: var(--red-text);
   font-weight: 700;
 }
 .nav-drop .nav-drop-all::before { display: none; }
 .nav-drop .nav-drop-all svg { width: 13px; height: 13px; margin-left: auto; }
-.nav-drop .nav-drop-all:hover { background: transparent; color: #ff8080; }
+.nav-drop .nav-drop-all:hover { background: transparent; color: var(--ink); }
 
 /* nav density: keep every item on one line */
 .nav-list { display: flex; align-items: center; gap: 0.15rem; }
@@ -448,8 +448,8 @@ textarea { resize: vertical; }
   left: 50%;
   transform: translateX(-50%);
   width: 620px;
-  background: var(--ink);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: var(--white);
+  border: 1px solid var(--line);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-lift-lg);
   padding: 1.25rem;
@@ -476,9 +476,9 @@ textarea { resize: vertical; }
 .mega-start:not([hidden]) { animation-name: drop-in; }
 .mega-flip { left: auto; right: 0; transform: none; }
 .mega-flip:not([hidden]) { animation-name: drop-in; }
-.mega .mega-all { color: #ff5c5c; font-weight: 700; }
+.mega .mega-all { color: var(--red-text); font-weight: 700; }
 .mega .mega-all svg { width: 13px; height: 13px; margin-left: auto; }
-.mega .mega-all:hover { background: transparent; color: #ff8080; }
+.mega .mega-all:hover { background: transparent; color: var(--ink); }
 .mega-title {
   font-family: var(--font-display);
   font-size: 0.68rem;
@@ -494,17 +494,17 @@ textarea { resize: vertical; }
   gap: 0.5rem;
   padding: 0.6rem 0.75rem;
   border-radius: var(--r-sm);
-  color: var(--muted-light);
+  color: #3f3f49;
   font-size: 0.92rem;
   font-weight: 500;
   transition: background 0.14s ease, color 0.14s ease;
 }
-.mega .mega-link:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
+.mega .mega-link:hover { background: var(--tint-blue); color: var(--ink); }
 .mega-feature-card {
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--line-dark);
   border-radius: var(--r-md);
   padding: 1.1rem;
-  background: rgba(255, 255, 255, 0.045);
+  background: var(--ink);
   color: var(--text-light);
 }
 .mega-feature-card svg { width: 100%; height: auto; margin-bottom: 0.4rem; }
@@ -2988,7 +2988,7 @@ textarea { resize: vertical; }
 }
 
 /* ================= careers page: developer-grade hero ================= */
-.careers-hero { overflow: hidden; padding-top: calc(76px + clamp(2rem, 5vw, 3.5rem)); }
+.careers-hero { overflow: hidden; padding-block: calc(76px + clamp(1.6rem, 4vw, 2.8rem)) clamp(1.8rem, 4vw, 3rem); }
 .careers-hero .hero-grid-dots { opacity: 1; }
 .careers-hero-wrap {
   position: relative;
@@ -3000,7 +3000,7 @@ textarea { resize: vertical; }
 .careers-hero-copy .page-kicker { color: #9c9ca6; }
 .careers-hero-copy h1 {
   color: #fff;
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3.2rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
   text-wrap: balance;
@@ -3010,81 +3010,24 @@ textarea { resize: vertical; }
 .careers-hero-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 1.8rem; }
 .careers-hero-facts {
   list-style: none;
-  display: flex;
-  gap: clamp(1.4rem, 3vw, 2.6rem);
-  margin-top: 2.2rem;
-  padding-top: 1.4rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  flex-wrap: wrap;
-}
-.careers-hero-facts li { display: grid; gap: 0.15rem; }
-.careers-hero-facts strong { color: #fff; font-size: 1.25rem; }
-.careers-hero-facts span { color: var(--muted-light); font-size: 0.8rem; }
-
-/* terminal card */
-.careers-term {
-  position: relative;
-  background: var(--ink-2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  gap: 0;
+  align-self: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--r-lg);
-  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
   overflow: hidden;
 }
-.ct-bar {
+.careers-hero-facts li {
   display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.4rem;
+  padding: 1.05rem 1.4rem;
 }
-.ct-dot { width: 10px; height: 10px; border-radius: 50%; }
-.ct-dot.d1 { background: var(--red); }
-.ct-dot.d2 { background: #f5c518; }
-.ct-dot.d3 { background: var(--green); }
-.ct-title { margin-left: 0.6rem; color: var(--muted-light); font-size: 0.78rem; letter-spacing: 0.06em; }
-.ct-body { padding: 1.3rem 1.3rem 1.5rem; display: grid; gap: 0.6rem; }
-.ct-line { color: #fff; font-size: 0.98rem; letter-spacing: 0.01em; min-height: 1.5em; }
-.ct-prompt { color: var(--green); font-weight: 700; }
-.ct-caret {
-  display: inline-block;
-  width: 0.55em;
-  height: 1.05em;
-  margin-left: 2px;
-  vertical-align: text-bottom;
-  background: var(--green);
-  animation: ct-blink 1s steps(1) infinite;
-}
-@keyframes ct-blink { 50% { opacity: 0; } }
-.ct-muted { color: var(--muted-light); font-size: 0.82rem; }
-
-/* stack marquee */
-.stack-marquee {
-  background: var(--paper);
-  border-block: 1px solid var(--line);
-  overflow: hidden;
-  padding: 0.9rem 0;
-}
-.stack-track {
-  display: flex;
-  gap: 0.7rem;
-  width: max-content;
-  animation: stack-scroll 36s linear infinite;
-}
-.stack-marquee:hover .stack-track { animation-play-state: paused; }
-@keyframes stack-scroll { to { transform: translateX(-50%); } }
-.stack-chip {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--muted);
-  border: 1px solid var(--line);
-  background: var(--white);
-  border-radius: 999px;
-  padding: 0.42rem 1rem;
-  white-space: nowrap;
-}
-.stack-chip.c2 { color: var(--blue-text); border-color: rgba(29, 40, 255, 0.25); }
-.stack-chip.c3 { color: var(--green-text); border-color: rgba(43, 217, 38, 0.3); }
+.careers-hero-facts li + li { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.careers-hero-facts strong { color: #fff; font-size: 1.3rem; }
+.careers-hero-facts span { color: var(--muted-light); font-size: 0.84rem; }
 
 /* apply panel: appears after picking a role */
 .apply-panel { margin-top: 2rem; animation: drop-in 0.3s ease; }
@@ -3092,8 +3035,6 @@ textarea { resize: vertical; }
 .apply-head .role-apply { margin-top: 0.2rem; }
 
 @media (prefers-reduced-motion: reduce) {
-  .stack-track { animation: none; }
-  .ct-caret { animation: none; }
   .apply-panel { animation: none; }
 }
 

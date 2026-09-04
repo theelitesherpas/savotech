@@ -17,26 +17,10 @@ export const metadata: Metadata = {
   },
 };
 
-const STACK = [
-  "React", "Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL",
-  "Kubernetes", "Terraform", "AWS", "Flutter", "React Native", "Figma",
-  "LangChain", "Redis", "GraphQL", "Playwright",
-];
-
 export default function CareersPage() {
   return (
     <>
       <CareersHero />
-
-      <div className="stack-marquee" aria-hidden="true">
-        <div className="stack-track">
-          {[...STACK, ...STACK].map((s, i) => (
-            <span key={i} className={`stack-chip${i % 3 === 1 ? " c2" : i % 3 === 2 ? " c3" : ""}`}>
-              {s}
-            </span>
-          ))}
-        </div>
-      </div>
 
       <section className="section section-light" id="openings">
         <div className="wrap">
@@ -46,9 +30,8 @@ export default function CareersPage() {
             </Reveal>
             <Reveal delay={0.08}>
               <p className="lead">
-                Every role is a direct, full time position with Savo Technologies. Expand a role
-                for the detail, hit apply, and the form appears right here. Not a perfect fit?
-                Apply anyway, one honest paragraph beats a perfect checklist.
+                Direct, full time positions. Expand a role for the detail; the application form
+                appears right here when you apply.
               </p>
             </Reveal>
           </div>
