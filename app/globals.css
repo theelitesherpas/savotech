@@ -1439,6 +1439,66 @@ textarea { resize: vertical; }
   box-shadow: 0 0 0 3px rgba(29, 40, 255, 0.14);
 }
 .field input::placeholder { color: #98a1b5; }
+.field textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: var(--white);
+  font-size: 0.92rem;
+  min-height: 6.5rem;
+  line-height: 1.6;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+.field textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(29, 40, 255, 0.14);
+}
+.field textarea::placeholder { color: #98a1b5; }
+.field.has-error textarea { border-color: #dc4c4c; box-shadow: 0 0 0 3px rgba(220, 76, 76, 0.12); }
+
+/* icons inside fields and legends */
+.field label svg {
+  width: 13px; height: 13px;
+  vertical-align: -2px;
+  margin-right: 0.4rem;
+  color: var(--muted);
+}
+.f-icon { position: relative; }
+.f-icon > svg {
+  position: absolute;
+  left: 0.85rem; top: 50%;
+  transform: translateY(-50%);
+  width: 16px; height: 16px;
+  color: #98a1b5;
+  pointer-events: none;
+  transition: color 0.16s ease;
+}
+.f-icon input { padding-left: 2.55rem; }
+.f-icon:focus-within > svg { color: var(--blue); }
+.legend-ico {
+  display: inline-flex;
+  vertical-align: -2px;
+  margin-right: 0.45rem;
+  width: 15px; height: 15px;
+  color: var(--muted);
+}
+
+/* aside icon squares */
+.aside-ico {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 0.75rem;
+  background: var(--tint-blue);
+  color: var(--blue-text);
+}
+.aside-ico svg { width: 18px; height: 18px; }
+.aside-ico.ico-red { background: var(--tint-red); color: var(--red-text); }
+.aside-ico.ico-green { background: var(--tint-green); color: var(--green-text); }
+.start-aside-ink .aside-ico { background: rgba(255, 255, 255, 0.1); color: #fff; }
 .field.has-error input { border-color: #dc4c4c; box-shadow: 0 0 0 3px rgba(220, 76, 76, 0.12); }
 .field-err { margin-top: 0.35rem; font-size: 0.78rem; color: #c73e3e; }
 
@@ -2205,6 +2265,7 @@ textarea { resize: vertical; }
   .slider-tabs { overflow-x: auto; }
   .estimator-head, #estimatorForm, .est-result { padding-inline: 1.3rem; }
   .lead-grid { grid-template-columns: 1fr; }
+  .f-icon > svg { left: 0.8rem; }
   .why-grid { grid-template-columns: 1fr; }
   .process { grid-template-columns: repeat(2, 1fr); }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
