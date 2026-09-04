@@ -46,35 +46,30 @@ export default function HirePageView({ role }: { role: HireRole }) {
 
   return (
     <>
-      {/* ---------- hero: light, copy overlapping the image, ink facts strip ---------- */}
+      {/* ---------- hero: backdrop image, copy over it, ink facts strip ---------- */}
       <section className="section section-light start-hero hire-hero2">
-        <div className="wrap">
-          <div className="hh-grid">
-            <div className="hh-copy">
-              <Reveal>
-                <p className="page-kicker">
-                  <Link href="/#hire" className="text-cta">Hire Resources</Link> / {r.title}
-                </p>
-                <h1>{r.tagline}</h1>
-              </Reveal>
-              <Reveal delay={0.08}>
-                <p className="lead">{r.intro[0]}</p>
-              </Reveal>
-              <Reveal delay={0.12}>
-                <div className="svc-hire-ctas">
-                  <Link className="btn btn-primary btn-lg" href="/start-your-project/">Hire now</Link>
-                  <Link className="btn btn-ghost btn-lg" href="#plans">See plans</Link>
-                  <Link className="btn btn-ghost btn-lg" href="/contact/">Talk to us</Link>
-                </div>
-              </Reveal>
-            </div>
-            <Reveal delay={0.1} className="hh-visual-wrap">
-              <div className="hh-visual">
-                <img src={`${BP}${r.photo}`} alt={`Work by our ${r.title}`} />
-                <span className="hh-badge" aria-hidden="true">
-                  <span className="hh-badge-dot" />
-                  Matched in 48 hours
-                </span>
+        <img className="hh-bg" src={`${BP}${r.photo}`} alt="" aria-hidden="true" />
+        <div className="hh-bg-veil" aria-hidden="true" />
+        <div className="hh-badge" aria-hidden="true">
+          <span className="hh-badge-dot" />
+          Matched in 48 hours
+        </div>
+        <div className="wrap hh-content">
+          <div className="hh-copy">
+            <Reveal>
+              <p className="page-kicker">
+                <Link href="/#hire" className="text-cta">Hire Resources</Link> / {r.title}
+              </p>
+              <h1>{r.tagline}</h1>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="lead">{r.intro[0]}</p>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <div className="svc-hire-ctas">
+                <Link className="btn btn-primary btn-lg" href="/start-your-project/">Hire now</Link>
+                <Link className="btn btn-ghost btn-lg" href="#plans">See plans</Link>
+                <Link className="btn btn-ghost btn-lg" href="/contact/">Talk to us</Link>
               </div>
             </Reveal>
           </div>
