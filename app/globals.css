@@ -1679,6 +1679,20 @@ textarea { resize: vertical; }
 .btn-outline-inv { color: var(--ink); border: 1.5px solid var(--ink); --btn-fill: linear-gradient(90deg, #1d28ff 0%, #1d28ff 78%, #4d5cff 100%); }
 .btn-outline-inv:hover { border-color: var(--blue); color: #fff; transform: translateY(-2px); }
 
+/* whatsapp */
+.btn-whatsapp {
+  background: #25d366;
+  color: #fff;
+  border: 1.5px solid #25d366;
+  box-shadow: 0 8px 20px -8px rgba(37, 211, 102, 0.45);
+  --btn-fill: linear-gradient(90deg, #1da851 0%, #1da851 78%, #2ee27a 100%);
+}
+.btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -8px rgba(37, 211, 102, 0.55);
+}
+.btn-whatsapp svg { width: 17px; height: 17px; flex-shrink: 0; }
+
 /* why */
 .why-grid {
   display: grid;
