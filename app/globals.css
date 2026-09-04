@@ -476,9 +476,9 @@ textarea { resize: vertical; }
 .mega-start:not([hidden]) { animation-name: drop-in; }
 .mega-flip { left: auto; right: 0; transform: none; }
 .mega-flip:not([hidden]) { animation-name: drop-in; }
-.mega-all { color: #ff5c5c; font-weight: 700; }
-.mega-all svg { width: 13px; height: 13px; margin-left: auto; }
-.mega-all:hover { background: transparent; color: #ff8080; }
+.mega .mega-all { color: #ff5c5c; font-weight: 700; }
+.mega .mega-all svg { width: 13px; height: 13px; margin-left: auto; }
+.mega .mega-all:hover { background: transparent; color: #ff8080; }
 .mega-title {
   font-family: var(--font-display);
   font-size: 0.68rem;
@@ -488,7 +488,7 @@ textarea { resize: vertical; }
   color: rgba(255, 255, 255, 0.42);
   margin-bottom: 0.75rem;
 }
-.mega-link {
+.mega .mega-link {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -499,7 +499,7 @@ textarea { resize: vertical; }
   font-weight: 500;
   transition: background 0.14s ease, color 0.14s ease;
 }
-.mega-link:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
+.mega .mega-link:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
 .mega-feature-card {
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: var(--r-md);
