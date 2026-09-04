@@ -1488,16 +1488,23 @@ textarea { resize: vertical; }
 }
 
 /* aside icon squares */
+.aside-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.65rem;
+}
+.start-aside-card .aside-head h3 { margin: 0; }
 .aside-ico {
-  width: 34px; height: 34px;
-  border-radius: 10px;
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border-radius: 9px;
   display: grid;
   place-items: center;
-  margin-bottom: 0.75rem;
   background: var(--tint-blue);
   color: var(--blue-text);
 }
-.aside-ico svg { width: 18px; height: 18px; }
+.aside-ico svg { width: 16px; height: 16px; }
 .aside-ico.ico-red { background: var(--tint-red); color: var(--red-text); }
 .aside-ico.ico-green { background: var(--tint-green); color: var(--green-text); }
 .start-aside-ink .aside-ico { background: rgba(255, 255, 255, 0.1); color: #fff; }

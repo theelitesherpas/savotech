@@ -95,8 +95,10 @@ export default function StartYourProjectPage() {
 
               <aside className="start-aside">
                 <div className="start-aside-card">
-                  <div className="aside-ico" aria-hidden="true">{NEXT_ICONS.route}</div>
+                  <div className="aside-head">
+<div className="aside-ico" aria-hidden="true">{NEXT_ICONS.route}</div>
                   <h3>What happens next</h3>
+                  </div>
                   <ol className="start-steps">
                     {NEXT_STEPS.map((s) => (
                       <li key={s.t}>
@@ -108,8 +110,10 @@ export default function StartYourProjectPage() {
                 </div>
 
                 <div className="start-aside-card start-aside-ink">
-                  <div className="aside-ico" aria-hidden="true">{NEXT_ICONS.calc}</div>
+                  <div className="aside-head">
+<div className="aside-ico" aria-hidden="true">{NEXT_ICONS.calc}</div>
                   <h3>Prefer numbers first?</h3>
+                  </div>
                   <p>
                     The instant estimator prices your project in INR in under a minute, no
                     contact details needed until the end.
@@ -120,8 +124,10 @@ export default function StartYourProjectPage() {
                 </div>
 
                 <div className="start-aside-card">
-                  <div className="aside-ico ico-red" aria-hidden="true">{NEXT_ICONS.chat}</div>
+                  <div className="aside-head">
+<div className="aside-ico ico-red" aria-hidden="true">{NEXT_ICONS.chat}</div>
                   <h3>Talk to us directly</h3>
+                  </div>
                   <div className="contact-lines">
                     <a href="mailto:hello@savotechnologies.com">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -144,8 +150,10 @@ export default function StartYourProjectPage() {
                 </div>
 
                 <div className="start-aside-card">
-                  <div className="aside-ico ico-green" aria-hidden="true">{NEXT_ICONS.compass}</div>
+                  <div className="aside-head">
+<div className="aside-ico ico-green" aria-hidden="true">{NEXT_ICONS.compass}</div>
                   <h3>Explore first</h3>
+                  </div>
                   <ul className="start-links">
                     <li>
                       <Link href="/ai-agents/">Meet our AI agents</Link>

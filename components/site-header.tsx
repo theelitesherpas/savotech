@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import Logo from "./logo";
 
 const NAV = [
-  { label: "About Us", href: "/about/" },
   { label: "Services", href: "/#services", anchor: true },
   { label: "Hire Resources", href: "/#hire", anchor: true },
   { label: "Industries", href: "/#industries", anchor: true },
@@ -64,9 +63,6 @@ export default function SiteHeader() {
 
         <nav className="primary-nav" aria-label="Primary">
           <ul className="nav-list">
-            <li>
-              <Link href="/about/">About Us</Link>
-            </li>
             <li>
               <button
                 ref={megaBtnRef}
@@ -127,7 +123,7 @@ export default function SiteHeader() {
                 </div>
               </div>
             </li>
-            {NAV.filter((n) => n.label !== "About Us").map((n) => (
+            {NAV.map((n) => (
               <li key={n.label}>
                 <a href={n.href}>{n.label}</a>
               </li>
@@ -163,11 +159,6 @@ export default function SiteHeader() {
 
       <div className="mobile-nav" id="mobileNav" hidden={!mobileOpen}>
         <ul>
-          <li>
-            <Link href="/about/" onClick={() => setMobileOpen(false)}>
-              About Us
-            </Link>
-          </li>
           <li>
             <button
               className="mobile-acc"
@@ -209,7 +200,7 @@ export default function SiteHeader() {
               </li>
             </ul>
           </li>
-          {NAV.filter((n) => n.label !== "About Us").map((n) => (
+          {NAV.map((n) => (
             <li key={n.label}>
               <a href={n.href} onClick={() => setMobileOpen(false)}>
                 {n.label}
