@@ -2,6 +2,7 @@ import Link from "next/link";
 import Reveal from "./reveal";
 import ServiceCalculator from "./service-calculator";
 import SvcRoles from "./svc-roles";
+import SvcWork from "./svc-work";
 import { CLIENT_QUOTES, type ServicePage } from "@/lib/services-data";
 import { ICONS } from "./service-icons";
 
@@ -136,22 +137,9 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
               <p className="lead">Representative {s.title.toLowerCase()} work, with the numbers clients let us publish.</p>
             </Reveal>
           </div>
-          <div className="svc-work-grid">
-            {s.portfolio.map((w, i) => (
-              <Reveal key={w.name} delay={0.06 * i}>
-                <Link className="svc-work-card" href="/#work">
-                  <div className="svc-work-media">
-                    <img src={`${BP}${w.img}`} alt={`${w.name}, ${w.meta}`} loading="lazy" />
-                    <span className="work-stat">{w.stat}</span>
-                  </div>
-                  <div className="svc-work-body">
-                    <h3>{w.name}</h3>
-                    <p>{w.meta}</p>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={0.08}>
+            <SvcWork items={s.portfolio} />
+          </Reveal>
         </div>
       </section>
 

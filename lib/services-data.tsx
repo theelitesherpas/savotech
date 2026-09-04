@@ -401,6 +401,191 @@ export const SERVICES: ServicePage[] = [
       ],
     },
   },
+  {
+    slug: "generative-ai",
+    title: "Generative AI & LLM Integration",
+    kicker: "Service",
+    tagline: "Generative AI, wired into your product.",
+    intro: [
+      "Chat that answers from your data, drafting that respects your tone, summarization your teams trust: generative features integrated into real products with evaluation, cost routing and rollback from day one.",
+      "Provider agnostic by design, so model swaps never become rewrites.",
+    ],
+    stats: [
+      { v: "20+", l: "LLM features in production" },
+      { v: "60%", l: "inference cost cut by routing" },
+      { v: "0", l: "vendor lock in" },
+    ],
+    deliverables: [
+      { t: "LLM product features", d: "Chat, drafting, summarization and extraction embedded into your existing web or mobile product." },
+      { t: "RAG over your knowledge", d: "Retrieval pipelines with citations, permissions and freshness checks over docs, tickets and wikis." },
+      { t: "Fine tuning and distillation", d: "Small tuned models for high volume tasks where per token economics matter." },
+      { t: "Cost and quality routing", d: "Caching and model selection per request, keeping latency and spend inside budget." },
+    ],
+    process: [
+      { t: "Feature scoping", d: "One week choosing the two or three generative touchpoints with real user value." },
+      { t: "Grounding setup", d: "Data pipelines and prompts built against your content, with eval sets from real cases." },
+      { t: "Integration", d: "APIs and UI wired into your product behind flags, with logging and fallbacks." },
+      { t: "Optimize", d: "Routing, caching and prompt tuning driven by live quality and cost dashboards." },
+    ],
+    stack: [
+      { n: "Python", i: "python" }, { n: "AI / LLMs", i: "ai" }, { n: "LangChain", i: "ai" },
+      { n: "Node.js", i: "node" }, { n: "PostgreSQL", i: "postgres" }, { n: "Redis", i: "redis" },
+      { n: "GraphQL", i: "graphql" }, { n: "AWS", i: "aws" },
+    ],
+    tech: ["OpenAI compatible APIs", "Anthropic", "Llama", "vLLM", "pgvector", "Pinecone", "LangChain", "Whisper", "DeepEval", "Cloudflare"],
+    portfolioCat: "ai",
+    portfolio: [
+      { name: "Sahm AI Support Desk", meta: "Arabic + English LLM agent · GCC telecom", img: "/work/sahm.jpg", stat: "96% auto-resolved" },
+      { name: "MediBridge Health", meta: "Clinical summarization copilot", img: "/work/medibridge.jpg", stat: "70% tickets deflected" },
+    ],
+    roles: [
+      { t: "AI / ML Engineer", rate: 120000 },
+      { t: "Backend Engineer", rate: 85000 },
+      { t: "Data Engineer", rate: 95000 },
+    ],
+    faqs: [
+      { q: "Which models do you build on?", a: "Any. We integrate against OpenAI compatible APIs, Anthropic and self hosted Llama or Mistral, and route per task on quality and cost. Switching providers later is a config change, not a project." },
+      { q: "How do you keep outputs accurate?", a: "Grounded retrieval with citations, refusal policies, and eval suites built from your real queries that run on every prompt or model change." },
+      { q: "Can you work with our data staying in our cloud?", a: "Yes. Most of our deployments run inference through gateways inside the client's VPC, with no training on your data." },
+      { q: "What does a first feature cost to ship?", a: "A single grounded feature typically lands in the low thousands of dollars. The calculator below gives your range in seconds." },
+    ],
+    knowledge: [
+      { t: "Prompt, RAG or fine tune: choosing the right tool", d: "A decision matrix from 20 production features, with cost curves for each path.", time: "8 min read" },
+      { t: "Routing LLMs for cost without quality loss", d: "How we cut a client's inference bill 60% with caching and model tiers.", time: "6 min read" },
+      { t: "Evals people actually trust", d: "Building golden sets and regression gates from real user conversations.", time: "9 min read" },
+    ],
+    calc: {
+      base: [150000, 260000],
+      opts: [
+        { label: "Scope", items: [["Single feature", 0.6, 0.8], ["Product wide copilot", 1.2, 1.5], ["Platform + fine tuning", 3, 5]] },
+        { label: "Data readiness", items: [["Content ready", 0.9, 1], ["Needs pipelines", 1.2, 1.4], ["Scattered sources", 1.5, 1.7]] },
+        { label: "Timeline", items: [["Flexible", 0.9, 0.95], ["Standard", 1, 1], ["Urgent", 1.2, 1.35]] },
+      ],
+    },
+  },
+  {
+    slug: "ai-consulting",
+    title: "AI Consulting & Strategy",
+    kicker: "Service",
+    tagline: "An AI roadmap you can actually execute.",
+    intro: [
+      "Vendor neutral consulting for leadership teams: where AI creates value in your business, what it truly costs, and the sequence of wins that builds capability instead of slideware.",
+      "Every engagement ends with a costed roadmap, a working proof of concept and a governance framework your board can sign off.",
+    ],
+    stats: [
+      { v: "40+", l: "AI audits delivered" },
+      { v: "6 weeks", l: "audit to roadmap" },
+      { v: "0", l: "vendor commissions taken" },
+    ],
+    deliverables: [
+      { t: "Opportunity audit", d: "Two weeks inside your operations mapping where AI and automation pay back, ranked by value and effort." },
+      { t: "Feasibility and PoC", d: "A working proof of concept on your data, with honest accuracy and cost numbers." },
+      { t: "Governance and policy", d: "Usage policies, data handling and review boards that satisfy legal and security teams." },
+      { t: "Team enablement", d: "Training and playbooks so your people run the AI programme after we leave." },
+    ],
+    process: [
+      { t: "Discovery", d: "Stakeholder interviews and systems review, on site or remote, week one." },
+      { t: "Opportunity map", d: "Use cases scored on value, feasibility and risk, agreed with your leadership." },
+      { t: "Proof of concept", d: "The top use case built on real data with measured results." },
+      { t: "Costed roadmap", d: "A sequenced plan with budgets, owners and governance, ready to execute." },
+    ],
+    stack: [
+      { n: "AI / LLMs", i: "ai" }, { n: "Python", i: "python" }, { n: "TypeScript", i: "ts" },
+      { n: "PostgreSQL", i: "postgres" }, { n: "Node.js", i: "node" }, { n: "AWS", i: "aws" },
+    ],
+    tech: ["OpenAI compatible APIs", "Llama", "LangChain", "pgvector", "Miro", "Figma", "dbt", "Airflow"],
+    portfolioCat: "ai",
+    portfolio: [
+      { name: "Sahm AI Support Desk", meta: "Strategy to production · GCC telecom", img: "/work/sahm.jpg", stat: "96% auto-resolved" },
+      { name: "ClearLedger", meta: "AI roadmap · UK fintech", img: "/work/clearledger.jpg", stat: "Open banking ready" },
+    ],
+    roles: [
+      { t: "AI Architect", rate: 130000 },
+      { t: "Data Engineer", rate: 95000 },
+      { t: "Product Strategist", rate: 90000 },
+    ],
+    faqs: [
+      { q: "Are you tied to any AI vendor?", a: "No. We take no vendor commissions and recommend what fits your data, region and budget, including self hosted open models." },
+      { q: "Will we get a slide deck or something real?", a: "Every engagement ends with a working proof of concept on your data and a costed, sequenced roadmap. Decks support the artefacts, not the other way round." },
+      { q: "How involved is our team?", a: "Two hours a week from a product owner and one from an engineer is enough. We run the rest." },
+      { q: "What happens after the roadmap?", a: "Most clients ask us to execute the first workstream. You are equally free to take the roadmap in house or to another vendor with our blessing." },
+    ],
+    knowledge: [
+      { t: "The AI opportunity audit, week by week", d: "Exactly what we do in each of the first ten working days, and what you get." , time: "7 min read" },
+      { t: "Build, buy or wait: the honest answer", d: "A framework for deciding which AI capabilities to build now, subscribe to, or ignore.", time: "6 min read" },
+      { t: "AI governance that does not slow you down", d: "Policies and review flows that satisfy auditors without a six week queue.", time: "8 min read" },
+    ],
+    calc: {
+      base: [120000, 200000],
+      opts: [
+        { label: "Engagement", items: [["Opportunity audit", 0.4, 0.6], ["Audit + roadmap + PoC", 1, 1.3], ["Transformation program", 2.4, 3.2]] },
+        { label: "Organization", items: [["Single team or product", 0.8, 0.9], ["Multiple business units", 1, 1.2]] },
+        { label: "Depth", items: [["Remote discovery", 0.9, 1], ["On site workshops", 1.15, 1.3]] },
+      ],
+    },
+  },
+  {
+    slug: "machine-learning",
+    title: "Machine Learning & Analytics",
+    kicker: "Service",
+    tagline: "Models that move a business number.",
+    intro: [
+      "Forecasting, recommendations, anomaly detection and churn models built as monitored production services with the pipelines to feed them and the dashboards to prove their worth.",
+      "No data science theatre: every model we ship is tied to a metric your business already tracks.",
+    ],
+    stats: [
+      { v: "2.1B", l: "events processed monthly" },
+      { v: "30+", l: "models in production" },
+      { v: "11%", l: "avg uplift on target metric" },
+    ],
+    deliverables: [
+      { t: "Forecasting", d: "Demand, revenue and capacity forecasts with confidence bands your planners can act on." },
+      { t: "Recommendations", d: "Product and content recommenders tuned for your catalogue size and latency budget." },
+      { t: "Anomaly detection", d: "Fraud, ops and quality anomalies flagged in near real time with explainable alerts." },
+      { t: "Churn and lifetime value", d: "Retention models wired into your CRM so actions trigger before the customer leaves." },
+    ],
+    process: [
+      { t: "Metric definition", d: "Agree the business number the model must move and how we will measure it." },
+      { t: "Data foundation", d: "Pipelines and features built, versioned and tested like product code." },
+      { t: "Model iteration", d: "Baselines beaten in the open, with experiments you can audit." },
+      { t: "Production and monitoring", d: "Deployed behind APIs with drift monitoring and scheduled retraining." },
+    ],
+    stack: [
+      { n: "Python", i: "python" }, { n: "PostgreSQL", i: "postgres" }, { n: "Redis", i: "redis" },
+      { n: "AI / ML", i: "ai" }, { n: "Node.js", i: "node" }, { n: "GraphQL", i: "graphql" },
+      { n: "AWS", i: "aws" }, { n: "TypeScript", i: "ts" },
+    ],
+    tech: ["PyTorch", "scikit-learn", "XGBoost", "Airflow", "dbt", "Feast", "MLflow", "Kafka", "BigQuery", "Snowflake", "Pandas", "Metabase"],
+    portfolioCat: "ai",
+    portfolio: [
+      { name: "RideLink", meta: "Demand forecasting · Australia", img: "/work/ridelink.jpg", stat: "12k vehicles tracked" },
+      { name: "ClearLedger", meta: "Cashflow prediction · UK", img: "/work/clearledger.jpg", stat: "Open banking ready" },
+    ],
+    roles: [
+      { t: "ML Engineer", rate: 120000 },
+      { t: "Data Engineer", rate: 95000 },
+      { t: "Analytics Engineer", rate: 85000 },
+    ],
+    faqs: [
+      { q: "Our data is messy. Are we ready?", a: "Usually sooner than you think. The first milestone of every engagement is a data readiness check, and basic pipelines are part of the work, not a prerequisite." },
+      { q: "How is this different from the analytics service?", a: "Analytics builds the trusted reporting layer. Machine learning builds predictive systems that act: forecasts, recommenders, detectors. Most engagements do a little of both, in that order." },
+      { q: "Who owns the models?", a: "You do, including the training code, feature definitions and evaluation history, all in your repositories." },
+      { q: "How do you prevent model decay?", a: "Drift monitoring, scheduled retraining and alert thresholds are standard deliverables, not add ons." },
+    ],
+    knowledge: [
+      { t: "Feature stores: when they help and when they don't", d: "A pragmatic guide from projects that skipped one and lived.", time: "8 min read" },
+      { t: "Beating the baseline honestly", d: "How we report model wins without leakage or vanity metrics.", time: "7 min read" },
+      { t: "From notebook to production in six weeks", d: "The deployment path, monitoring and retraining loop we repeat.", time: "10 min read" },
+    ],
+    calc: {
+      base: [140000, 240000],
+      opts: [
+        { label: "Scope", items: [["One focused model", 0.6, 0.8], ["Model + pipelines", 1.2, 1.5], ["ML platform, multiple models", 3, 4.5]] },
+        { label: "Data sources", items: [["1 to 2, clean", 0.85, 0.95], ["3 to 6 sources", 1, 1.15], ["Many, scattered", 1.4, 1.6]] },
+        { label: "MLOps", items: [["Basic deploy", 0.9, 1], ["Monitoring + retraining", 1.2, 1.4], ["Full platform", 1.7, 2]] },
+      ],
+    },
+  },
 ];
 
 export const CLIENT_QUOTES = [
