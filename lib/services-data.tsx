@@ -83,11 +83,11 @@ export const SERVICES: ServicePage[] = [
       { t: "Headless commerce in India: GST, UPI and beyond", d: "Lessons from payment integrations across Indian and GCC storefronts.", time: "10 min read" },
     ],
     calc: {
-      base: [800000, 1200000],
+      base: [160000, 260000],
       opts: [
-        { label: "Platform size", items: [["Marketing site", 0.4, 0.5], ["Customer portal", 1, 1], ["Complex platform", 1.6, 1.9]] },
-        { label: "Integrations", items: [["None", 0.9, 0.95], ["Payments or auth", 1, 1.1], ["Multiple (CRM, ERP, AI)", 1.25, 1.45]] },
-        { label: "Timeline", items: [["Flexible", 0.9, 0.95], ["Standard", 1, 1], ["Urgent", 1.25, 1.35]] },
+        { label: "Platform size", items: [["Marketing site", 0.6, 0.8], ["Customer portal", 1, 1.3], ["Complex platform", 6, 9]] },
+        { label: "Integrations", items: [["None", 0.9, 0.95], ["Payments or auth", 1, 1.15], ["Multiple (CRM, ERP, AI)", 1.3, 1.5]] },
+        { label: "Timeline", items: [["Flexible", 0.9, 0.95], ["Standard", 1, 1], ["Urgent", 1.2, 1.35]] },
       ],
     },
   },
@@ -145,10 +145,10 @@ export const SERVICES: ServicePage[] = [
       { t: "Offline first architecture that survives bad networks", d: "Sync engines, conflict resolution and queue design for field apps.", time: "11 min read" },
     ],
     calc: {
-      base: [900000, 1400000],
+      base: [180000, 300000],
       opts: [
-        { label: "Platforms", items: [["Single platform", 0.7, 0.75], ["iOS and Android", 1, 1]] },
-        { label: "App complexity", items: [["Standard business app", 0.9, 1], ["Commerce or fintech", 1.2, 1.4], ["Heavy native (camera, BLE, AR)", 1.5, 1.8]] },
+        { label: "Platforms", items: [["Single platform", 0.7, 0.8], ["iOS and Android", 1, 1.1]] },
+        { label: "App complexity", items: [["Standard business app", 0.8, 1], ["Commerce or fintech", 1.8, 2.4], ["Heavy native (camera, BLE, AR)", 5, 8]] },
         { label: "Timeline", items: [["Flexible", 0.9, 0.95], ["Standard", 1, 1], ["Urgent", 1.25, 1.35]] },
       ],
     },
@@ -206,11 +206,11 @@ export const SERVICES: ServicePage[] = [
       { t: "Prototyping in Figma that engineers love", d: "Auto layout discipline, variables and spec pages that remove questions.", time: "5 min read" },
     ],
     calc: {
-      base: [400000, 700000],
+      base: [80000, 140000],
       opts: [
-        { label: "Scope", items: [["Redesign of key flows", 0.6, 0.7], ["Full product design", 1, 1], ["Design system build", 1.1, 1.3]] },
-        { label: "Research", items: [["Light (analytics + heuristic)", 0.85, 0.9], ["Moderated user research", 1, 1.1]] },
-        { label: "Platforms", items: [["Web only", 0.9, 0.95], ["Web and mobile", 1.1, 1.25]] },
+        { label: "Scope", items: [["Redesign of key flows", 0.6, 0.8], ["Full product design", 1, 1.3], ["Design system build", 1.5, 1.9]] },
+        { label: "Research", items: [["Light (analytics + heuristic)", 0.85, 0.95], ["Moderated user research", 1, 1.15]] },
+        { label: "Platforms", items: [["Web only", 0.9, 0.95], ["Web and mobile", 1.2, 1.4]] },
       ],
     },
   },
@@ -268,11 +268,11 @@ export const SERVICES: ServicePage[] = [
       { t: "FinOps for scaleups: the first 90 days", d: "Tagging, right sizing and commitment strategy in order of payoff.", time: "7 min read" },
     ],
     calc: {
-      base: [500000, 900000],
+      base: [90000, 160000],
       opts: [
-        { label: "Engagement", items: [["Audit and roadmap", 0.3, 0.4], ["Foundation build", 1, 1], ["Full migration", 1.4, 1.7]] },
+        { label: "Engagement", items: [["Audit and roadmap", 0.3, 0.45], ["Foundation build", 1, 1.3], ["Full migration", 3, 4.5]] },
         { label: "Environment scale", items: [["Single environment", 0.8, 0.9], ["Multi environment + staging", 1, 1.15]] },
-        { label: "Managed on call", items: [["No", 0.9, 0.95], ["Business hours", 1, 1.1], ["24x7 SLA", 1.35, 1.5]] },
+        { label: "Managed on call", items: [["No", 0.9, 0.95], ["Business hours", 1, 1.15], ["24x7 SLA", 1.6, 1.9]] },
       ],
     },
   },
@@ -330,10 +330,10 @@ export const SERVICES: ServicePage[] = [
       { t: "From notebook to production ML in six weeks", d: "The path we use to ship first models with monitoring and evals.", time: "10 min read" },
     ],
     calc: {
-      base: [600000, 1000000],
+      base: [100000, 180000],
       opts: [
-        { label: "Scope", items: [["Pipelines and warehouse", 1, 1], ["Add BI layer", 1.2, 1.35], ["Add ML feature", 1.5, 1.8]] },
-        { label: "Data sources", items: [["1 to 3 sources", 0.9, 0.95], ["4 to 8 sources", 1, 1.15], ["8+ sources", 1.25, 1.4]] },
+        { label: "Scope", items: [["Pipelines and warehouse", 0.8, 1], ["Add BI layer", 1.3, 1.6], ["Add ML feature", 3, 4.5]] },
+        { label: "Data sources", items: [["1 to 3 sources", 0.85, 0.95], ["4 to 8 sources", 1, 1.15], ["8+ sources", 1.4, 1.6]] },
         { label: "Timeline", items: [["Flexible", 0.9, 0.95], ["Standard", 1, 1], ["Urgent", 1.2, 1.3]] },
       ],
     },
@@ -393,11 +393,11 @@ export const SERVICES: ServicePage[] = [
       { t: "Cutting LLM costs 60% with routing and caching", d: "The architecture that keeps per conversation costs predictable at scale.", time: "7 min read" },
     ],
     calc: {
-      base: [900000, 1500000],
+      base: [120000, 220000],
       opts: [
-        { label: "Agent scope", items: [["FAQ support agent", 0.8, 0.9], ["Workflow automation", 1, 1.15], ["Multi tool copilot", 1.4, 1.7]] },
-        { label: "Knowledge sources", items: [["Documents only", 0.85, 0.95], ["Docs + CRM and tickets", 1, 1.15], ["Multiple systems", 1.25, 1.45]] },
-        { label: "Channels", items: [["Web chat", 0.9, 0.95], ["Web + WhatsApp + email", 1.15, 1.3]] },
+        { label: "Agent scope", items: [["FAQ support agent", 0.7, 0.9], ["Workflow automation", 1.2, 1.5], ["Multi tool copilot", 5, 8]] },
+        { label: "Knowledge sources", items: [["Documents only", 0.85, 0.95], ["Docs + CRM and tickets", 1, 1.15], ["Multiple systems", 1.3, 1.5]] },
+        { label: "Channels", items: [["Web chat", 0.9, 1], ["Web + WhatsApp + email", 1.15, 1.3]] },
       ],
     },
   },
@@ -408,16 +408,19 @@ export const CLIENT_QUOTES = [
     quote: "Savo rebuilt our patient portal in four months. Uptime has been flawless. Their support agent now resolves 70% of tier 1 tickets before a human sees them.",
     name: "Dr. Reem Al Otaibi",
     role: "CIO · Healthcare group · Riyadh",
+    img: "/team/client1.jpg",
   },
   {
     quote: "The dedicated team model just works. Same engineers for two years running. They know our codebase better than we do.",
     name: "James Whitfield",
     role: "CTO · Logistics scaleup · Sydney",
+    img: "/team/client2.jpg",
   },
   {
     quote: "Transparent pricing, weekly demos, zero surprises. Their instant estimator quoted our build within 5% of the final invoice.",
     name: "Ananya Iyer",
     role: "VP Product · FinTech · Bengaluru",
+    img: "/team/client3.jpg",
   },
 ];
 

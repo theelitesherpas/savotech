@@ -196,8 +196,13 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
                 <figure className={`svc-quote q${i % 3}`}>
                   <blockquote>“{q.quote}”</blockquote>
                   <figcaption>
-                    <strong>{q.name}</strong>
-                    <span>{q.role}</span>
+                    <span className="svc-quote-photo">
+                      <img src={`${BP}${q.img}`} alt={q.name} loading="lazy" />
+                    </span>
+                    <span>
+                      <strong>{q.name}</strong>
+                      <span>{q.role}</span>
+                    </span>
                   </figcaption>
                 </figure>
               </Reveal>
@@ -243,6 +248,9 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
             {s.knowledge.map((k, i) => (
               <Reveal key={k.t} delay={0.05 * i}>
                 <article className="svc-know-card">
+                  <div className="svc-know-media">
+                    <img src={`${BP}${s.portfolio[i % s.portfolio.length].img}`} alt="" loading="lazy" aria-hidden="true" />
+                  </div>
                   <span className="svc-know-time">{k.time}</span>
                   <h3>{k.t}</h3>
                   <p>{k.d}</p>

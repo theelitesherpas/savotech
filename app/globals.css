@@ -3545,3 +3545,68 @@ textarea { resize: vertical; }
   .svc-stats { grid-template-columns: 1fr; }
   .svc-grid, .svc-process, .svc-stack-grid, .svc-quotes, .svc-know-grid, .svc-work-grid { grid-template-columns: 1fr; }
 }
+
+/* service page additions */
+.btn-ghost { border: 1px solid var(--ink); color: var(--ink); background: transparent; }
+.btn-ghost:hover, .btn-ghost:focus-visible { color: #fff; }
+.svc-cta .btn-ghost { border-color: rgba(255, 255, 255, 0.45); color: #fff; }
+.svc-calc-hint {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: var(--muted) !important;
+  letter-spacing: 0.01em;
+}
+
+/* knowledge card imagery */
+.svc-know-card { padding: 0; overflow: hidden; }
+.svc-know-media { aspect-ratio: 16 / 9; overflow: hidden; background: var(--paper-2); }
+.svc-know-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s ease; }
+.svc-know-card:hover .svc-know-media img { transform: scale(1.05); }
+.svc-know-card > *:not(.svc-know-media) { margin-inline: 1.4rem; }
+.svc-know-card .svc-know-time { margin-top: 1.2rem; }
+.svc-know-card .svc-know-cta { margin-bottom: 1.5rem; }
+
+/* client quote photos */
+.svc-quote figcaption { display: flex; align-items: center; gap: 0.8rem; }
+.svc-quote-photo {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  flex: none;
+}
+.svc-quote-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); display: block; }
+
+/* process flow: travelling dot from first phase to last */
+.svc-process { position: relative; }
+.svc-process::before {
+  content: "";
+  position: absolute;
+  top: 17px; left: 0; right: 0;
+  height: 1.5px;
+  background: var(--line);
+}
+.svc-process::after {
+  content: "";
+  position: absolute;
+  top: 12.5px; left: 0;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 4px rgba(29, 40, 255, 0.14);
+  animation: svc-flow 5.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  z-index: 1;
+}
+@keyframes svc-flow {
+  0% { left: 0%; background: var(--blue); box-shadow: 0 0 0 4px rgba(29, 40, 255, 0.14); }
+  34% { background: var(--red); box-shadow: 0 0 0 4px rgba(255, 30, 29, 0.12); }
+  67% { background: var(--green); box-shadow: 0 0 0 4px rgba(43, 217, 38, 0.12); }
+  100% { left: calc(100% - 10px); background: var(--blue); box-shadow: 0 0 0 4px rgba(29, 40, 255, 0.14); }
+}
+.svc-process .svc-step-dot { background: var(--paper); position: relative; z-index: 2; }
+@media (prefers-reduced-motion: reduce) {
+  .svc-process::after { animation: none; left: calc(100% - 10px); }
+}
+@media (max-width: 980px) {
+  .svc-process::before, .svc-process::after { display: none; }
+}

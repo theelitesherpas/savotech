@@ -9,6 +9,7 @@ import type { ServicePage } from "@/lib/services-data";
 export default function ServiceCalculator({ service }: { service: ServicePage }) {
   const { price } = useCurrency();
   const [sel, setSel] = useState<number[]>(service.calc.opts.map(() => 1)); // default middle option
+  const [touched, setTouched] = useState(false); // range appears only once the client chooses
 
   let min = service.calc.base[0];
   let max = service.calc.base[1];
@@ -44,7 +45,7 @@ export default function ServiceCalculator({ service }: { service: ServicePage })
                       key={label}
                       className={`chip${sel[i] === j ? " sel" : ""}`}
                       aria-pressed={sel[i] === j}
-                      onClick={() => setSel((s) => s.map((v, k) => (k === i ? j : v)))}
+                      onClick={() => { setTouched(true); setSel((s) => s.map((v, k) => (k === i ? j : v))); }}
                     >
                       {label}
                     </button>
@@ -53,9 +54,19 @@ export default function ServiceCalculator({ service }: { service: ServicePage })
               </fieldset>
             ))}
             <div className="svc-calc-result" role="status" aria-live="polite">
-              <span>Estimated range</span>
-              <strong>{price(Math.round(min))} to {price(Math.round(max))}</strong>
-              <em>Indicative, milestone based, GST extra. Fixed in writing after a 30 minute scoping call.</em>
+              {touched ? (
+                <>
+                  <span>Your estimated range</span>
+                  <strong>{price(Math.round(min))} to {price(Math.round(max))}</strong>
+                  <em>Indicative, milestone based, GST extra. Fixed in writing after a 30 minute scoping call.</em>
+                </>
+              ) : (
+                <>
+                  <span>Estimated range</span>
+                  <strong className="svc-calc-hint">Choose your options to see the price</strong>
+                  <em>Pick one option from each row and your tailored range appears instantly, in your currency.</em>
+                </>
+              )}
             </div>
           </div>
         </div>
