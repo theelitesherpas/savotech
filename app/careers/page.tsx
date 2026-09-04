@@ -24,18 +24,7 @@ export default function CareersPage() {
 
       <section className="section section-light" id="openings">
         <div className="wrap">
-          <div className="section-head">
-            <Reveal>
-              <h2>Open roles.</h2>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="lead">
-                Direct, full time positions. Expand a role for the detail; the application form
-                appears right here when you apply.
-              </p>
-            </Reveal>
-          </div>
-          <Reveal delay={0.1}>
+          <Reveal>
             <CareersApply />
           </Reveal>
 
