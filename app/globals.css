@@ -1649,7 +1649,9 @@ textarea { resize: vertical; }
   transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
 }
 .btn-login svg { width: 15px; height: 15px; flex-shrink: 0; }
-.btn-login { --btn-fill: linear-gradient(90deg, #101014 0%, #101014 78%, #26262e 100%); }
+.btn-login { --btn-fill: #101014; }
+/* extend the sweep over the border so no light edge line remains */
+.btn-login::after { inset: -2px; }
 .btn-login:hover {
   color: #fff;
 }
@@ -2954,8 +2956,10 @@ textarea { resize: vertical; }
 
 /* portal login: one aligned cream panel, standard site header and footer above and below */
 .portal-login {
-  background: #F5F1E8;
+  background: var(--white);
+  border: 1px solid var(--line);
   border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lift);
   display: grid;
   grid-template-columns: minmax(0, 11fr) minmax(330px, 9fr);
   align-items: center;

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function PortalPage() {
   return (
-    <section className="section section-light start-hero portal-page">
+    <section className="section section-alt start-hero portal-page">
       <div className="wrap">
         <PortalApp />
       </div>
