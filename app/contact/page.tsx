@@ -91,7 +91,7 @@ export default function ContactPage() {
     <>
       <section className="section section-alt start-hero contact-hero">
         <div className="wrap">
-          <div className="section-head" style={{ marginBottom: "0.4rem" }}>
+          <div className="section-head" style={{ marginBottom: "1.6rem" }}>
             <Reveal>
               <p className="page-kicker">Contact Us</p>
               <h1>Talk to the people who will build it.</h1>
@@ -107,7 +107,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="section section-light" style={{ paddingTop: 0 }}>
+      <section className="section section-light contact-form-section">
         <div className="wrap">
           <div className="start-grid">
             <div className="start-card">
@@ -230,6 +230,7 @@ export default function ContactPage() {
                 <article className="team-card">
                   <div className="team-photo">
                     <img src={`${BP}/team/${m.img}`} alt={`${m.n}, ${m.r} at Savo Technologies`} loading="lazy" />
+                    <span className="team-photo-ring" aria-hidden="true" />
                   </div>
                   <h3>{m.n}</h3>
                   <p className="team-role">{m.r}</p>

@@ -4,30 +4,16 @@ import { useState } from "react";
 import Link from "next/link";
 import { api } from "@/lib/api";
 import { ROLES } from "@/lib/careers-data";
+import CaptchaField from "./captcha-field";
 
 const EXPERIENCE = ["0 to 1 year", "1 to 3 years", "3 to 5 years", "5 to 8 years", "8+ years"];
 const CTCS = ["Under ₹10L", "₹10L to ₹20L", "₹20L to ₹35L", "₹35L+", "Open to discussion"];
 const NOTICES = ["Immediate", "15 days", "30 days", "60 days", "90 days"];
 const SKILLS = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
-  "Python",
-  "PostgreSQL",
-  "AI / ML",
-  "Flutter",
-  "React Native",
-  "AWS",
-  "Docker",
-  "Kubernetes",
-  "CI / CD",
-  "Testing",
-  "UI / UX",
-  "Figma",
+  "React", "Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL",
+  "AI / ML", "Flutter", "React Native", "AWS", "Docker", "Kubernetes",
+  "CI / CD", "Testing", "UI / UX", "Figma",
 ];
-
-type Props = { initialRole?: string };
 
 const Ico = {
   user: (
@@ -97,52 +83,28 @@ const Ico = {
   ),
 };
 
-/** Careers application form: openings grid + full IT industry application, bot guarded. */
-const FILTERS: [string, string][] = [
-  ["all", "All roles"],
-  ["eng", "Engineering"],
-  ["design", "Design"],
-  ["ops", "Operations"],
-];
-
-export default function CareersApply({ initialRole }: Props) {
-  const [filter, setFilter] = useState("all");
-  const [openRole, setOpenRole] = useState<string | null>(null);
-  const [applied, setApplied] = useState<string | null>(null);
-  const visible = ROLES.filter((r) => filter === "all" || r.cat === filter);
+/** Application form. Lives on /careers/apply with the role preselected. */
+export default function CareersForm({ initialRole }: { initialRole?: string }) {
   const [role, setRole] = useState(initialRole ?? ROLES[0].title);
   const [experience, setExperience] = useState("1 to 3 years");
   const [ctc, setCtc] = useState("Open to discussion");
   const [notice, setNotice] = useState("30 days");
   const [skills, setSkills] = useState<string[]>([]);
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    city: "",
-    company: "",
-    links: "",
-    resume: "",
-    notes: "",
-    consent: false,
-    website: "",
+    name: "", email: "", phone: "", city: "", company: "",
+    links: "", resume: "", notes: "", consent: false, website: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [serverError, setServerError] = useState("");
   const [mountedAt] = useState(() => Date.now());
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
 
   const toggleSkill = (s: string) =>
     setSkills((list) => (list.includes(s) ? list.filter((x) => x !== s) : [...list, s]));
-
-  const pickRole = (title: string) => {
-    setRole(title);
-    setApplied(title);
-    requestAnimationFrame(() => {
-      document.getElementById("apply")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  };
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -153,10 +115,12 @@ export default function CareersApply({ initialRole }: Props) {
     if (!form.resume.trim() && !form.links.trim())
       errs.resume = "Share a resume link or a GitHub / portfolio link.";
     if (!form.consent) errs.consent = "Please confirm we may process your application.";
+    if (!captchaAnswer.trim()) errs.captcha = "Please answer the human check.";
     setErrors(errs);
     if (Object.keys(errs).length) return;
     setBusy(true);
     setFailed(false);
+    setServerError("");
     try {
       const res = await fetch(api("/api/leads"), {
         method: "POST",
@@ -164,6 +128,8 @@ export default function CareersApply({ initialRole }: Props) {
         body: JSON.stringify({
           website: form.website,
           elapsed: Date.now() - mountedAt,
+          captchaToken,
+          captchaAnswer,
           source: "careers",
           name: form.name,
           email: form.email,
@@ -178,14 +144,16 @@ export default function CareersApply({ initialRole }: Props) {
             form.notes,
             form.links ? `Portfolio / GitHub: ${form.links}` : "",
             form.resume ? `Resume: ${form.resume}` : "",
-          ]
-            .filter(Boolean)
-            .join("\n"),
-          estimate_min: ctc.includes("Under") ? 0 : parseInt(ctc.replace(/\D/g, ""), 10) || 0,
-          estimate_max: parseInt(ctc.replace(/\D+/g, "").split(/\D/).pop() ?? "0", 10) || 0,
+          ].filter(Boolean).join("\n"),
+          estimate_min: 0,
+          estimate_max: parseInt(ctc.replace(/\D+/g, ""), 10) || 0,
         }),
       });
-      if (!res.ok) throw new Error("failed");
+      if (!res.ok) {
+        const data = (await res.json().catch(() => ({}))) as { error?: string };
+        setServerError(data.error ?? "Submission failed.");
+        throw new Error("failed");
+      }
       setDone(true);
     } catch {
       setFailed(true);
@@ -194,339 +162,181 @@ export default function CareersApply({ initialRole }: Props) {
     }
   };
 
+  if (done) {
+    return (
+      <div className="career-done">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="24" cy="24" r="21" stroke="currentColor" strokeWidth="2" />
+          <path d="m15 24.5 6 6L33 18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        <h3>Application received.</h3>
+        <p>
+          An engineer reviews every application personally. Expect a reply within two business
+          days, either way. Meanwhile, meet the agent fleet your work could power.
+        </p>
+        <Link className="btn btn-ghost-sm" href="/ai-agents/">
+          Meet our AI agents
+        </Link>
+      </div>
+    );
+  }
+
   return (
-    <>
-      <div className="role-filters" role="tablist" aria-label="Filter roles by team">
-        {FILTERS.map(([key, label]) => (
-          <button
-            type="button"
-            key={key}
-            role="tab"
-            aria-selected={filter === key}
-            className={`chip${filter === key ? " sel" : ""}`}
-            onClick={() => setFilter(key)}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+    <form className="start-form" onSubmit={submit} noValidate>
+      <fieldset className="est-step">
+        <legend>{Ico.spark}Role you are applying for</legend>
+        <div className="chip-row">
+          {ROLES.map((r) => (
+            <button
+              type="button"
+              key={r.title}
+              className={`chip${role === r.title ? " sel" : ""}`}
+              aria-pressed={role === r.title}
+              onClick={() => setRole(r.title)}
+            >
+              {r.title}
+            </button>
+          ))}
+        </div>
+      </fieldset>
 
-      <div className="role-grid">
-        {visible.map((r) => {
-          const open = openRole === r.title;
-          return (
-            <article key={r.title} className={`role-card${open ? " is-open" : ""}`}>
-              <div className="role-top">
-                <span className="role-track">{r.track}</span>
-                <span className="role-type">Full time · Remote (India)</span>
-              </div>
-              <h3>{r.title}</h3>
-              <ul className="role-meta">
-                <li>{r.exp}</li>
-                <li>{r.band}</li>
-                <li>Indore · Ahmedabad · Remote</li>
-              </ul>
-              <p>{r.blurb}</p>
-              <div className="role-actions">
-                <button type="button" className="role-apply" onClick={() => pickRole(r.title)}>
-                  Apply for this role
-                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  className="role-more"
-                  aria-expanded={open}
-                  onClick={() => setOpenRole(open ? null : r.title)}
-                >
-                  {open ? "Hide details" : "Role details"}
-                </button>
-              </div>
-              {open && (
-                <div className="role-details">
-                  <div>
-                    <h4>What you will do</h4>
-                    <ul>
-                      {r.duties.map((d) => (
-                        <li key={d}>{d}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4>What you bring</h4>
-                    <ul>
-                      {r.brings.map((d) => (
-                        <li key={d}>{d}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              )}
-            </article>
-          );
-        })}
-      </div>
-
-      {applied && (
-        <div className="start-grid apply-panel" id="apply">
-          <div className="start-card">
-            <div className="start-card-head apply-head">
-              <div>
-                <h2>Apply: {applied}</h2>
-                <p>Ten minutes, one form, no accounts to create.</p>
-              </div>
-              <button
-                type="button"
-                className="role-apply"
-                onClick={() => setApplied(null)}
-              >
-                ← All roles
-              </button>
-            </div>
-
-            {done ? (
-              <div className="career-done">
-                <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-                  <circle cx="24" cy="24" r="21" stroke="currentColor" strokeWidth="2" />
-                  <path d="m15 24.5 6 6L33 18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <h3>Application received.</h3>
-                <p>
-                  An engineer reviews every application personally. Expect a reply within two
-                  business days, either way. Meanwhile, meet the agent fleet your work could
-                  power.
-                </p>
-                <Link className="btn btn-ghost-sm" href="/ai-agents/">
-                  Meet our AI agents
-                </Link>
-              </div>
-            ) : (
-              <form className="start-form" onSubmit={submit} noValidate>
-
-              <div className="lead-grid">
-                <div className={`field f-wrap${errors.name ? " has-error" : ""}`}>
-                  <label htmlFor="cfName">Full name</label>
-                  <div className="f-icon">
-                    {Ico.user}
-                    <input
-                      id="cfName"
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      placeholder="Aarav Sharma"
-                      autoComplete="name"
-                    />
-                  </div>
-                  {errors.name && <p className="field-err">{errors.name}</p>}
-                </div>
-                <div className={`field f-wrap${errors.email ? " has-error" : ""}`}>
-                  <label htmlFor="cfEmail">Email</label>
-                  <div className="f-icon">
-                    {Ico.mail}
-                    <input
-                      id="cfEmail"
-                      type="email"
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      placeholder="you@email.com"
-                      autoComplete="email"
-                    />
-                  </div>
-                  {errors.email && <p className="field-err">{errors.email}</p>}
-                </div>
-                <div className="field">
-                  <label htmlFor="cfPhone">Phone (optional)</label>
-                  <div className="f-icon">
-                    {Ico.phone}
-                    <input
-                      id="cfPhone"
-                      type="tel"
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      placeholder="+91 00000 00000"
-                      autoComplete="tel"
-                    />
-                  </div>
-                </div>
-                <div className={`field f-wrap${errors.city ? " has-error" : ""}`}>
-                  <label htmlFor="cfCity">Current city</label>
-                  <div className="f-icon">
-                    {Ico.pin}
-                    <input
-                      id="cfCity"
-                      value={form.city}
-                      onChange={(e) => setForm({ ...form, city: e.target.value })}
-                      placeholder="Bengaluru"
-                    />
-                  </div>
-                  {errors.city && <p className="field-err">{errors.city}</p>}
-                </div>
-                <div className="field">
-                  <label htmlFor="cfCompany">Current employer (optional)</label>
-                  <div className="f-icon">
-                    {Ico.org}
-                    <input
-                      id="cfCompany"
-                      value={form.company}
-                      onChange={(e) => setForm({ ...form, company: e.target.value })}
-                      placeholder="Where you work today"
-                      autoComplete="organization"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <fieldset className="est-step">
-                <legend>{Ico.spark}Key skills</legend>
-                <div className="chip-row">
-                  {SKILLS.map((s) => (
-                    <button
-                      type="button"
-                      key={s}
-                      className={`chip${skills.includes(s) ? " sel" : ""}`}
-                      aria-pressed={skills.includes(s)}
-                      onClick={() => toggleSkill(s)}
-                    >
-                      {s}
-                    </button>
-                  ))}
-                </div>
-              </fieldset>
-
-              <div className="lead-grid">
-                <fieldset className="est-step">
-                  <legend>{Ico.box}Experience</legend>
-                  <div className="chip-row">
-                    {EXPERIENCE.map((x) => (
-                      <button
-                        type="button"
-                        key={x}
-                        className={`chip${experience === x ? " sel" : ""}`}
-                        aria-pressed={experience === x}
-                        onClick={() => setExperience(x)}
-                      >
-                        {x}
-                      </button>
-                    ))}
-                  </div>
-                </fieldset>
-                <fieldset className="est-step">
-                  <legend>{Ico.clock}Notice period</legend>
-                  <div className="chip-row">
-                    {NOTICES.map((n) => (
-                      <button
-                        type="button"
-                        key={n}
-                        className={`chip${notice === n ? " sel" : ""}`}
-                        aria-pressed={notice === n}
-                        onClick={() => setNotice(n)}
-                      >
-                        {n}
-                      </button>
-                    ))}
-                  </div>
-                </fieldset>
-              </div>
-
-              <fieldset className="est-step">
-                <legend>{Ico.wallet}Expected annual CTC</legend>
-                <div className="chip-row">
-                  {CTCS.map((c) => (
-                    <button
-                      type="button"
-                      key={c}
-                      className={`chip${ctc === c ? " sel" : ""}`}
-                      aria-pressed={ctc === c}
-                      onClick={() => setCtc(c)}
-                    >
-                      {c}
-                    </button>
-                  ))}
-                </div>
-              </fieldset>
-
-              <div className="lead-grid">
-                <div className={`field f-wrap${errors.links ? " has-error" : ""}`}>
-                  <label htmlFor="cfLinks">GitHub or portfolio link</label>
-                  <div className="f-icon">
-                    {Ico.link}
-                    <input
-                      id="cfLinks"
-                      value={form.links}
-                      onChange={(e) => setForm({ ...form, links: e.target.value })}
-                      placeholder="github.com/you"
-                    />
-                  </div>
-                </div>
-                <div className={`field f-wrap${errors.resume ? " has-error" : ""}`}>
-                  <label htmlFor="cfResume">Resume link (Drive or Dropbox)</label>
-                  <div className="f-icon">
-                    {Ico.link}
-                    <input
-                      id="cfResume"
-                      value={form.resume}
-                      onChange={(e) => setForm({ ...form, resume: e.target.value })}
-                      placeholder="Link to your PDF resume"
-                    />
-                  </div>
-                  {errors.resume && <p className="field-err">{errors.resume}</p>}
-                </div>
-              </div>
-
-              <div className="field" style={{ marginTop: "1.15rem" }}>
-                <label htmlFor="cfNotes">{Ico.pen}Why Savo? (optional)</label>
-                <textarea
-                  id="cfNotes"
-                  rows={4}
-                  value={form.notes}
-                  onChange={(e) => setForm({ ...form, notes: e.target.value })}
-                  placeholder="One honest paragraph beats a cover letter. What do you want to build next?"
-                />
-              </div>
-
-              <input
-                className="hp-field"
-                type="text"
-                name="website"
-                value={form.website}
-                onChange={(e) => setForm({ ...form, website: e.target.value })}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-              />
-
-              <label className={`consent-row${errors.consent ? " has-error" : ""}`}>
-                <input
-                  type="checkbox"
-                  checked={form.consent}
-                  onChange={(e) => setForm({ ...form, consent: e.target.checked })}
-                />
-                <span>
-                  I agree that Savo Technologies may process this application for recruitment
-                  purposes, as described in the privacy policy.
-                </span>
-              </label>
-              {errors.consent && <p className="field-err">{errors.consent}</p>}
-
-              <div className="est-submit-row">
-                <button className="btn btn-primary btn-lg" type="submit" disabled={busy}>
-                  {busy ? "Submitting application" : "Submit Application"}
-                </button>
-                <p className="est-fine">
-                  Read by an engineer who ships, with a personal reply within two business days. Your details never leave Savo Technologies.
-                </p>
-              </div>
-              {failed && (
-                <p className="field-err" role="alert" style={{ marginTop: "0.6rem" }}>
-                  Something went wrong submitting your application. Please retry, or email
-                  careers@savotechnologies.com directly.
-                </p>
-              )}
-</form>
-            )}
+      <div className="lead-grid">
+        <div className={`field f-wrap${errors.name ? " has-error" : ""}`}>
+          <label htmlFor="cfName">Full name</label>
+          <div className="f-icon">
+            {Ico.user}
+            <input id="cfName" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Aarav Sharma" autoComplete="name" />
+          </div>
+          {errors.name && <p className="field-err">{errors.name}</p>}
+        </div>
+        <div className={`field f-wrap${errors.email ? " has-error" : ""}`}>
+          <label htmlFor="cfEmail">Email</label>
+          <div className="f-icon">
+            {Ico.mail}
+            <input id="cfEmail" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@email.com" autoComplete="email" />
+          </div>
+          {errors.email && <p className="field-err">{errors.email}</p>}
+        </div>
+        <div className="field">
+          <label htmlFor="cfPhone">Phone (optional)</label>
+          <div className="f-icon">
+            {Ico.phone}
+            <input id="cfPhone" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+91 75029 01234" autoComplete="tel" />
           </div>
         </div>
+        <div className={`field f-wrap${errors.city ? " has-error" : ""}`}>
+          <label htmlFor="cfCity">Current city</label>
+          <div className="f-icon">
+            {Ico.pin}
+            <input id="cfCity" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} placeholder="Bengaluru" />
+          </div>
+          {errors.city && <p className="field-err">{errors.city}</p>}
+        </div>
+        <div className="field">
+          <label htmlFor="cfCompany">Current employer (optional)</label>
+          <div className="f-icon">
+            {Ico.org}
+            <input id="cfCompany" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="Where you work today" autoComplete="organization" />
+          </div>
+        </div>
+      </div>
+
+      <fieldset className="est-step">
+        <legend>{Ico.spark}Key skills</legend>
+        <div className="chip-row">
+          {SKILLS.map((s) => (
+            <button type="button" key={s} className={`chip${skills.includes(s) ? " sel" : ""}`} aria-pressed={skills.includes(s)} onClick={() => toggleSkill(s)}>
+              {s}
+            </button>
+          ))}
+        </div>
+      </fieldset>
+
+      <div className="lead-grid">
+        <fieldset className="est-step">
+          <legend>{Ico.box}Experience</legend>
+          <div className="chip-row">
+            {EXPERIENCE.map((x) => (
+              <button type="button" key={x} className={`chip${experience === x ? " sel" : ""}`} aria-pressed={experience === x} onClick={() => setExperience(x)}>
+                {x}
+              </button>
+            ))}
+          </div>
+        </fieldset>
+        <fieldset className="est-step">
+          <legend>{Ico.clock}Notice period</legend>
+          <div className="chip-row">
+            {NOTICES.map((n) => (
+              <button type="button" key={n} className={`chip${notice === n ? " sel" : ""}`} aria-pressed={notice === n} onClick={() => setNotice(n)}>
+                {n}
+              </button>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <fieldset className="est-step">
+        <legend>{Ico.wallet}Expected annual CTC</legend>
+        <div className="chip-row">
+          {CTCS.map((c) => (
+            <button type="button" key={c} className={`chip${ctc === c ? " sel" : ""}`} aria-pressed={ctc === c} onClick={() => setCtc(c)}>
+              {c}
+            </button>
+          ))}
+        </div>
+      </fieldset>
+
+      <div className="lead-grid">
+        <div className="field">
+          <label htmlFor="cfLinks">GitHub or portfolio link</label>
+          <div className="f-icon">
+            {Ico.link}
+            <input id="cfLinks" value={form.links} onChange={(e) => setForm({ ...form, links: e.target.value })} placeholder="github.com/you" />
+          </div>
+        </div>
+        <div className={`field f-wrap${errors.resume ? " has-error" : ""}`}>
+          <label htmlFor="cfResume">Resume link (Drive or Dropbox)</label>
+          <div className="f-icon">
+            {Ico.link}
+            <input id="cfResume" value={form.resume} onChange={(e) => setForm({ ...form, resume: e.target.value })} placeholder="Link to your PDF resume" />
+          </div>
+          {errors.resume && <p className="field-err">{errors.resume}</p>}
+        </div>
+      </div>
+
+      <div className="field" style={{ marginTop: "1.15rem" }}>
+        <label htmlFor="cfNotes">{Ico.pen}Why Savo? (optional)</label>
+        <textarea id="cfNotes" rows={4} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} placeholder="One honest paragraph beats a cover letter. What do you want to build next?" />
+      </div>
+
+      <input className="hp-field" type="text" name="website" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} tabIndex={-1} autoComplete="off" aria-hidden="true" />
+
+      <CaptchaField token={captchaToken} answer={captchaAnswer} onToken={setCaptchaToken} onAnswer={setCaptchaAnswer} />
+      {errors.captcha && <p className="field-err">{errors.captcha}</p>}
+
+      <label className={`consent-row${errors.consent ? " has-error" : ""}`}>
+        <input type="checkbox" checked={form.consent} onChange={(e) => setForm({ ...form, consent: e.target.checked })} />
+        <span>
+          I agree that Savo Technologies may process this application for recruitment purposes,
+          as described in the privacy policy.
+        </span>
+      </label>
+      {errors.consent && <p className="field-err">{errors.consent}</p>}
+
+      <div className="est-submit-row">
+        <button className="btn btn-primary btn-lg" type="submit" disabled={busy}>
+          {busy ? "Submitting application" : "Submit Application"}
+        </button>
+        <p className="est-fine">
+          Read by an engineer who ships, with a personal reply within two business days. Your
+          details never leave Savo Technologies.
+        </p>
+      </div>
+      {failed && (
+        <p className="field-err" role="alert" style={{ marginTop: "0.6rem" }}>
+          {serverError || "Something went wrong submitting your application. Please retry, or email careers@savotechnologies.com directly."}
+        </p>
       )}
-    </>
+    </form>
   );
 }

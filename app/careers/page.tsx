@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/reveal";
 import CareersHero from "@/components/careers-hero";
-import CareersApply from "@/components/careers-form";
+import CareersRoles from "@/components/careers-roles";
 import { TEAM_STATS } from "@/lib/careers-data";
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export default function CareersPage() {
       <section className="section section-light" id="openings">
         <div className="wrap">
           <Reveal>
-            <CareersApply />
+            <CareersRoles />
           </Reveal>
 
           <div className="team-stats" aria-label="Team at a glance">

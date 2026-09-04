@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { api } from "@/lib/api";
+import CaptchaField from "./captcha-field";
 
 const TOPICS = ["New project", "Hire a team", "Support", "Careers", "Something else"];
 
@@ -52,6 +53,8 @@ export default function ContactForm() {
   const [done, setDone] = useState(false);
   const [failed, setFailed] = useState(false);
   const [mountedAt] = useState(() => Date.now());
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,6 +73,8 @@ export default function ContactForm() {
         body: JSON.stringify({
           ...form,
           elapsed: Date.now() - mountedAt,
+          captchaToken,
+          captchaAnswer,
           source: "contact",
           project_type: topic,
           timeline: "standard",
@@ -200,6 +205,8 @@ export default function ContactForm() {
         autoComplete="off"
         aria-hidden="true"
       />
+
+      <CaptchaField token={captchaToken} answer={captchaAnswer} onToken={setCaptchaToken} onAnswer={setCaptchaAnswer} />
 
       <div className="est-submit-row">
         <button className="btn btn-primary btn-lg" type="submit" disabled={busy}>

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { saveLead, type LeadRecord } from "@/db/db";
 import { guardForm } from "@/lib/form-guard";
+import { verifyCaptcha } from "@/lib/captcha";
 
 /**
  * Lead capture: instant estimator, Start Your Project briefs, footer
@@ -15,6 +16,16 @@ export async function POST(req: Request) {
     const guard = guardForm(req, b as { website?: unknown; elapsed?: unknown });
     if (!guard.ok) {
       return NextResponse.json({ ok: false, error: guard.error }, { status: guard.status });
+    }
+
+    // human verification for public application and contact forms
+    if (b.source === "careers" || b.source === "contact") {
+      if (!verifyCaptcha(b.captchaToken, b.captchaAnswer)) {
+        return NextResponse.json(
+          { ok: false, error: "Please complete the human check correctly and try again." },
+          { status: 422 },
+        );
+      }
     }
 
     const source =
