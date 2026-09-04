@@ -2382,29 +2382,47 @@ textarea { resize: vertical; }
 .career-done svg { width: 52px; height: 52px; color: var(--green); margin-bottom: 1rem; }
 .career-done h3 { font-size: 1.25rem; color: #fff; }
 .career-done p { color: var(--muted-light); font-size: 0.92rem; line-height: 1.65; max-width: 46ch; margin: 0.6rem auto 1.3rem; }
+/* careers band: everything inside one blue tinted box */
+.careers-box {
+  background: var(--tint-blue);
+  border: 1px solid rgba(29, 40, 255, 0.14);
+  border-radius: var(--r-lg);
+  padding: clamp(2.2rem, 4.5vw, 3.4rem) clamp(1.4rem, 4vw, 3.5rem);
+  text-align: center;
+}
+.careers-box h2 { text-wrap: balance; }
+.careers-box .lead { margin-inline: auto; max-width: 58ch; }
+.careers-box .page-kicker { color: var(--blue-text); }
 .careers-roles {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.6rem;
-  margin-bottom: 1.7rem;
+  margin: 1.8rem 0 2rem;
 }
 .careers-role {
   font-size: 0.88rem;
   font-weight: 600;
   color: var(--ink);
   padding: 0.5rem 1.05rem;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(29, 40, 255, 0.18);
   border-radius: 999px;
   background: var(--white);
-  transition: border-color 0.16s ease, color 0.16s ease;
+  box-shadow: 0 1px 2px rgba(16, 16, 20, 0.04);
+  transition: border-color 0.16s ease, color 0.16s ease, transform 0.16s ease;
 }
-.careers-role:hover { border-color: var(--blue); color: var(--blue-text); }
+.careers-role:hover {
+  border-color: var(--blue);
+  color: var(--blue-text);
+  transform: translateY(-2px);
+}
 .careers-cta-row {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1.4rem;
-  flex-wrap: wrap;
+  gap: 1rem;
 }
+.careers-cta-row .est-fine { max-width: 52ch; margin: 0; }
 .careers-footnote {
   margin-top: 2rem;
   font-size: 0.9rem;
