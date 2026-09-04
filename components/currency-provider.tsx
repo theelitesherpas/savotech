@@ -33,7 +33,9 @@ function readCookie(): string | undefined {
 }
 
 export function CurrencyProvider({ children }: { children: React.ReactNode }) {
-  const [ccy, setCcy] = useState<Currency>(() => getCurrency(readCookie()));
+  // start from the default so server and client paint identically,
+  // then adopt the cookie (or geo detection) right after mount
+  const [ccy, setCcy] = useState<Currency>(() => getCurrency(null));
 
   const setCode = useCallback((code: CurrencyCode) => {
     document.cookie = `${CCY_COOKIE}=${code}; max-age=${60 * 60 * 24 * 365}; path=/; samesite=lax`;
@@ -42,7 +44,12 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
 
   // first visit: detect currency from the visitor's network location
   useEffect(() => {
-    if (readCookie()) return;
+    const saved = readCookie();
+    if (saved) {
+      const c = getCurrency(saved);
+      if (c.code !== "INR") setCcy(c);
+      return;
+    }
     let alive = true;
     fetch(api("/api/geo"))
       .then((r) => r.json() as Promise<{ country: string }>)

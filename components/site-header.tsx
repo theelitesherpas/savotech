@@ -76,11 +76,11 @@ const NAV: NavItem[] = [
     },
     children: [
       ["AI Agent Development", "/ai-agents/"],
-      ["Web Development", "/#services"],
-      ["Mobile App Development", "/#services"],
-      ["UI/UX Design", "/#services"],
-      ["Cloud & DevOps", "/#services"],
-      ["Data & Analytics", "/#services"],
+      ["Web Development", "/services/web-development/"],
+      ["Mobile App Development", "/services/mobile-apps/"],
+      ["UI/UX Design", "/services/ui-ux/"],
+      ["Cloud & DevOps", "/services/cloud-devops/"],
+      ["Data & Analytics", "/services/data-analytics/"],
     ],
   },
   {
