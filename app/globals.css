@@ -476,16 +476,16 @@ textarea { resize: vertical; }
 .mega-start:not([hidden]) { animation-name: drop-in; }
 .mega-flip { left: auto; right: 0; transform: none; }
 .mega-flip:not([hidden]) { animation-name: drop-in; }
-.mega .mega-all { color: var(--red-text); font-weight: 700; }
-.mega .mega-all svg { width: 13px; height: 13px; margin-left: auto; }
-.mega .mega-all:hover { background: transparent; color: var(--ink); }
+.mega a.mega-all { color: var(--red-text); font-weight: 700; }
+.mega a.mega-all svg { width: 13px; height: 13px; margin-left: auto; }
+.mega a.mega-all:hover { background: transparent; color: var(--ink); }
 .mega-title {
   font-family: var(--font-display);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
+  color: var(--faint);
   margin-bottom: 0.75rem;
 }
 .mega .mega-link {
