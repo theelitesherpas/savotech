@@ -4,86 +4,84 @@ import { useState } from "react";
 import Link from "next/link";
 import { useCurrency } from "./currency-provider";
 
-/** Monthly / quarterly / yearly engagement plans, priced in the visitor's currency. */
+const CYCLES = [
+  { key: "m" as const, label: "Monthly", months: 1, discount: 0, note: "Cancel with 30 days notice" },
+  { key: "q" as const, label: "Quarterly", months: 3, discount: 0.05, note: "3 month commitment" },
+  { key: "y" as const, label: "Yearly", months: 12, discount: 0.1, note: "12 month commitment" },
+];
+
+const INCLUDED = [
+  "Dedicated senior engineer, yours only",
+  "Two week paid trial to start",
+  "Your tools, your standups, your repo",
+  "Free instant replacement, anytime",
+];
+
+/** Clean segmented pricing: pick a cycle, see one honest price. */
 export default function HirePlans({ monthly, role }: { monthly: number; role: string }) {
   const { price } = useCurrency();
-  const [cycle, setCycle] = useState<"m" | "q" | "y">("m");
+  const [cycle, setCycle] = useState<(typeof CYCLES)[number]>(CYCLES[1]);
 
-  const plans = [
-    { key: "m" as const, label: "Monthly", months: 1, discount: 0, note: "Maximum flexibility", best: false },
-    { key: "q" as const, label: "Quarterly", months: 3, discount: 0.05, note: "5% saved, quarterly billing", best: true },
-    { key: "y" as const, label: "Yearly", months: 12, discount: 0.1, note: "10% saved, yearly billing", best: false },
-  ];
-  const active = plans.find((p) => p.key === cycle)!;
-  const total = Math.round(monthly * active.months * (1 - active.discount));
-  const perMonth = Math.round(total / active.months);
+  const total = Math.round(monthly * cycle.months * (1 - cycle.discount));
+  const perMonth = Math.round(total / cycle.months);
+  const saved = Math.round(monthly * cycle.months - total);
 
   return (
-    <section className="section hire-plans" id="plans">
+    <section className="section section-alt hire-plans" id="plans">
       <div className="wrap">
-        <div className="section-head">
-          <p className="page-kicker">Simple pricing</p>
-          <h2>One engineer. One transparent rate.</h2>
-          <p className="lead">
-            Dedicated {role.toLowerCase()} working only for you, in your tools. Pick a billing
-            cycle; longer commitments simply cost less. Prices in your currency.
-          </p>
-        </div>
-
-        <div className="plan-cycle" role="tablist" aria-label="Billing cycle">
-          {plans.map((p) => (
-            <button
-              key={p.key}
-              type="button"
-              role="tab"
-              aria-selected={cycle === p.key}
-              className={`chip${cycle === p.key ? " sel" : ""}`}
-              onClick={() => setCycle(p.key)}
-            >
-              {p.label}
-              {p.discount > 0 && <span className="plan-save">save {Math.round(p.discount * 100)}%</span>}
-            </button>
-          ))}
-        </div>
-
-        <div className="plan-grid">
-          {plans.map((p) => {
-            const t = Math.round(monthly * p.months * (1 - p.discount));
-            const pm = Math.round(t / p.months);
-            return (
-              <article key={p.key} className={`plan-card${p.key === cycle ? " is-active" : ""}${p.best ? " plan-best" : ""}`}>
-                {p.best && <span className="plan-flag">Most popular</span>}
-                <h3>{p.label}</h3>
-                <p className="plan-price">
-                  {price(pm, 50)}
-                  <span> / month</span>
-                </p>
-                <p className="plan-total">
-                  {price(t, 100)} billed {p.months === 1 ? "monthly" : p.label.toLowerCase()}
-                </p>
-                <ul>
-                  <li>Dedicated senior engineer</li>
-                  <li>{p.months === 1 ? "Cancel with 30 days notice" : `${p.months} month commitment`}</li>
-                  <li>Two week paid trial to start</li>
-                  <li>Your tools, your standups</li>
-                  <li>Swap or scale anytime</li>
-                </ul>
-                <Link
-                  className={p.key === cycle ? "btn btn-primary" : "btn btn-login"}
-                  href="/start-your-project/"
+        <div className="plans-v2">
+          <div className="plan-choices">
+            <p className="page-kicker">Simple pricing</p>
+            <h2>Pick a billing cycle.</h2>
+            <p className="plan-lead">
+              One {role.toLowerCase().replace(/s$/, "")} rate, in your currency. Longer
+              commitments simply cost less.
+            </p>
+            <div className="plan-options" role="tablist" aria-label="Billing cycle">
+              {CYCLES.map((c) => (
+                <button
+                  key={c.key}
+                  type="button"
+                  role="tab"
+                  aria-selected={cycle.key === c.key}
+                  className={`plan-option${cycle.key === c.key ? " is-on" : ""}`}
+                  onClick={() => setCycle(c)}
                 >
-                  Hire now
-                </Link>
-              </article>
-            );
-          })}
-        </div>
+                  <span className="po-radio" aria-hidden="true" />
+                  <span className="po-main">
+                    <strong>{c.label}</strong>
+                    <em>{c.note}</em>
+                  </span>
+                  {c.discount > 0 && <span className="po-save">save {Math.round(c.discount * 100)}%</span>}
+                </button>
+              ))}
+            </div>
+          </div>
 
-        <p className="plan-fine">
-          Effective rate on your selection: <strong>{price(perMonth, 50)} / month</strong>. GST
-          extra where applicable. Need a pod of three or more?{" "}
-          <Link className="text-cta" href="/contact/">Talk to us for volume rates</Link>.
-        </p>
+          <div className="plan-spotlight">
+            <span className="ps-cycle">{cycle.label} plan</span>
+            <p className="ps-price">
+              {price(perMonth, 50)}
+              <span> / month</span>
+            </p>
+            <p className="ps-billed">
+              {price(total, 100)} billed {cycle.months === 1 ? "monthly" : cycle.label.toLowerCase()}
+              {saved > 0 && <> · you save {price(saved, 100)}</>}
+            </p>
+            <ul className="ps-list">
+              {INCLUDED.map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
+            <Link className="btn btn-primary btn-lg ps-cta" href="/start-your-project/">
+              Hire now
+            </Link>
+            <p className="ps-fine">
+              Need a pod of three or more?{" "}
+              <Link className="text-cta" href="/contact/">Ask for volume rates</Link>
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

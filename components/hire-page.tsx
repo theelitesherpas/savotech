@@ -206,17 +206,14 @@ export default function HirePageView({ role }: { role: HireRole }) {
       <HirePlans monthly={r.monthly} role={r.title} />
       <section className="section section-light hire-rates">
         <div className="wrap">
-          <div className="section-head">
-            <Reveal>
+          <Reveal>
+            <div className="rates-head">
               <h2>What the same {r.short.toLowerCase()} engineer costs worldwide.</h2>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="lead">
-                Seniority, English fluency and overlap held constant. Geography is the only variable.
+              <p>
+                Seniority, English fluency and timezone overlap held constant. Geography is the
+                only variable.
               </p>
-            </Reveal>
-          </div>
-          <Reveal delay={0.1}>
+            </div>
             <HireRateCompare monthly={r.monthly} />
           </Reveal>
         </div>

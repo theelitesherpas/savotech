@@ -3663,61 +3663,109 @@ textarea { resize: vertical; }
 .hire-hero .svc-hire-ctas .btn-ghost { border-color: rgba(255, 255, 255, 0.45); color: #fff; }
 .hire-hero .svc-hire-ctas .btn-ghost:hover { color: #fff; }
 
-/* plans: ink band */
-.hire-plans { background: var(--ink); }
-.hire-plans .section-head h2 { color: #fff; }
-.hire-plans .lead { color: var(--muted-light); }
-.plan-cycle { display: flex; gap: 0.7rem; justify-content: center; margin-bottom: 1.8rem; }
-.plan-cycle .chip { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.18); color: var(--muted-light); }
-.plan-cycle .chip.sel { background: var(--white); border-color: var(--white); color: var(--ink); }
-.plan-save {
-  margin-left: 0.5rem;
-  font-size: 0.68rem;
-  font-weight: 700;
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
-  background: rgba(43, 217, 38, 0.18);
-  color: #7ee08a;
+/* plans v2: segmented picker + spotlight (paper section) */
+.plans-v2 {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(1.6rem, 4vw, 3.2rem);
+  align-items: start;
 }
-.plan-cycle .chip.sel .plan-save { background: var(--tint-green); color: var(--green-text); }
-.plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-.plan-card {
+.plan-choices h2 { margin-top: 0.35rem; }
+.plan-lead { margin-top: 0.7rem; color: var(--muted); font-size: 0.95rem; line-height: 1.65; max-width: 40ch; }
+.plan-options { display: grid; gap: 0.75rem; margin-top: 1.5rem; }
+.plan-option {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  width: 100%;
+  text-align: left;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 1rem 1.15rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+}
+.plan-option:hover { border-color: var(--ink); }
+.plan-option.is-on {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(29, 40, 255, 0.14);
+  transform: translateY(-1px);
+}
+.po-radio {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  flex: none;
   position: relative;
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: border-color 0.16s ease;
+}
+.plan-option.is-on .po-radio { border-color: var(--blue); }
+.plan-option.is-on .po-radio::after {
+  content: "";
+  position: absolute;
+  inset: 3.5px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+.po-main { display: grid; gap: 0.1rem; flex: 1; }
+.po-main strong { font-size: 0.95rem; color: var(--ink); }
+.po-main em { font-style: normal; font-size: 0.78rem; color: var(--muted); }
+.po-save {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.3rem 0.62rem;
+  border-radius: 999px;
+  background: var(--tint-green);
+  color: var(--green-text);
+  white-space: nowrap;
+}
+.plan-spotlight {
+  background: var(--ink);
   border-radius: var(--r-lg);
-  padding: 1.7rem 1.6rem 1.8rem;
+  padding: clamp(1.8rem, 3.5vw, 2.6rem) clamp(1.6rem, 3.5vw, 2.6rem);
   display: grid;
   gap: 0.35rem;
-  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  justify-items: start;
 }
-.plan-card:hover { border-color: rgba(255, 255, 255, 0.3); transform: translateY(-3px); }
-.plan-card.is-active { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.4); }
-.plan-flag {
-  position: absolute;
-  top: -0.8rem;
-  left: 1.4rem;
-  background: var(--green);
-  color: #0c2b0d;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+.ps-cycle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 0.28rem 0.7rem;
-  border-radius: 999px;
+  color: #9fb0ff;
 }
-.plan-card h3 { color: #fff; font-size: 1.05rem; }
-.plan-price { color: #fff; font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 800; font-variant-numeric: tabular-nums; }
-.plan-price span { font-size: 0.85rem; font-weight: 500; color: var(--muted-light); }
-.plan-total { color: var(--muted-light); font-size: 0.84rem; }
-.plan-card ul { list-style: none; display: grid; gap: 0.5rem; margin: 1rem 0 1.4rem; }
-.plan-card li { color: #d6d6de; font-size: 0.86rem; display: flex; gap: 0.5rem; align-items: baseline; }
-.plan-card li::before { content: ""; width: 6px; height: 6px; border-radius: 2px; background: var(--blue); flex: none; transform: translateY(-1px); }
-.plan-card .btn-login { background: transparent; border-color: rgba(255, 255, 255, 0.35); color: #fff; justify-self: start; }
-.plan-card .btn-login:hover { color: #fff; }
-.plan-card .btn-primary { justify-self: start; }
-.plan-fine { text-align: center; color: var(--muted-light); font-size: 0.86rem; margin-top: 1.8rem; }
-.plan-fine strong { color: #fff; }
+.ps-price { color: #fff; font-size: clamp(2.1rem, 4.5vw, 3rem); font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.ps-price span { font-size: 0.95rem; font-weight: 500; color: var(--muted-light); }
+.ps-billed { color: var(--muted-light); font-size: 0.88rem; }
+.ps-list { list-style: none; display: grid; gap: 0.65rem; margin: 1.3rem 0 1.6rem; }
+.ps-list li {
+  color: #d6d6de;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+}
+.ps-list li::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 2px;
+  flex: none;
+  transform: translateY(-1px);
+}
+.ps-list li:nth-child(3n+1)::before { background: var(--blue); }
+.ps-list li:nth-child(3n+2)::before { background: var(--red); }
+.ps-list li:nth-child(3n)::before { background: var(--green); }
+.ps-cta { justify-self: start; }
+.ps-fine { margin-top: 1.1rem; font-size: 0.8rem; color: var(--muted-light); }
+.ps-fine .text-cta { color: #9fb0ff; }
+
+/* rates: compact head + table */
+.hire-rates .wrap { max-width: 980px; }
+.rates-head { display: grid; gap: 0.4rem; margin-bottom: 1.4rem; }
+.rates-head h2 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); max-width: 24ch; }
+.rates-head p { color: var(--muted); font-size: 0.92rem; max-width: 52ch; }
 
 /* tech chips on light bg */
 .svc-chips.on-light { margin-top: 0; }
@@ -3779,11 +3827,13 @@ textarea { resize: vertical; }
 .role-photo-card:hover .role-photo-cta { opacity: 1; transform: none; }
 
 @media (max-width: 980px) {
-  .plan-grid, .role-photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .role-photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .plans-v2 { grid-template-columns: 1fr; }
+  .plan-spotlight { order: -1; }
 }
 @media (max-width: 640px) {
-  .plan-grid, .role-photo-grid { grid-template-columns: 1fr; }
-  .plan-card .btn, .plan-card .btn-login { justify-self: stretch; text-align: center; }
+  .role-photo-grid { grid-template-columns: 1fr; }
+  .ps-cta { justify-self: stretch; text-align: center; }
 }
 
 /* ================= hire pages v2 ================= */
