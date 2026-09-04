@@ -4,16 +4,76 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Logo from "./logo";
 
+type Feature = {
+  icon: React.ReactNode;
+  t: string;
+  d: string;
+  cta: string;
+  href: string;
+};
+
 type NavItem = {
   label: string;
   href: string;
   children?: [string, string][];
+  feature?: Feature;
+  flip?: boolean; // right-align the panel for nav items near the right edge
+  start?: boolean; // left-align the panel for nav items near the left edge
+};
+
+const F = {
+  services: (
+    <svg viewBox="0 0 120 84" fill="none" aria-hidden="true">
+      <rect x="34" y="12" width="52" height="60" rx="6" stroke="rgba(77,92,255,.5)" />
+      <rect x="42" y="20" width="36" height="12" rx="2" stroke="rgba(29,40,255,.6)" />
+      <circle cx="48" cy="46" r="3" fill="#1D28FF" /><circle cx="60" cy="46" r="3" fill="#4D5CFF" /><circle cx="72" cy="46" r="3" fill="#2BD926" />
+      <circle cx="48" cy="58" r="3" fill="#4D5CFF" /><circle cx="60" cy="58" r="3" fill="#1D28FF" /><circle cx="72" cy="58" r="3" fill="#ff5c5c" />
+    </svg>
+  ),
+  hire: (
+    <svg viewBox="0 0 120 84" fill="none" aria-hidden="true">
+      <circle cx="46" cy="28" r="10" stroke="rgba(29,40,255,.6)" />
+      <path d="M30 66c2-12 8-18 16-18s14 6 16 18" stroke="rgba(77,92,255,.5)" />
+      <circle cx="78" cy="34" r="8" stroke="rgba(43,217,38,.55)" />
+      <path d="M64 66c1.5-9 6-14 13-14s9.5 5 11 14" stroke="rgba(43,217,38,.4)" />
+    </svg>
+  ),
+  industries: (
+    <svg viewBox="0 0 120 84" fill="none" aria-hidden="true">
+      <rect x="30" y="16" width="24" height="24" rx="4" stroke="rgba(29,40,255,.6)" />
+      <rect x="66" y="16" width="24" height="24" rx="4" stroke="rgba(255,92,92,.55)" />
+      <rect x="30" y="46" width="24" height="24" rx="4" stroke="rgba(255,92,92,.45)" />
+      <rect x="66" y="46" width="24" height="24" rx="4" stroke="rgba(43,217,38,.55)" />
+    </svg>
+  ),
+  work: (
+    <svg viewBox="0 0 120 84" fill="none" aria-hidden="true">
+      <path d="M32 22v40M56 38v24M80 28v34" stroke="rgba(29,40,255,.6)" strokeWidth="4" strokeLinecap="round" />
+      <circle cx="32" cy="16" r="3.5" fill="#1D28FF" /><circle cx="56" cy="32" r="3.5" fill="#4D5CFF" /><circle cx="80" cy="22" r="3.5" fill="#2BD926" />
+      <path d="M24 70h72" stroke="rgba(77,92,255,.4)" />
+    </svg>
+  ),
+  resources: (
+    <svg viewBox="0 0 120 84" fill="none" aria-hidden="true">
+      <rect x="34" y="14" width="52" height="56" rx="6" stroke="rgba(77,92,255,.5)" />
+      <path d="M46 30h28M46 42h28M46 54h18" stroke="rgba(29,40,255,.6)" strokeLinecap="round" />
+      <circle cx="90" cy="16" r="4" fill="#2BD926" />
+    </svg>
+  ),
 };
 
 const NAV: NavItem[] = [
   {
     label: "Services",
     href: "/#services",
+    start: true,
+    feature: {
+      icon: F.services,
+      t: "Scope it in minutes",
+      d: "The instant estimator prices your project in INR with no contact details needed.",
+      cta: "Open the estimator",
+      href: "/#estimator",
+    },
     children: [
       ["AI Agent Development", "/ai-agents/"],
       ["Web Development", "/#services"],
@@ -26,6 +86,13 @@ const NAV: NavItem[] = [
   {
     label: "Hire Resources",
     href: "/#hire",
+    feature: {
+      icon: F.hire,
+      t: "A senior dev in your standup within 2 weeks",
+      d: "Vetted engineers, transparent INR monthly rates and a two week trial on every engagement.",
+      cta: "See roles and rates",
+      href: "/#hire",
+    },
     children: [
       ["AI & ML Engineers", "/#hire"],
       ["Frontend Developers", "/#hire"],
@@ -38,6 +105,13 @@ const NAV: NavItem[] = [
   {
     label: "Industries",
     href: "/#industries",
+    feature: {
+      icon: F.industries,
+      t: "Ten sectors, one playbook",
+      d: "Regulation fluent teams in healthcare, fintech and the Gulf energy economy.",
+      cta: "Explore industries",
+      href: "/#industries",
+    },
     children: [
       ["Healthcare", "/#industries"],
       ["FinTech & Banking", "/#industries"],
@@ -50,6 +124,14 @@ const NAV: NavItem[] = [
   {
     label: "Case Study",
     href: "/#work",
+    flip: true,
+    feature: {
+      icon: F.work,
+      t: "Proof, not promises",
+      d: "Six flagship case studies with numbers you can verify, from health tech to fintech.",
+      cta: "Browse featured work",
+      href: "/#work",
+    },
     children: [
       ["MediBridge Health", "/#work"],
       ["GulfPay", "/#work"],
@@ -62,6 +144,14 @@ const NAV: NavItem[] = [
   {
     label: "Resources",
     href: "/resources/",
+    flip: true,
+    feature: {
+      icon: F.resources,
+      t: "Ship notes from the field",
+      d: "Engineering practices, AI agent teardowns and delivery lessons from a decade of building.",
+      cta: "Read resources",
+      href: "/resources/",
+    },
     children: [
       ["Blog & Engineering Notes", "/resources/"],
       ["Case Studies", "/#work"],
@@ -124,7 +214,7 @@ export default function SiteHeader() {
       if (megaOpen && megaRef.current && !megaRef.current.contains(t) && !megaBtnRef.current?.contains(t)) setMegaOpen(false);
       if (openDrop) {
         const btn = dropRefs.current[openDrop];
-        const panel = btn?.parentElement?.querySelector(".nav-drop");
+        const panel = btn?.parentElement?.querySelector(".mega");
         if (btn?.contains(t) || panel?.contains(t)) return;
         setOpenDrop(null);
       }
@@ -187,7 +277,7 @@ export default function SiteHeader() {
                 AI
                 <Caret />
               </button>
-              <div className="mega" id="aiMega" ref={megaRef} hidden={!megaOpen}>
+              <div className="mega mega-start" id="aiMega" ref={megaRef} hidden={!megaOpen}>
                 <div className="mega-grid">
                   <div className="mega-col">
                     <p className="mega-title">AI Services</p>
@@ -254,28 +344,46 @@ export default function SiteHeader() {
                     <Caret />
                   </button>
                   <div
-                    className="nav-drop"
+                    className={`mega mega-sub${n.flip ? " mega-flip" : ""}${n.start ? " mega-start" : ""}`}
                     id={`drop-${n.label.replace(/\s+/g, "")}`}
                     hidden={openDrop !== n.label}
                   >
-                    {n.children.map(([label, href]) => (
-                      <a key={label} className="nav-drop-link" href={href}>
-                        {label}
-                      </a>
-                    ))}
-                    <a className="nav-drop-link nav-drop-all" href={n.href}>
-                      All {n.label}
-                      <svg viewBox="0 0 16 16" aria-hidden="true">
-                        <path
-                          d="M2 8h11M9 3.5 13.5 8 9 12.5"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.6"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </a>
+                    <div className="mega-grid">
+                      <div className="mega-col">
+                        <p className="mega-title">{n.label}</p>
+                        {n.children?.map(([label, href]) => (
+                          <Link className="mega-link" key={label} href={href}>
+                            <span>{label}</span>
+                          </Link>
+                        ))}
+                        <Link className="mega-link mega-all" href={n.href}>
+                          <span>All {n.label}</span>
+                          <svg viewBox="0 0 16 16" aria-hidden="true">
+                            <path
+                              d="M2 8h11M9 3.5 13.5 8 9 12.5"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.6"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </Link>
+                      </div>
+                      {n.feature && (
+                        <div className="mega-feature">
+                          <p className="mega-title">Featured</p>
+                          <div className="mega-feature-card">
+                            {n.feature.icon}
+                            <h3>{n.feature.t}</h3>
+                            <p>{n.feature.d}</p>
+                            <Link className="btn btn-ghost-sm" href={n.feature.href}>
+                              {n.feature.cta}
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </li>
               ) : (
