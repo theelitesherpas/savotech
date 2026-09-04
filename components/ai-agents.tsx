@@ -18,27 +18,7 @@ const Arrow = () => (
 
 export default function AiAgents() {
   return (
-    <section className="section section-dark ai-section" id="ai-agents">
-      <div className="neural-bg" aria-hidden="true">
-        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
-          <g stroke="rgba(29,40,255,.14)" strokeWidth="1">
-            <path d="M-40 220 240 140l200 160 280-120 260 180 240-100 300 140" />
-            <path d="M-40 620 200 560l300 120 280-80 320 100 260-60 160 40" />
-          </g>
-          <g fill="rgba(77,92,255,.5)">
-            <circle cx="240" cy="140" r="3" />
-            <circle cx="440" cy="300" r="2.5" />
-            <circle cx="720" cy="180" r="3.5" />
-            <circle cx="980" cy="360" r="2.5" />
-            <circle cx="1300" cy="260" r="3" />
-            <circle cx="200" cy="560" r="2.5" />
-            <circle cx="780" cy="600" r="3" />
-            <circle cx="1220" cy="620" r="2.5" />
-          </g>
-          <circle cx="720" cy="180" r="90" fill="rgba(29,40,255,.07)" />
-          <circle cx="1220" cy="620" r="120" fill="rgba(77,92,255,.06)" />
-        </svg>
-      </div>
+    <section className="section section-light section-alt ai-section ai-section-light" id="ai-agents">
       <div className="wrap">
         <div className="section-head">
           <Reveal>
