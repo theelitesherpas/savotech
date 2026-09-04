@@ -5,6 +5,7 @@ import Link from "next/link";
 import { api } from "@/lib/api";
 import { ROLES } from "@/lib/careers-data";
 import CaptchaField from "./captcha-field";
+import CityCombobox from "./city-combobox";
 
 const EXPERIENCE = ["0 to 1 year", "1 to 3 years", "3 to 5 years", "5 to 8 years", "8+ years"];
 const CTCS = ["Under ₹10L", "₹10L to ₹20L", "₹20L to ₹35L", "₹35L+", "Open to discussion"];
@@ -112,8 +113,6 @@ export default function CareersForm({ initialRole }: { initialRole?: string }) {
     if (!form.name.trim()) errs.name = "Please tell us your name.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "A valid email is required.";
     if (!form.city.trim()) errs.city = "Your current city helps with logistics.";
-    if (!form.resume.trim() && !form.links.trim())
-      errs.resume = "Share a resume link or a GitHub / portfolio link.";
     if (!form.consent) errs.consent = "Please confirm we may process your application.";
     if (!captchaAnswer.trim()) errs.captcha = "Please answer the human check.";
     setErrors(errs);
@@ -224,12 +223,9 @@ export default function CareersForm({ initialRole }: { initialRole?: string }) {
             <input id="cfPhone" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+91 75029 01234" autoComplete="tel" />
           </div>
         </div>
-        <div className={`field f-wrap${errors.city ? " has-error" : ""}`}>
+        <div className={`field f-wrap city-field${errors.city ? " has-error" : ""}`}>
           <label htmlFor="cfCity">Current city</label>
-          <div className="f-icon">
-            {Ico.pin}
-            <input id="cfCity" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} placeholder="Bengaluru" />
-          </div>
+          <CityCombobox value={form.city} onChange={(v) => setForm({ ...form, city: v })} invalid={!!errors.city} />
           {errors.city && <p className="field-err">{errors.city}</p>}
         </div>
         <div className="field">
@@ -288,19 +284,18 @@ export default function CareersForm({ initialRole }: { initialRole?: string }) {
 
       <div className="lead-grid">
         <div className="field">
-          <label htmlFor="cfLinks">GitHub or portfolio link</label>
+          <label htmlFor="cfLinks">GitHub or portfolio link (optional)</label>
           <div className="f-icon">
             {Ico.link}
             <input id="cfLinks" value={form.links} onChange={(e) => setForm({ ...form, links: e.target.value })} placeholder="github.com/you" />
           </div>
         </div>
-        <div className={`field f-wrap${errors.resume ? " has-error" : ""}`}>
-          <label htmlFor="cfResume">Resume link (Drive or Dropbox)</label>
+        <div className="field">
+          <label htmlFor="cfResume">Resume link, Drive or Dropbox (optional)</label>
           <div className="f-icon">
             {Ico.link}
             <input id="cfResume" value={form.resume} onChange={(e) => setForm({ ...form, resume: e.target.value })} placeholder="Link to your PDF resume" />
           </div>
-          {errors.resume && <p className="field-err">{errors.resume}</p>}
         </div>
       </div>
 
