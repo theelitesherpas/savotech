@@ -100,6 +100,7 @@ export default function CareersForm({ initialRole }: { initialRole?: string }) {
   const [done, setDone] = useState(false);
   const [failed, setFailed] = useState(false);
   const [serverError, setServerError] = useState("");
+  const [captchaErr, setCaptchaErr] = useState("");
   const [mountedAt] = useState(() => Date.now());
   const [captchaToken, setCaptchaToken] = useState("");
   const [captchaAnswer, setCaptchaAnswer] = useState("");
@@ -120,6 +121,7 @@ export default function CareersForm({ initialRole }: { initialRole?: string }) {
     setBusy(true);
     setFailed(false);
     setServerError("");
+    setCaptchaErr("");
     try {
       const res = await fetch(api("/api/leads"), {
         method: "POST",
@@ -150,7 +152,14 @@ export default function CareersForm({ initialRole }: { initialRole?: string }) {
       });
       if (!res.ok) {
         const data = (await res.json().catch(() => ({}))) as { error?: string };
-        setServerError(data.error ?? "Submission failed.");
+        const msg = data.error ?? "Submission failed.";
+        if (/human check/i.test(msg)) {
+          // wrong captcha: show it right at the captcha field, not at the end
+          setCaptchaErr(msg);
+          setCaptchaAnswer("");
+        } else {
+          setServerError(msg);
+        }
         throw new Error("failed");
       }
       setDone(true);
@@ -306,8 +315,20 @@ export default function CareersForm({ initialRole }: { initialRole?: string }) {
 
       <input className="hp-field" type="text" name="website" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
-      <CaptchaField token={captchaToken} answer={captchaAnswer} onToken={setCaptchaToken} onAnswer={setCaptchaAnswer} />
-      {errors.captcha && <p className="field-err">{errors.captcha}</p>}
+      <CaptchaField
+        token={captchaToken}
+        answer={captchaAnswer}
+        onToken={setCaptchaToken}
+        onAnswer={(v) => {
+          setCaptchaAnswer(v);
+          if (v) setCaptchaErr("");
+        }}
+      />
+      {(captchaErr || errors.captcha) && (
+        <p className="field-err" role="alert">
+          {captchaErr || errors.captcha}
+        </p>
+      )}
 
       <label className={`consent-row${errors.consent ? " has-error" : ""}`}>
         <input type="checkbox" checked={form.consent} onChange={(e) => setForm({ ...form, consent: e.target.checked })} />
@@ -327,9 +348,15 @@ export default function CareersForm({ initialRole }: { initialRole?: string }) {
           details never leave Savo Technologies.
         </p>
       </div>
-      {failed && (
+      {failed && serverError && (
         <p className="field-err" role="alert" style={{ marginTop: "0.6rem" }}>
-          {serverError || "Something went wrong submitting your application. Please retry, or email careers@savotechnologies.com directly."}
+          {serverError}
+        </p>
+      )}
+      {failed && !serverError && !captchaErr && (
+        <p className="field-err" role="alert" style={{ marginTop: "0.6rem" }}>
+          Something went wrong submitting your application. Please retry, or email
+          careers@savotechnologies.com directly.
         </p>
       )}
     </form>

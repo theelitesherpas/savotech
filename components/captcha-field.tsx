@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { api } from "@/lib/api";
 
 /**
@@ -23,6 +23,12 @@ export default function CaptchaField({
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
 
+  // keep callbacks in refs so a new parent render never refetches the challenge
+  const onTokenRef = useRef(onToken);
+  onTokenRef.current = onToken;
+  const onAnswerRef = useRef(onAnswer);
+  onAnswerRef.current = onAnswer;
+
   const load = useCallback(async () => {
     setBusy(true);
     setFailed(false);
@@ -31,14 +37,14 @@ export default function CaptchaField({
       if (!res.ok) throw new Error("failed");
       const data = (await res.json()) as { question: string; token: string };
       setQuestion(data.question);
-      onToken(data.token);
-      onAnswer("");
+      onTokenRef.current(data.token);
+      onAnswerRef.current("");
     } catch {
       setFailed(true);
     } finally {
       setBusy(false);
     }
-  }, [onToken, onAnswer]);
+  }, []);
 
   useEffect(() => {
     void load();

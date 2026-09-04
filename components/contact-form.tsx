@@ -52,6 +52,7 @@ export default function ContactForm() {
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [captchaErr, setCaptchaErr] = useState("");
   const [mountedAt] = useState(() => Date.now());
   const [captchaToken, setCaptchaToken] = useState("");
   const [captchaAnswer, setCaptchaAnswer] = useState("");
@@ -66,6 +67,7 @@ export default function ContactForm() {
     if (Object.keys(errs).length) return;
     setBusy(true);
     setFailed(false);
+    setCaptchaErr("");
     try {
       const res = await fetch(api("/api/leads"), {
         method: "POST",
@@ -80,7 +82,17 @@ export default function ContactForm() {
           timeline: "standard",
         }),
       });
-      if (!res.ok) throw new Error("failed");
+      if (!res.ok) {
+        const data = (await res.json().catch(() => ({}))) as { error?: string };
+        const msg = data.error ?? "Submission failed.";
+        if (/human check/i.test(msg)) {
+          setCaptchaErr(msg);
+          setCaptchaAnswer("");
+        } else {
+          throw new Error(msg);
+        }
+        return;
+      }
       setDone(true);
     } catch {
       setFailed(true);
@@ -206,7 +218,16 @@ export default function ContactForm() {
         aria-hidden="true"
       />
 
-      <CaptchaField token={captchaToken} answer={captchaAnswer} onToken={setCaptchaToken} onAnswer={setCaptchaAnswer} />
+      <CaptchaField
+        token={captchaToken}
+        answer={captchaAnswer}
+        onToken={setCaptchaToken}
+        onAnswer={(v) => {
+          setCaptchaAnswer(v);
+          if (v) setCaptchaErr("");
+        }}
+      />
+      {captchaErr && <p className="field-err" role="alert">{captchaErr}</p>}
 
       <div className="est-submit-row">
         <button className="btn btn-primary btn-lg" type="submit" disabled={busy}>
