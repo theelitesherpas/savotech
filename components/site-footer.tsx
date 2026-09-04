@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Logo from "./logo";
-import NewsletterForm from "./newsletter-form";
+import CallbackForm from "./callback-form";
 
 const SERVICE_LINKS = [
   ["AI Development & Agents", "/services/ai-development/"],
@@ -266,12 +266,12 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="footer-news">
+        <div className="footer-call">
           <div>
-            <h3>Engineering notes, monthly.</h3>
-            <p>AI agents, shipping practices and lessons from a decade of delivery. No fluff.</p>
+            <h3>Prefer a call back?</h3>
+            <p>Pick your country, leave your number and a senior consultant calls within two business hours.</p>
           </div>
-          <NewsletterForm />
+          <CallbackForm />
         </div>
 
         <div className="footer-bottom">

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { respond } from "@/lib/savo-intelligence";
 import { saveChatLog } from "@/db/db";
+import { rateLimit, clientKey } from "@/lib/form-guard";
 
 /**
  * "Ask Savo Anything" backend. The answer engine (Savo Intelligence) runs
@@ -10,6 +11,16 @@ import { saveChatLog } from "@/db/db";
  */
 export async function POST(req: Request) {
   try {
+    // Bot and flood protection: browser UA + per-IP rate limit.
+    if (!req.headers.get("user-agent")) {
+      return NextResponse.json({ error: "Automated requests are not accepted." }, { status: 403 });
+    }
+    if (!rateLimit(clientKey(req, "chat"), 20, 5 * 60_000)) {
+      return NextResponse.json(
+        { error: "You are sending messages very quickly. Please pause a moment and try again." },
+        { status: 429 },
+      );
+    }
     const body = (await req.json()) as { question?: string; sessionKey?: string };
     const question = (body.question ?? "").toString().slice(0, 500).trim();
     if (!question) {

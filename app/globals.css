@@ -2121,7 +2121,7 @@ textarea { resize: vertical; }
 .fc-item a:hover { color: #fff; }
 .fc-touch a { color: var(--green); font-weight: 600; }
 
-.footer-news {
+.footer-call {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2130,26 +2130,222 @@ textarea { resize: vertical; }
   padding-block: 2.2rem;
   border-top: 1px solid var(--line-dark);
 }
-.footer-news h3 { color: #fff; font-size: 1.05rem; }
-.footer-news p { margin-top: 0.3rem; font-size: 0.86rem; }
-.news-form { display: flex; gap: 0.7rem; flex: 1; max-width: 440px; min-width: 280px; }
-.news-form input {
+.footer-call h3 { color: #fff; font-size: 1.05rem; }
+.footer-call p { margin-top: 0.3rem; font-size: 0.86rem; max-width: 34ch; }
+.call-form {
+  display: flex;
+  align-items: stretch;
+  gap: 0.7rem;
   flex: 1;
-  padding: 0.8rem 1.05rem;
+  max-width: 560px;
+  min-width: 300px;
+  position: relative;
+  flex-wrap: wrap;
+}
+.call-form select {
+  appearance: none;
+  padding: 0.8rem 2.1rem 0.8rem 1.05rem;
   border-radius: var(--r-sm);
   border: 1px solid var(--line-dark);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%239c9ca6' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 0.85rem center;
   color: var(--text-light);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
+  font-family: inherit;
+  cursor: pointer;
   transition: border-color 0.16s ease;
 }
-.news-form input::placeholder { color: rgba(156, 156, 166, 0.55); }
-.news-form input:focus {
+.call-form select:focus {
   outline: none;
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(29, 40, 255, 0.22);
 }
-.news-ok { width: 100%; color: var(--green); font-size: 0.85rem; }
+.call-form select option { background: #17171f; color: #f4f4f6; }
+.call-phone {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  align-items: stretch;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line-dark);
+  background: rgba(255, 255, 255, 0.05);
+  transition: border-color 0.16s ease;
+}
+.call-phone:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(29, 40, 255, 0.22);
+}
+.call-dial {
+  display: flex;
+  align-items: center;
+  padding: 0 0.6rem 0 0.95rem;
+  color: var(--muted-light);
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-right: 1px solid var(--line-dark);
+}
+.call-phone input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.8rem 1.05rem;
+  border: none;
+  background: transparent;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+.call-phone input:focus { outline: none; }
+.call-phone input::placeholder { color: rgba(156, 156, 166, 0.55); }
+.call-btn { white-space: nowrap; }
+.call-ok {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  color: var(--green);
+  font-size: 0.88rem;
+}
+.call-ok svg { width: 20px; height: 20px; flex: none; }
+.call-err { width: 100%; color: var(--red); font-size: 0.85rem; }
+@media (max-width: 640px) {
+  .call-form select { flex: 1 1 100%; }
+  .call-btn { flex: 1 1 100%; }
+}
+
+/* honeypot: invisible to humans, irresistible to bots */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* careers */
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.1rem;
+  margin-bottom: 2.2rem;
+}
+.role-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 1.5rem 1.5rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.role-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+  border-color: var(--ink);
+}
+.role-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.65rem;
+}
+.role-track {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-text);
+  background: var(--tint-blue);
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+}
+.role-type { font-size: 0.78rem; color: var(--muted); }
+.role-card h3 { font-size: 1.12rem; font-weight: 700; color: var(--ink); }
+.role-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0.55rem 0 0.7rem;
+}
+.role-meta li {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+}
+.role-card > p { font-size: 0.88rem; line-height: 1.6; color: var(--muted); flex: 1; }
+.role-apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  margin-top: 1rem;
+  padding: 0.55rem 1.05rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.16s ease, color 0.16s ease;
+}
+.role-apply svg { width: 14px; height: 14px; }
+.role-apply:hover { border-color: var(--ink); color: var(--blue-text); }
+.consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-top: 1.1rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--muted);
+  cursor: pointer;
+}
+.consent-row input { accent-color: var(--blue); margin-top: 0.2rem; width: 16px; height: 16px; flex: none; }
+.consent-row.has-error { color: var(--red); }
+.career-done { padding: 2.4rem 2rem 2.6rem; text-align: center; }
+.career-done svg { width: 52px; height: 52px; color: var(--green); margin-bottom: 1rem; }
+.career-done h3 { font-size: 1.25rem; color: #fff; }
+.career-done p { color: var(--muted-light); font-size: 0.92rem; line-height: 1.65; max-width: 46ch; margin: 0.6rem auto 1.3rem; }
+.careers-roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.7rem;
+}
+.careers-role {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 0.5rem 1.05rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  transition: border-color 0.16s ease, color 0.16s ease;
+}
+.careers-role:hover { border-color: var(--blue); color: var(--blue-text); }
+.careers-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+.careers-footnote {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .role-grid { grid-template-columns: 1fr; }
+  .careers-cta-row .est-fine { flex: 1 1 100%; }
+}
 
 .footer-bottom {
   display: flex;

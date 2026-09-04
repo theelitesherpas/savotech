@@ -11,6 +11,7 @@ import Why from "@/components/why";
 import PortalTeaser from "@/components/portal-teaser";
 import Testimonials from "@/components/testimonials";
 import Faq from "@/components/faq";
+import Careers from "@/components/careers";
 import FinalCta from "@/components/final-cta";
 
 /**
@@ -34,6 +35,7 @@ export default function HomePage() {
       <PortalTeaser />
       <Testimonials />
       <Faq />
+      <Careers />
       <FinalCta />
     </>
   );

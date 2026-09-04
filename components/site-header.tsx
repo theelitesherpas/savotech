@@ -69,6 +69,7 @@ const NAV: NavItem[] = [
       ["Client Portal", "/portal/"],
     ],
   },
+  { label: "Careers", href: "/careers/" },
   { label: "Contact Us", href: "/#contact" },
 ];
 

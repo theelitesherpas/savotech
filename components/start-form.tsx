@@ -82,10 +82,11 @@ export default function StartForm({ onSubmitted }: Props) {
   const [projectType, setProjectType] = useState("New product");
   const [budget, setBudget] = useState("₹5L to ₹15L");
   const [timeline, setTimeline] = useState("1 to 3 months");
-  const [form, setForm] = useState({ name: "", email: "", phone: "", company: "", notes: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", company: "", notes: "", website: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [mountedAt] = useState(() => Date.now());
 
   const toggle = (list: string[], set: (v: string[]) => void, item: string) =>
     set(list.includes(item) ? list.filter((x) => x !== item) : [...list, item]);
@@ -105,6 +106,7 @@ export default function StartForm({ onSubmitted }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
+          elapsed: Date.now() - mountedAt,
           source: "start-your-project",
           services,
           project_type: projectType,
@@ -264,6 +266,17 @@ export default function StartForm({ onSubmitted }: Props) {
           placeholder="What are you building, who is it for, and what does success look like? The more you share, the sharper our first reply."
         />
       </div>
+
+      <input
+        className="hp-field"
+        type="text"
+        name="website"
+        value={form.website}
+        onChange={(e) => setForm({ ...form, website: e.target.value })}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
 
       <div className="est-submit-row">
         <button className="btn btn-primary btn-lg" type="submit" disabled={busy}>
