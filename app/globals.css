@@ -340,43 +340,80 @@ textarea { resize: vertical; }
 /* nav dropdown panels */
 .nav-drop {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 8px);
   left: 0;
   z-index: 60;
-  min-width: 264px;
-  padding: 0.55rem;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
+  min-width: 296px;
+  padding: 0.6rem;
+  background: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--r-lg);
   box-shadow: var(--shadow-lift-lg);
+}
+/* invisible bridge over the visual gap so hover never breaks */
+.nav-drop::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+  height: 14px;
 }
 .nav-drop:not([hidden]) { animation: drop-in 0.18s ease; }
 @keyframes drop-in {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.nav-drop-link {
+.nav-drop .nav-drop-link {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.52rem 0.7rem;
-  border-radius: 8px;
-  color: #3f3f49;
+  gap: 0.6rem;
+  padding: 0.58rem 0.72rem;
+  border-radius: 9px;
+  color: var(--muted-light);
   font-size: 0.88rem;
   font-weight: 500;
   white-space: nowrap;
   transition: color 0.14s ease, background 0.14s ease;
 }
-.nav-drop-link:hover { background: var(--paper-2); color: var(--ink); }
-.nav-drop-all {
-  border-top: 1px solid var(--line);
-  margin-top: 0.35rem;
-  padding-top: 0.6rem;
-  color: var(--blue-text);
-  font-weight: 600;
+/* tricolor identity mark */
+.nav-drop-link::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--blue);
+  opacity: 0.7;
+  flex: none;
+  transition: transform 0.18s ease, opacity 0.18s ease;
 }
-.nav-drop-all svg { width: 13px; height: 13px; margin-left: auto; }
-.nav-drop-all:hover { background: transparent; color: var(--ink); }
+.nav-drop-link:nth-child(3n+2)::before { background: var(--red); }
+.nav-drop-link:nth-child(3n)::before { background: var(--green); }
+/* arrow that glides in on hover */
+.nav-drop-link::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-left: auto;
+  border-top: 1.6px solid currentColor;
+  border-right: 1.6px solid currentColor;
+  transform: rotate(45deg) translateX(-4px) scale(0.8);
+  opacity: 0;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+.nav-drop .nav-drop-link:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
+.nav-drop-link:hover::before { opacity: 1; transform: scale(1.4); }
+.nav-drop-link:hover::after { opacity: 0.85; transform: rotate(45deg) translateX(0) scale(1); }
+.nav-drop .nav-drop-all {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 0.45rem;
+  padding-top: 0.75rem;
+  color: #ff5c5c;
+  font-weight: 700;
+}
+.nav-drop .nav-drop-all::before { display: none; }
+.nav-drop .nav-drop-all svg { width: 13px; height: 13px; margin-left: auto; }
+.nav-drop .nav-drop-all:hover { background: transparent; color: #ff8080; }
 
 /* nav density: keep every item on one line */
 .nav-list { display: flex; align-items: center; gap: 0.15rem; }
@@ -407,16 +444,25 @@ textarea { resize: vertical; }
 /* mega menu */
 .mega {
   position: absolute;
-  top: calc(100% + 14px);
+  top: calc(100% + 12px);
   left: 50%;
   transform: translateX(-50%);
   width: 620px;
-  background: #fff;
-  border: 1px solid var(--line);
+  background: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-lift-lg);
   padding: 1.25rem;
   animation: mega-in 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* invisible bridge so the mega stays open on the way down */
+.mega::before {
+  content: "";
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  top: -16px;
+  height: 16px;
 }
 @keyframes mega-in {
   from { opacity: 0; transform: translateX(-50%) translateY(8px); }
@@ -429,7 +475,7 @@ textarea { resize: vertical; }
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--faint);
+  color: rgba(255, 255, 255, 0.42);
   margin-bottom: 0.75rem;
 }
 .mega-link {
@@ -438,17 +484,17 @@ textarea { resize: vertical; }
   gap: 0.5rem;
   padding: 0.6rem 0.75rem;
   border-radius: var(--r-sm);
-  color: #3f3f49;
+  color: var(--muted-light);
   font-size: 0.92rem;
   font-weight: 500;
   transition: background 0.14s ease, color 0.14s ease;
 }
-.mega-link:hover { background: var(--tint-blue); color: var(--ink); }
+.mega-link:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
 .mega-feature-card {
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: var(--r-md);
   padding: 1.1rem;
-  background: var(--ink);
+  background: rgba(255, 255, 255, 0.045);
   color: var(--text-light);
 }
 .mega-feature-card svg { width: 100%; height: auto; margin-bottom: 0.4rem; }

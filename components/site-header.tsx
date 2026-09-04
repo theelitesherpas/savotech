@@ -107,6 +107,7 @@ export default function SiteHeader() {
     if (!megaOpen && !openDrop) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
+      if (closeTimer.current) clearTimeout(closeTimer.current);
       if (megaOpen) {
         setMegaOpen(false);
         megaBtnRef.current?.focus();
@@ -119,6 +120,7 @@ export default function SiteHeader() {
     };
     const onClick = (e: MouseEvent) => {
       const t = e.target as Node;
+      if (closeTimer.current) clearTimeout(closeTimer.current);
       if (megaOpen && megaRef.current && !megaRef.current.contains(t) && !megaBtnRef.current?.contains(t)) setMegaOpen(false);
       if (openDrop) {
         const btn = dropRefs.current[openDrop];
@@ -142,6 +144,20 @@ export default function SiteHeader() {
     };
   }, [mobileOpen]);
 
+  // grace timer: keep the panel open briefly when the mouse leaves,
+  // so diagonal moves between the button and the submenu never close it
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const keepOpen = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+  const closeSoon = (close: () => void) => {
+    keepOpen();
+    closeTimer.current = setTimeout(close, 160);
+  };
+
   return (
     <header className={`site-header ${scrolled ? "is-scrolled" : ""}`} id="siteHeader">
       <div className="header-inner">
@@ -151,7 +167,13 @@ export default function SiteHeader() {
 
         <nav className="primary-nav" aria-label="Primary">
           <ul className="nav-list">
-            <li>
+            <li
+              onMouseEnter={() => {
+                keepOpen();
+                setMegaOpen(true);
+              }}
+              onMouseLeave={() => closeSoon(() => setMegaOpen(false))}
+            >
               <button
                 ref={megaBtnRef}
                 className="nav-drop-btn"
@@ -210,10 +232,11 @@ export default function SiteHeader() {
                 <li
                   key={n.label}
                   onMouseEnter={() => {
+                    keepOpen();
                     setMegaOpen(false);
                     setOpenDrop(n.label);
                   }}
-                  onMouseLeave={() => setOpenDrop((cur) => (cur === n.label ? null : cur))}
+                  onMouseLeave={() => closeSoon(() => setOpenDrop((cur) => (cur === n.label ? null : cur)))}
                 >
                   <button
                     ref={(el) => {
