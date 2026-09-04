@@ -21,10 +21,10 @@ const NEXT_STEPS = [
   { t: "Day 3 to 5", d: "A written proposal with fixed milestones, INR pricing and a start date you can hold us to." },
 ];
 
-const ASSURANCES = [
-  "Reply within one business day",
-  "NDA on request, before you share anything",
-  "Senior engineer reviews every brief",
+const GUARANTEES = [
+  { t: "Reply within one business day", d: "A senior engineer, not a sales rep, reads every brief." },
+  { t: "NDA on request", d: "Before you share anything sensitive, at no cost." },
+  { t: "Senior engineer review", d: "Every brief is scoped by someone who will build it." },
 ];
 
 export default function StartYourProjectPage() {
@@ -39,19 +39,22 @@ export default function StartYourProjectPage() {
             </Reveal>
             <Reveal delay={0.08}>
               <p className="lead">
-                One brief is all it takes. A senior engineer reads it, replies within one
-                business day, and you get scope, timeline and transparent INR pricing before
-                any commitment.
+                One brief is all it takes: scope, timeline and transparent INR pricing,
+                before any commitment.
               </p>
             </Reveal>
-            <Reveal delay={0.14}>
-              <ul className="hero-assurance" style={{ marginTop: "1.6rem" }}>
-                {ASSURANCES.map((a) => (
-                  <li key={a}>{a}</li>
-                ))}
-              </ul>
-            </Reveal>
           </div>
+
+          <Reveal delay={0.12}>
+            <div className="guarantee-grid">
+              {GUARANTEES.map((g, i) => (
+                <div key={g.t} className={`guarantee-card g-${i + 1}`}>
+                  <h3>{g.t}</h3>
+                  <p>{g.d}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
 
           <Reveal delay={0.1}>
             <div className="start-grid">
