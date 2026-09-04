@@ -3291,3 +3291,71 @@ textarea { resize: vertical; }
 @media (max-width: 760px) {
   .work-grid-featured { grid-template-columns: 1fr; }
 }
+
+/* ================= spotlight card borders (cursor following) ================= */
+.work-card,
+.role-card,
+.team-card,
+.office-card,
+.guarantee-card,
+.ind,
+.svc,
+.agent-card,
+.start-aside-card,
+.pstat { position: relative; }
+
+.work-card::before,
+.role-card::before,
+.team-card::before,
+.office-card::before,
+.guarantee-card::before,
+.ind::before,
+.svc::before,
+.agent-card::before,
+.start-aside-card::before,
+.pstat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(29, 40, 255, 0.95),
+    rgba(29, 40, 255, 0.35) 38%,
+    rgba(43, 217, 38, 0.22) 58%,
+    transparent 72%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.work-card:hover::before,
+.role-card:hover::before,
+.team-card:hover::before,
+.office-card:hover::before,
+.guarantee-card:hover::before,
+.ind:hover::before,
+.svc:hover::before,
+.agent-card:hover::before,
+.start-aside-card:hover::before,
+.pstat:hover::before { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .work-card::before,
+  .role-card::before,
+  .team-card::before,
+  .office-card::before,
+  .guarantee-card::before,
+  .ind::before,
+  .svc::before,
+  .agent-card::before,
+  .start-aside-card::before,
+  .pstat::before { display: none; }
+}
