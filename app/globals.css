@@ -1285,12 +1285,11 @@ textarea { resize: vertical; }
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
-  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .work-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift-lg); border-color: var(--ink); }
 .work-card.is-hidden { display: none; }
-.work-media { display: block; background: var(--paper-3); overflow: hidden; }
+.work-media { display: block; background: var(--paper-3); overflow: hidden; border-radius: calc(var(--r-lg) - 1px) calc(var(--r-lg) - 1px) 0 0; }
 .work-media img {
   width: 100%;
   aspect-ratio: 8 / 5;
@@ -3221,13 +3220,14 @@ textarea { resize: vertical; }
 .captcha-refresh svg { width: 16px; height: 16px; }
 
 /* team cards: big square portraits */
-.team-card { overflow: hidden; padding: 0; }
+.team-card { padding: 0; }
 .team-photo {
   position: relative;
   width: 100%;
   height: auto;
   aspect-ratio: 1 / 1;
-  border-radius: 0;
+  border-radius: calc(var(--r-lg) - 1px) calc(var(--r-lg) - 1px) 0 0;
+  overflow: hidden;
   border: none;
   margin-bottom: 0;
   overflow: hidden;
@@ -3292,70 +3292,32 @@ textarea { resize: vertical; }
   .work-grid-featured { grid-template-columns: 1fr; }
 }
 
-/* ================= spotlight card borders (cursor following) ================= */
-.work-card,
-.role-card,
-.team-card,
-.office-card,
-.guarantee-card,
-.ind,
-.svc,
-.agent-card,
-.start-aside-card,
-.pstat { position: relative; }
-
-.work-card::before,
-.role-card::before,
-.team-card::before,
-.office-card::before,
-.guarantee-card::before,
-.ind::before,
-.svc::before,
-.agent-card::before,
-.start-aside-card::before,
-.pstat::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: radial-gradient(
-    240px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(29, 40, 255, 0.95),
-    rgba(29, 40, 255, 0.35) 38%,
-    rgba(43, 217, 38, 0.22) 58%,
-    transparent 72%
-  );
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.28s ease;
-  pointer-events: none;
-  z-index: 3;
+/* ================= unified premium card hover =================
+   Single-accent border, layered elevation and a faint brand ambient.
+   One system for every card type, quiet at rest, confident on hover. */
+.work-card, .role-card, .team-card, .office-card, .guarantee-card,
+.ind, .svc, .agent-card, .start-aside-card, .pstat {
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.28s ease;
 }
 
-.work-card:hover::before,
-.role-card:hover::before,
-.team-card:hover::before,
-.office-card:hover::before,
-.guarantee-card:hover::before,
-.ind:hover::before,
-.svc:hover::before,
-.agent-card:hover::before,
-.start-aside-card:hover::before,
-.pstat:hover::before { opacity: 1; }
+.work-card:hover, .role-card:hover, .team-card:hover, .office-card:hover,
+.guarantee-card:hover, .ind:hover, .svc:hover, .start-aside-card:hover, .pstat:hover,
+.ai-section-light .agent-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(29, 40, 255, 0.45);
+  box-shadow:
+    0 1px 2px rgba(16, 16, 20, 0.04),
+    0 14px 28px -12px rgba(16, 16, 20, 0.16),
+    0 36px 72px -32px rgba(29, 40, 255, 0.22);
+}
 
-@media (prefers-reduced-motion: reduce) {
-  .work-card::before,
-  .role-card::before,
-  .team-card::before,
-  .office-card::before,
-  .guarantee-card::before,
-  .ind::before,
-  .svc::before,
-  .agent-card::before,
-  .start-aside-card::before,
-  .pstat::before { display: none; }
+/* dark agent cards keep white ink instead of blue */
+.agent-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow:
+    0 14px 28px -12px rgba(0, 0, 0, 0.55),
+    0 36px 72px -32px rgba(29, 40, 255, 0.35);
 }
