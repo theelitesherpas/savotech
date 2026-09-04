@@ -14,7 +14,7 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
   return (
     <>
       {/* ---------- hero: paper + dots, ink accents ---------- */}
-      <section className="section section-alt start-hero svc-hero">
+      <section className="section section-dark start-hero svc-hero svc-hero-dark">
         <div className="wrap">
           <div className="section-head" style={{ marginBottom: "1.6rem" }}>
             <Reveal>
