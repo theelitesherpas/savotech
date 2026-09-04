@@ -26,7 +26,7 @@ export default function AiAgents() {
           </Reveal>
           <Reveal delay={0.08}>
             <p className="lead">
-              Six production-ready agent personas, deployed for clients and trained
+              Six production ready agent personas, deployed for clients and trained
               on your data. Every Savo agent ships with human handoff, audit logs and
               enterprise security as standard.
             </p>
@@ -53,7 +53,7 @@ export default function AiAgents() {
                   <Link className="agent-cta" href={a.href}>
                     Request a Demo <Arrow />
                   </Link>
-                  <span className="live-dot">Production-ready</span>
+                  <span className="live-dot">Production ready</span>
                 </div>
               </article>
             </Reveal>

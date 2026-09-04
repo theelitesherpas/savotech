@@ -6,12 +6,12 @@ import { AGENTS } from "@/lib/agents-data";
 export const metadata: Metadata = {
   title: "Meet Our AI Agents",
   description:
-    "Six production-ready AI agents from Savo Technologies: SalesBot, SupportAgent, RecruitAI, InsightAgent, ContentAgent and OpsAgent. Trained on your data, guarded by enterprise security, deployed in 2 to 4 weeks.",
+    "Six production ready AI agents from Savo Technologies: SalesBot, SupportAgent, RecruitAI, InsightAgent, ContentAgent and OpsAgent. Trained on your data, guarded by enterprise security, deployed in 2 to 4 weeks.",
   alternates: { canonical: "/ai-agents/" },
   openGraph: {
     title: "Meet Our AI Agents | Savo Technologies",
     description:
-      "Six production-ready AI agents, trained on your data and deployed in 2 to 4 weeks. Human handoff, audit logs and enterprise security as standard.",
+      "Six production ready AI agents, trained on your data and deployed in 2 to 4 weeks. Human handoff, audit logs and enterprise security as standard.",
   },
 };
 
@@ -61,7 +61,7 @@ export default function AiAgentsPage() {
             </Reveal>
             <Reveal delay={0.08}>
               <p className="lead">
-                Six production-ready personas, trained on your data and deployed in a
+                Six production ready personas, trained on your data and deployed in a
                 2 to 4 week sprint. Pick one, or run several as a crew.
               </p>
             </Reveal>
@@ -87,7 +87,7 @@ export default function AiAgentsPage() {
                     <Link className="agent-cta" href="/start-your-project/">
                       Request a Demo
                     </Link>
-                    <span className="live-dot">Production-ready</span>
+                    <span className="live-dot">Production ready</span>
                   </div>
                 </article>
               </Reveal>

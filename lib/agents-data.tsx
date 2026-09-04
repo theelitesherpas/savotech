@@ -48,16 +48,16 @@ export const AGENTS: Agent[] = [
   {
     name: "Savo SupportAgent",
     slug: "supportagent",
-    desc: "Resolves tier-1 support in 40+ languages and escalates edge cases to humans with full context attached.",
+    desc: "Resolves tier 1 support in 40+ languages and escalates edge cases to humans with full context attached.",
     detail:
-      "SupportAgent absorbs the repetitive 70% of your ticket queue. It resolves tier-1 questions from your help center, tracks sentiment, and hands edge cases to humans with the full conversation, customer history and a suggested resolution attached.",
+      "SupportAgent absorbs the repetitive 70% of your ticket queue. It resolves tier 1 questions from your help center, tracks sentiment, and hands edge cases to humans with the full conversation, customer history and a suggested resolution attached.",
     deliverables: [
-      "Tier-1 resolution across chat, email and widget",
-      "40+ languages with native-quality fluency",
+      "Tier 1 resolution across chat, email and widget",
+      "40+ languages with native quality fluency",
       "Human handoff with summarized context",
       "CSAT capture and weekly quality reports",
     ],
-    tags: ["Multi-language", "Human Handoff", "Ticket Sync"],
+    tags: ["Multilingual", "Human Handoff", "Ticket Sync"],
     href: "/ai-agents/#supportagent",
     avatar: (
       <svg viewBox="0 0 48 48" fill="none">
@@ -76,13 +76,13 @@ export const AGENTS: Agent[] = [
   {
     name: "Savo RecruitAI",
     slug: "recruitai",
-    desc: "Screens resumes, runs structured first-round chats and ranks candidates against your scorecard, bias-audited.",
+    desc: "Screens resumes, runs structured first round chats and ranks candidates against your scorecard, bias audited.",
     detail:
-      "RecruitAI reads every resume against your scorecard, runs structured first-round conversations, and delivers a ranked shortlist with evidence for every decision. Bias audits run on each cohort so your process stays defensible and fair.",
+      "RecruitAI reads every resume against your scorecard, runs structured first round conversations, and delivers a ranked shortlist with evidence for every decision. Bias audits run on each cohort so your process stays defensible and fair.",
     deliverables: [
       "Resume screening against a custom scorecard",
-      "Structured async first-round interviews",
-      "Ranked shortlists with per-candidate evidence",
+      "Structured async first round interviews",
+      "Ranked shortlists with per candidate evidence",
       "Bias audit report for every hiring cohort",
     ],
     tags: ["Resume Parsing", "ATS Sync", "Bias Audits"],
@@ -109,7 +109,7 @@ export const AGENTS: Agent[] = [
     detail:
       "InsightAgent sits on your warehouse and turns plain-English questions into governed SQL. Every answer cites its query, every dashboard stays live, and anomalies surface before the monthly report would have caught them.",
     deliverables: [
-      "Plain-English queries over governed SQL",
+      "Plain English queries over governed SQL",
       "Live dashboards your team can trust",
       "Anomaly alerts on revenue and ops metrics",
       "Row-level security and query audit logs",
@@ -135,16 +135,16 @@ export const AGENTS: Agent[] = [
   {
     name: "Savo ContentAgent",
     slug: "contentagent",
-    desc: "Drafts on-brand marketing copy, SEO pages and social posts in your voice, with human approval built in.",
+    desc: "Drafts brand aligned marketing copy, SEO pages and social posts in your voice, with human approval built in.",
     detail:
       "ContentAgent learns your brand voice from your best-performing material, then drafts landing pages, SEO articles and social campaigns that sound like you on the first pass. Nothing publishes without human approval, and every draft carries its sources.",
     deliverables: [
-      "Brand-voice model trained on your best copy",
-      "SEO-aware landing pages and articles",
-      "Multi-channel social drafts on a calendar",
+      "Brand voice model trained on your best copy",
+      "SEO aware landing pages and articles",
+      "Multichannel social drafts on a calendar",
       "Human approval gate with revision history",
     ],
-    tags: ["Brand Voice", "SEO-aware", "Approval Flows"],
+    tags: ["Brand Voice", "SEO aware", "Approval Flows"],
     href: "/ai-agents/#contentagent",
     avatar: (
       <svg viewBox="0 0 48 48" fill="none">
@@ -168,10 +168,10 @@ export const AGENTS: Agent[] = [
     deliverables: [
       "Alert triage ranked by customer impact",
       "Automated remediation via your runbooks",
-      "Plain-language status posts to Slack and email",
+      "Plain language status posts to Slack and email",
       "Post-incident reports with timeline and root cause",
     ],
-    tags: ["Incident Triage", "Runbooks", "Cloud-native"],
+    tags: ["Incident Triage", "Runbooks", "Cloud native"],
     href: "/ai-agents/#opsagent",
     avatar: (
       <svg viewBox="0 0 48 48" fill="none">

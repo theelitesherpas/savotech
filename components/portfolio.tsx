@@ -71,8 +71,8 @@ const PROJECTS: {
   {
     name: "GulfPay",
     meta: "Mobile · FinTech",
-    desc: "GCC-first digital wallet and payments super-app with KYC, transfers and bill pay under one thumb.",
-    tags: ["Flutter", "Node.js", "PostgreSQL", "PCI-DSS"],
+    desc: "GCC first digital wallet and payments super app with KYC, transfers and bill pay under one thumb.",
+    tags: ["Flutter", "Node.js", "PostgreSQL", "PCI DSS"],
     href: "/case-studies/gulfpay/",
     cat: "mobile",
     mock: (
@@ -107,7 +107,7 @@ const PROJECTS: {
   {
     name: "Sahm AI Support Desk",
     meta: "AI Agent · Telecom",
-    desc: "Arabic-English support agent for a GCC telecom, with 96% of tier-1 chats resolved without a human.",
+    desc: "Arabic and English support agent for a GCC telecom, with 96% of tier 1 chats resolved without a human.",
     tags: ["Python", "LangChain", "RAG", "WhatsApp API"],
     href: "/case-studies/sahm-ai/",
     cat: "ai",
@@ -142,14 +142,14 @@ const PROJECTS: {
           <path d="M-8 2c6-5 10-8 16-3M-7-6c5-4 9-6 14-2" stroke="#8F9BFF" strokeWidth="1.6" strokeLinecap="round" />
           <circle cx="4" cy="10" r="3" fill="#2BD926" />
         </g>
-        <text x="300" y="270" fill="rgba(166,177,204,.7)" fontSize="11" fontFamily="Plus Jakarta Sans,sans-serif">96% auto-resolution · Arabic + English</text>
+        <text x="300" y="270" fill="rgba(166,177,204,.7)" fontSize="11" fontFamily="Plus Jakarta Sans,sans-serif">96% auto resolution · Arabic + English</text>
       </svg>
     ),
   },
   {
     name: "RideLink",
     meta: "Mobile · Logistics",
-    desc: "Real-time fleet tracking across Australia with live ETAs, route alerts and driver scorecards.",
+    desc: "Live fleet tracking across Australia with live ETAs, route alerts and driver scorecards.",
     tags: ["Flutter", "Firebase", "Maps API", "Cloud Functions"],
     href: "/case-studies/ridelink/",
     cat: "mobile",
@@ -181,7 +181,7 @@ const PROJECTS: {
   {
     name: "ClearLedger",
     meta: "Web · FinTech",
-    desc: "SME banking dashboard for a UK challenger with open-banking aggregation with live cashflow insight.",
+    desc: "SME banking dashboard for a UK challenger with open banking aggregation with live cashflow insight.",
     tags: ["React", "TypeScript", "GraphQL", "Node.js"],
     href: "/case-studies/clearledger/",
     cat: "web",
@@ -295,7 +295,7 @@ export default function Portfolio() {
             </Reveal>
             <Reveal delay={0.08}>
               <p className="lead">
-                A selection of web, mobile and AI-agent engagements from the last decade. Every
+                A selection of web, mobile and AI agent engagements from the last decade. Every
                 one shipped by a dedicated Savo team, several still in production years later.
               </p>
             </Reveal>

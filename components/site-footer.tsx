@@ -18,7 +18,7 @@ const SERVICE_LINKS = [
 const INDUSTRY_LINKS = [
   ["Healthcare", "/industries/healthcare/"],
   ["FinTech & Banking", "/industries/fintech/"],
-  ["E-commerce & Retail", "/industries/ecommerce/"],
+  ["Ecommerce & Retail", "/industries/ecommerce/"],
   ["Real Estate & PropTech", "/industries/real-estate/"],
   ["Logistics & Supply Chain", "/industries/logistics/"],
   ["Education & EdTech", "/industries/education/"],
@@ -245,7 +245,7 @@ export default function SiteFooter() {
                 <rect x="3" y="4.5" width="14" height="11" rx="2" stroke="currentColor" strokeWidth="1.4" />
                 <path d="M3 8h14M6.5 11.5h4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
               </svg>
-              PCI-DSS Ready
+              PCI DSS Ready
             </li>
             <li>
               <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">

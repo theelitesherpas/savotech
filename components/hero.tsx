@@ -11,23 +11,23 @@ const SLIDES = [
     label: "AI Agents",
     heading: (
       <>
-        We engineer <span className="hl">AI agents</span>, web platforms and mobile apps for ambitious
-        teams worldwide.
+        We Build <span className="hl">AI Agents</span> That Turn Complex Work Into Intelligent
+        Action.
       </>
     ),
-    sub: "Savo Technologies is a 10-year AI agent development and web & mobile app development company, delivering for clients across India, the USA, Saudi Arabia & GCC, the UK and Australia.",
+    sub: "Savo Technologies helps businesses design, develop and deploy AI agents that automate workflows, improve productivity and create smarter customer experiences, backed by 10+ years of software development expertise.",
     level: "h1" as const,
   },
   {
     label: "Web & Mobile",
-    heading: <>Enterprise web &amp; mobile development at product speed.</>,
-    sub: "Strategy, UI/UX, engineering and scale under one roof. 650+ products shipped across 25+ countries in a decade, from MVPs to platforms serving millions.",
+    heading: <>From First Idea to Millions of Users, We Build Products That Scale.</>,
+    sub: "Strategy, UI/UX, web development and mobile app development under one roof. With 650+ products delivered across 25+ countries, we help startups and enterprises turn ideas into high performance digital products built for growth.",
     level: "h2" as const,
   },
   {
     label: "Global Delivery",
-    heading: <>One accountable team. Five regions. Around-the-clock delivery.</>,
-    sub: "Engineering HQ in India with delivery presence across the USA, Saudi Arabia & GCC, the UK and Australia. Follow-the-sun teams keep your roadmap moving while you sleep.",
+    heading: <>One Technology Partner. Global Teams. Always Moving Forward.</>,
+    sub: "With our engineering hub in India and delivery presence across the USA, Saudi Arabia & GCC, UK and Australia, Savo Technologies provides dependable global delivery and dedicated teams that keep your projects moving across time zones.",
     level: "h2" as const,
   },
 ];
@@ -98,8 +98,8 @@ export default function Hero() {
           </Link>
         </div>
         <ul className="hero-assurance" aria-label="Assurances">
-          <li>NDA-first engagements</li>
-          <li>GDPR-ready delivery</li>
+          <li>NDA first engagements</li>
+          <li>GDPR aligned delivery</li>
           <li>Dedicated teams since 2016</li>
         </ul>
       </div>

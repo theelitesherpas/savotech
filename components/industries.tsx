@@ -10,20 +10,20 @@ const INDUSTRIES: {
 }[] = [
   {
     t: "Healthcare",
-    d: "HIPAA-minded patient portals, telehealth and clinical workflows.",
+    d: "HIPAA aligned patient portals, telehealth and clinical workflows.",
     href: "/industries/healthcare/",
     tint: "t1",
     icon: <path d="M5 16h5l2.5-6 4 12 3-6h7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />,
   },
   {
     t: "FinTech & Banking",
-    d: "Payments, wallets and compliance-first banking experiences.",
+    d: "Payments, wallets and compliance first banking experiences.",
     href: "/industries/fintech/",
     tint: "t2",
     icon: <path d="M6 26h20M8 26V15M13 26V10M18 26v-8M23 26V7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />,
   },
   {
-    t: "E-commerce & Retail",
+    t: "Ecommerce & Retail",
     d: "Omnichannel storefronts, headless commerce and PIM systems.",
     href: "/industries/ecommerce/",
     tint: "t3",
@@ -64,7 +64,7 @@ const INDUSTRIES: {
   },
   {
     t: "Manufacturing & Industry 4.0",
-    d: "IoT telemetry, digital twins and shop-floor dashboards.",
+    d: "IoT telemetry, digital twins and shop floor dashboards.",
     href: "/industries/manufacturing/",
     tint: "t8",
     icon: <path d="M4 26V13l7 4v-4l7 4v-4l10 6v11H4Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />,
@@ -78,7 +78,7 @@ const INDUSTRIES: {
   },
   {
     t: "Energy & Utilities",
-    d: "Grid analytics, SCADA dashboards and field-ops tools for the GCC.",
+    d: "Grid analytics, SCADA dashboards and field ops tools for the GCC.",
     href: "/industries/energy/",
     tint: "t10",
     icon: <path d="M17.5 4 8 18h6.5L14 28l10-14.5h-6.5L17.5 4Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />,

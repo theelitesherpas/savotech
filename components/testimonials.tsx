@@ -3,15 +3,15 @@ import Reveal from "./reveal";
 const QUOTES = [
   {
     quote:
-      "Savo rebuilt our patient portal in four months. Uptime has been flawless. Their support agent now resolves 70% of tier-1 tickets before a human sees them.",
-    name: "Dr. Reem Al-Otaibi",
+      "Savo rebuilt our patient portal in four months. Uptime has been flawless. Their support agent now resolves 70% of tier 1 tickets before a human sees them.",
+    name: "Dr. Reem Al Otaibi",
     role: "CIO · Healthcare group · Riyadh, Saudi Arabia",
   },
   {
     quote:
-      "The dedicated-team model just works. Same engineers for two years running. They know our codebase better than we do.",
+      "The dedicated team model just works. Same engineers for two years running. They know our codebase better than we do.",
     name: "James Whitfield",
-    role: "CTO · Logistics scale-up · Sydney, Australia",
+    role: "CTO · Logistics scaleup · Sydney, Australia",
   },
   {
     quote:

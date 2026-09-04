@@ -38,7 +38,7 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
   },
   {
     t: "Web Development",
-    d: "High-performance websites and web applications on React, Next.js and Node.js.",
+    d: "High performance websites and web applications on React, Next.js and Node.js.",
     href: "/services/web-development/",
     icon: (
       <svg className="ic" viewBox="0 0 24 24" aria-hidden="true">
@@ -49,7 +49,7 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
   },
   {
     t: "Cloud & DevOps",
-    d: "AWS, Azure and GCP architecture with CI/CD, infrastructure-as-code and 24/7 monitoring.",
+    d: "AWS, Azure and GCP architecture with CI/CD, infrastructure as code and 24/7 monitoring.",
     href: "/services/cloud-devops/",
     icon: (
       <svg className="ic" viewBox="0 0 24 24" aria-hidden="true">
@@ -71,7 +71,7 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
   },
   {
     t: "UI/UX & Brand Identity",
-    d: "Research-driven interfaces and identity systems users trust within seconds.",
+    d: "Research driven interfaces and identity systems users trust within seconds.",
     href: "/services/ui-ux/",
     icon: (
       <svg className="ic" viewBox="0 0 24 24" aria-hidden="true">
@@ -124,7 +124,7 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
   },
   {
     t: "Product Engineering",
-    d: "End-to-end product teams that design, build and iterate on your roadmap.",
+    d: "End to end product teams that design, build and iterate on your roadmap.",
     href: "/services/product-engineering/",
     icon: (
       <svg className="ic" viewBox="0 0 24 24" aria-hidden="true">
@@ -141,12 +141,12 @@ export default function Services() {
       <div className="wrap">
         <div className="section-head">
           <Reveal>
-            <h2>Full-spectrum services. One accountable team.</h2>
+            <h2>Full spectrum services. One accountable team.</h2>
           </Reveal>
           <Reveal delay={0.08}>
             <p className="lead">
-              From latest-generation AI agent development to launch-scale engineering, Savo
-              Technologies is a full-spectrum custom software development company. Strategy,
+              From latest generation AI agent development to launch scale engineering, Savo
+              Technologies is a full spectrum custom software development company. Strategy,
               design, build and operations stay under one roof, so nothing falls between vendors.
             </p>
           </Reveal>
@@ -167,7 +167,7 @@ export default function Services() {
               </div>
               <h3>AI Development &amp; Agents</h3>
               <p>
-                Latest-generation AI agents and LLM solutions, engineered and trained on your
+                Latest generation AI agents and LLM solutions, engineered and trained on your
                 data, deployed into production in weeks, not quarters.
               </p>
               <span className="svc-link">

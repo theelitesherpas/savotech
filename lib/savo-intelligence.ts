@@ -32,7 +32,7 @@ const KB: { match: RegExp; entry: SavoAnswer }[] = [
     match: /(agent|bot|chatbot|llm|ai |genai|artificial)/i,
     entry: {
       answer:
-        "Our flagship offering. Six production-ready AI agents (SalesBot, SupportAgent, RecruitAI, InsightAgent, ContentAgent and OpsAgent) cover sales, support, HR, analytics, content and IT operations. Each is trained on your data, integrated with your stack, and deployed in a 2 to 4 week sprint with human handoff and audit logs.",
+        "Our flagship offering. Six production ready AI agents (SalesBot, SupportAgent, RecruitAI, InsightAgent, ContentAgent and OpsAgent) cover sales, support, HR, analytics, content and IT operations. Each is trained on your data, integrated with your stack, and deployed in a 2 to 4 week sprint with human handoff and audit logs.",
       followUps: ["How are agents customized?", "How much does an AI agent cost?"],
     },
   },
@@ -48,7 +48,7 @@ const KB: { match: RegExp; entry: SavoAnswer }[] = [
     match: /(process|engage|workflow|agile|sprint|methodolog|how.*work|develop)/i,
     entry: {
       answer:
-        "Every project runs through discover, design, build, launch and scale in two-week agile sprints with a demo every Friday. You watch progress live in the client portal: milestones, deliverables, invoices and direct chat with your dedicated team.",
+        "Every project runs through discover, design, build, launch and scale in two week agile sprints with a demo every Friday. You watch progress live in the client portal: milestones, deliverables, invoices and direct chat with your dedicated team.",
       followUps: ["How can I track my project?", "What is your pricing model?"],
     },
   },
@@ -56,7 +56,7 @@ const KB: { match: RegExp; entry: SavoAnswer }[] = [
     match: /(secur|gdpr|privacy|compliance|iso|nda|data|safe)/i,
     entry: {
       answer:
-        "Security is engineered in, not asserted: GDPR-ready and ISO-aligned processes, NDA-first engagements, encryption in transit and at rest, role-based access, and audit logs on every AI action. Your data never trains public models.",
+        "Security is engineered in, not asserted: GDPR aligned and ISO compliant processes, NDA first engagements, encryption in transit and at rest, role-based access, and audit logs on every AI action. Your data never trains public models.",
       followUps: ["How do AI agents handle our data?", "How do I get started?"],
     },
   },
@@ -64,7 +64,7 @@ const KB: { match: RegExp; entry: SavoAnswer }[] = [
     match: /(hire|dedicated|resource|team|staff|developer|engineer|full.?time|part.?time|hourly|freelanc|upwork|indore)/i,
     entry: {
       answer:
-        "Yes, hire dedicated frontend, backend, full-stack, mobile, AI/ML, DevOps and QA engineers, plus designers and project managers. Full-time, part-time or hourly; junior to senior. It is the quality clients look for in top freelancers or top Upwork developers in India, with agency accountability: contracts, NDAs, dedicated teams and transparent monthly INR rates from ₹60,000/month, typically 40 to 60% below equivalent US/UK/Gulf rates. Delivery from Indore and Ahmedabad for clients in the USA, Saudi Arabia, Dubai and the GCC, the UK and Australia.",
+        "Yes, hire dedicated frontend, backend, full stack, mobile, AI/ML, DevOps and QA engineers, plus designers and project managers. Full time, part-time or hourly; junior to senior. It is the quality clients look for in top freelancers or top Upwork developers in India, with agency accountability: contracts, NDAs, dedicated teams and transparent monthly INR rates from ₹60,000/month, typically 40 to 60% below equivalent US/UK/Gulf rates. Delivery from Indore and Ahmedabad for clients in the USA, Saudi Arabia, Dubai and the GCC, the UK and Australia.",
       followUps: ["What are your developer rates?", "How quickly can a team start?"],
     },
   },
@@ -88,7 +88,7 @@ const KB: { match: RegExp; entry: SavoAnswer }[] = [
     match: /(case stud|portfolio|example|work|project.*(done|built)|client)/i,
     entry: {
       answer:
-        "650+ projects across web, mobile and AI, from MediBridge Health's patient portal to GulfPay's GCC wallet and a telecom support agent resolving 96% of tier-1 chats in Arabic and English. See the Featured Work section for a curated selection.",
+        "650+ projects across web, mobile and AI, from MediBridge Health's patient portal to GulfPay's GCC wallet and a telecom support agent resolving 96% of tier 1 chats in Arabic and English. See the Featured Work section for a curated selection.",
       followUps: ["Tell me about your AI agents", "How do I get started?"],
     },
   },
@@ -112,7 +112,7 @@ const KB: { match: RegExp; entry: SavoAnswer }[] = [
 
 const FALLBACK: SavoAnswer = {
   answer:
-    "Good question. Here is the short version: Savo Technologies is a 10-year global company offering AI agent development, web and mobile development, and full-spectrum software services across India, the USA, Saudi Arabia & GCC, the UK and Australia. Ask me about services, pricing, AI agents, hiring developers, industries or process, or use the Instant Estimator below for a tailored INR range.",
+    "Good question. Here is the short version: Savo Technologies is a 10-year global company offering AI agent development, web and mobile development, and full spectrum software services across India, the USA, Saudi Arabia & GCC, the UK and Australia. Ask me about services, pricing, AI agents, hiring developers, industries or process, or use the Instant Estimator below for a tailored INR range.",
   followUps: ["What services do you offer?", "How much does an app cost?"],
 };
 

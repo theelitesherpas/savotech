@@ -23,7 +23,7 @@ const WHY: { t: string; d: string; icon: React.ReactNode }[] = [
   },
   {
     t: "Security engineered in",
-    d: "GDPR-ready, ISO-aligned processes, NDA-first engagements, encryption in transit and at rest. Audited, not asserted.",
+    d: "GDPR aligned, ISO compliant processes, NDA first engagements, encryption in transit and at rest. Audited, not asserted.",
     icon: (
       <>
         <path d="M12 3.5 20 6v5.5c0 4.6-3.2 7.4-8 9-4.8-1.6-8-4.4-8-9V6l8-2.5Z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
@@ -33,7 +33,7 @@ const WHY: { t: string; d: string; icon: React.ReactNode }[] = [
   },
   {
     t: "Agile you can watch",
-    d: "Two-week sprints, a demo every Friday, burndown and budget visible in your portal. Progress you can point at.",
+    d: "Two week sprints, a demo every Friday, burndown and budget visible in your portal. Progress you can point at.",
     icon: (
       <path d="M20 8.5 12 4 4 8.5m16 0v7L12 20l-8-4.5v-7m16 0L12 13 4 8.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
     ),
@@ -51,7 +51,7 @@ const WHY: { t: string; d: string; icon: React.ReactNode }[] = [
   },
   {
     t: "Your IP, your data",
-    d: "Full intellectual-property transfer on final payment. Source code, models and data stay yours. Contractually, permanently.",
+    d: "Full intellectual property transfer on final payment. Source code, models and data stay yours. Contractually, permanently.",
     icon: (
       <>
         <path d="M7 3.5h7.5L19 8v12.5H7A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5Z" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
@@ -64,7 +64,7 @@ const WHY: { t: string; d: string; icon: React.ReactNode }[] = [
 const PROCESS = [
   ["Discover", "Requirements, risks and scope in one week"],
   ["Design", "Flows, prototypes and system architecture"],
-  ["Build", "Two-week sprints, Friday demos"],
+  ["Build", "Two week sprints, Friday demos"],
   ["Launch", "Hardening, compliance checks, rollout"],
   ["Scale", "Monitoring, iteration, growth engineering"],
 ];

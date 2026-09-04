@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | Savo Technologies",
   },
   description:
-    "Savo Technologies is a 10-year AI agent development, web and mobile app development company serving India, the USA, Saudi Arabia & GCC, the UK and Australia. Hire dedicated developers, meet production-ready AI agents, and get an instant project estimate in INR.",
+    "Savo Technologies is a 10-year AI agent development, web and mobile app development company serving India, the USA, Saudi Arabia & GCC, the UK and Australia. Hire dedicated developers, meet production ready AI agents, and get an instant project estimate in INR.",
   keywords: [
     "Savo",
     "Savo Technologies",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "Savo Technologies",
     title: "Savo Technologies | AI Agents, Web & Mobile Development. 10 Years. Global Delivery.",
     description:
-      "A 10-year global technology company: AI agent development, web and mobile apps, and full-spectrum software services for India, USA, Saudi Arabia & GCC, UK and Australia.",
+      "A 10-year global technology company: AI agent development, web and mobile apps, and full spectrum software services for India, USA, Saudi Arabia & GCC, UK and Australia.",
     url: "/",
     locale: "en_US",
   },

@@ -16,7 +16,7 @@ export default function StructuredData({ siteUrl }: { siteUrl: string }) {
         foundingDate: "2016",
         slogan: "AI agents, web platforms and mobile apps, engineered by one accountable team.",
         description:
-          "Savo Technologies is a 10-year global technology company specializing in AI agent development, website design and development, mobile app development, and full-spectrum digital and software services.",
+          "Savo Technologies is a 10-year global technology company specializing in AI agent development, website design and development, mobile app development, and full spectrum digital and software services.",
         email: "hello@savotechnologies.com",
         telephone: "+91-00000-00000",
         address: {

@@ -30,7 +30,7 @@ const ROLES: { t: string; base: number; hot?: boolean; icon: React.ReactNode }[]
     ),
   },
   {
-    t: "Full-Stack Developer",
+    t: "Full Stack Developer",
     base: 95000,
     icon: (
       <>
@@ -114,7 +114,7 @@ export default function Hire() {
   const label = useMemo(() => {
     if (eng === "hourly") return "/ hour";
     if (eng === "part") return "/ month · part-time";
-    return "/ month · full-time";
+    return "/ month · full time";
   }, [eng]);
 
   const rate = (base: number) => {
@@ -132,7 +132,7 @@ export default function Hire() {
           </Reveal>
           <Reveal delay={0.08}>
             <p className="lead">
-              Senior-verified engineers, transparent INR pricing, and onboarding within two
+              Vetted senior engineers, transparent INR pricing, and onboarding within two
               weeks. You get the quality clients hunt for among top freelancers and top Upwork
               developers in India, delivered with agency accountability. Scale up or down as the
               roadmap demands; the same engineers stay on your project for its life.
@@ -150,7 +150,7 @@ export default function Hire() {
                   aria-pressed={tier === t}
                   onClick={() => setTier(t)}
                 >
-                  {t === "junior" ? "Junior" : t === "mid" ? "Mid-level" : "Senior"}
+                  {t === "junior" ? "Junior" : t === "mid" ? "Mid level" : "Senior"}
                 </button>
               ))}
             </div>
@@ -162,7 +162,7 @@ export default function Hire() {
                   aria-pressed={eng === e}
                   onClick={() => setEng(e)}
                 >
-                  {e === "full" ? "Full-time" : e === "part" ? "Part-time" : "Hourly"}
+                  {e === "full" ? "Full time" : e === "part" ? "Part time" : "Hourly"}
                 </button>
               ))}
             </div>
@@ -198,9 +198,9 @@ export default function Hire() {
 
         <Reveal delay={0.1}>
           <p className="hire-note">
-            Rates shown are indicative for India-based remote delivery, typically 40 to 60% below
+            Rates shown are indicative for India based remote delivery, typically 40 to 60% below
             equivalent US, UK and Gulf rates for the same seniority.{" "}
-            <Link href="/start-your-project/">Talk to us</Link> about team bundles and long-term engagements.
+            <Link href="/start-your-project/">Talk to us</Link> about team bundles and long term engagements.
           </p>
         </Reveal>
       </div>

@@ -9,12 +9,12 @@ export default function PortalTeaser() {
       <div className="wrap portal-grid">
         <div className="portal-copy">
           <Reveal>
-            <h2>Your project, visible end-to-end.</h2>
+            <h2>Your project, visible end to end.</h2>
           </Reveal>
           <Reveal delay={0.08}>
             <p className="lead">
               Every Savo engagement includes a secure client portal: the same window into
-              delivery our own teams use. No status-chasing emails. No black-box sprints.
+              delivery our own teams use. No status chasing emails. No black box sprints.
             </p>
           </Reveal>
           <Reveal delay={0.14}>
@@ -108,7 +108,7 @@ export default function PortalTeaser() {
                   </div>
                   <div className="pm-row">
                     <span className="pm-state done" />
-                    <p>Bill-pay integrations</p>
+                    <p>Bill pay integrations</p>
                     <em>Shipped</em>
                   </div>
                   <div className="pm-row">
@@ -118,13 +118,13 @@ export default function PortalTeaser() {
                   </div>
                   <div className="pm-row">
                     <span className="pm-state" />
-                    <p>Pen-test &amp; hardening</p>
+                    <p>Pen testing &amp; hardening</p>
                     <em>Queued</em>
                   </div>
                 </div>
                 <div className="pm-chat">
                   <div className="pm-msg them">
-                    <p>Sprint 14 demo is up. New KYC flow cut drop-off from 31% to 12%.</p>
+                    <p>Sprint 14 demo is up. New KYC flow cut drop off from 31% to 12%.</p>
                   </div>
                   <div className="pm-msg me">
                     <p>Excellent. Can we move card UI review to Thursday?</p>

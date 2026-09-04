@@ -114,7 +114,7 @@ export default function SiteHeader() {
                         <circle cx="46" cy="20" r="3" fill="#4D5CFF" />
                       </svg>
                       <h3>Deploy your first AI agent in 2 to 4 weeks</h3>
-                      <p>Six production-ready personas, trained on your data, guarded by enterprise security.</p>
+                      <p>Six production ready personas, trained on your data, guarded by enterprise security.</p>
                       <Link className="btn btn-ghost-sm" href="/ai-agents/">
                         Explore the fleet
                       </Link>

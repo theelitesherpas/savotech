@@ -46,7 +46,7 @@ const TYPES = [
   ["new", "New build", "From zero to launch"],
   ["redesign", "Redesign", "Modernize what exists"],
   ["mvp", "MVP", "Validate fast, then scale"],
-  ["enterprise", "Enterprise", "Scale-grade platform"],
+  ["enterprise", "Enterprise", "Platform built to scale"],
 ] as const;
 
 const COMPLEXITIES = [
@@ -313,7 +313,7 @@ export default function Estimator() {
                   {submitting ? "Calculating…" : "Get Instant Estimate"}
                 </button>
                 <p className="est-fine">
-                  Your details stay with Savo Technologies: no spam, no sharing, GDPR-ready
+                  Your details stay with Savo Technologies: no spam, no sharing, GDPR aligned
                   handling.
                 </p>
               </div>
@@ -333,7 +333,7 @@ export default function Estimator() {
                   </p>
                   <div className="est-result-note">
                     <p>
-                      Transparent India-based delivery pricing, typically{" "}
+                      Transparent India based delivery pricing, typically{" "}
                       <strong>40 to 60% below equivalent US/UK/Gulf rates</strong> for the same
                       seniority and quality.
                     </p>
