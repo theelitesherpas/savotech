@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Reveal from "./reveal";
+import Link from "next/link";
 
 const ROLES: { t: string; base: number; hot?: boolean; icon: React.ReactNode }[] = [
   {
@@ -186,9 +187,9 @@ export default function Hire() {
                   <a className="text-cta" href="/#estimator">
                     Hire Now
                   </a>
-                  <a className="text-cta quiet" href="/#contact">
+                  <Link className="text-cta quiet" href="/start-your-project/">
                     Get a Quote
-                  </a>
+                  </Link>
                 </div>
               </article>
             </Reveal>
@@ -199,7 +200,7 @@ export default function Hire() {
           <p className="hire-note">
             Rates shown are indicative for India-based remote delivery, typically 40 to 60% below
             equivalent US, UK and Gulf rates for the same seniority.{" "}
-            <a href="/#contact">Talk to us</a> about team bundles and long-term engagements.
+            <Link href="/start-your-project/">Talk to us</Link> about team bundles and long-term engagements.
           </p>
         </Reveal>
       </div>

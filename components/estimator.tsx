@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Reveal from "./reveal";
 import { api } from "@/lib/api";
+import Link from "next/link";
 
 /* ------- pricing model (transparent, "affordable premium" INR) ------- */
 const SERVICE_COST: Record<string, number> = {
@@ -342,9 +343,9 @@ export default function Estimator() {
                     </p>
                   </div>
                   <div className="est-result-ctas">
-                    <a className="btn btn-primary" href="/#contact">
+                    <Link className="btn btn-primary" href="/start-your-project/">
                       Book a Discovery Call
-                    </a>
+                    </Link>
                     <button className="btn btn-outline-inv" type="button" onClick={() => setResult(null)}>
                       Edit Requirements
                     </button>

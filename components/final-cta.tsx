@@ -1,4 +1,5 @@
 import Reveal from "./reveal";
+import Link from "next/link";
 
 export default function FinalCta() {
   return (
@@ -15,9 +16,9 @@ export default function FinalCta() {
         </Reveal>
         <Reveal delay={0.14}>
           <div className="cta-row">
-            <a className="btn btn-primary btn-lg" href="/#estimator">
+            <Link className="btn btn-primary btn-lg" href="/start-your-project/">
               Start Your Project
-            </a>
+            </Link>
             <a className="btn btn-outline btn-lg" href="mailto:hello@savotechnologies.com">
               hello@savotechnologies.com
             </a>

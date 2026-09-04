@@ -91,10 +91,10 @@ export default function SiteHeader() {
                 <div className="mega-grid">
                   <div className="mega-col">
                     <p className="mega-title">AI Services</p>
-                    <a className="mega-link" href="/#ai-agents">
+                    <Link className="mega-link" href="/ai-agents/">
                       <span>AI Agents</span>
                       <span className="pro-badge">PRO</span>
-                    </a>
+                    </Link>
                     <Link className="mega-link" href="/ai/generative-ai/">
                       <span>Generative AI &amp; LLM Integration</span>
                     </Link>
@@ -119,9 +119,9 @@ export default function SiteHeader() {
                       </svg>
                       <h3>Deploy your first AI agent in 2 to 4 weeks</h3>
                       <p>Six production-ready personas, trained on your data, guarded by enterprise security.</p>
-                      <a className="btn btn-ghost-sm" href="/#ai-agents">
+                      <Link className="btn btn-ghost-sm" href="/ai-agents/">
                         Explore the fleet
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -136,9 +136,9 @@ export default function SiteHeader() {
         </nav>
 
         <div className="header-actions">
-          <a className="btn btn-primary btn-header" href="/#estimator">
+          <Link className="btn btn-primary btn-header" href="/start-your-project/">
             Start Your Project
-          </a>
+          </Link>
           <button
             className="nav-toggle"
             id="navToggle"
@@ -181,9 +181,9 @@ export default function SiteHeader() {
             </button>
             <ul className="mobile-sub" hidden={!accOpen}>
               <li>
-                <a href="/#ai-agents" onClick={() => setMobileOpen(false)}>
+                <Link href="/ai-agents/" onClick={() => setMobileOpen(false)}>
                   AI Agents <span className="pro-badge">PRO</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <Link href="/ai/generative-ai/" onClick={() => setMobileOpen(false)}>
@@ -210,9 +210,9 @@ export default function SiteHeader() {
             </li>
           ))}
         </ul>
-        <a className="btn btn-primary btn-block" href="/#estimator" onClick={() => setMobileOpen(false)}>
+        <Link className="btn btn-primary btn-block" href="/start-your-project/" onClick={() => setMobileOpen(false)}>
           Start Your Project
-        </a>
+        </Link>
       </div>
     </header>
   );

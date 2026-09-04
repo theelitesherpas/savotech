@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import HeroGridDots from "./hero-grid-dots";
+import Link from "next/link";
 
 const SLIDE_MS = 6500;
 
@@ -234,12 +235,12 @@ export default function Hero() {
 
       <div className="hero-footer">
         <div className="hero-ctas">
-          <a className="btn btn-primary btn-lg" href="/#estimator">
+          <Link className="btn btn-primary btn-lg" href="/start-your-project/">
             Start Your Project
-          </a>
-          <a className="btn btn-outline btn-lg" href="/#ai-agents">
+          </Link>
+          <Link className="btn btn-outline btn-lg" href="/ai-agents/">
             Meet Our AI Agents <span className="pro-badge">PRO</span>
-          </a>
+          </Link>
         </div>
         <ul className="hero-assurance" aria-label="Assurances">
           <li>NDA-first engagements</li>

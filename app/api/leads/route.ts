@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       email,
       phone: b.phone?.toString().slice(0, 40) || undefined,
       company: b.company?.toString().slice(0, 160) || undefined,
-      source: b.source === "estimator" ? "estimator" : "estimator",
+      source: b.source === "start-your-project" ? "start-your-project" : "estimator",
       services: Array.isArray(b.services) ? b.services.map(String).slice(0, 20) : [],
       project_type: String(b.project_type ?? "new"),
       complexity: String(b.complexity ?? "standard"),
