@@ -190,13 +190,28 @@ export default function SiteFooter() {
           </div>
           <div className="fc-item fc-touch">
             <h3>Talk to us</h3>
-            <p>
-              <a href="mailto:hello@savotechnologies.com">hello@savotechnologies.com</a>
-              <br />
-              <a href="tel:+910000000000">+91 00000 00000</a>
-              <br />
-              <Link href="/portal/">Client Login</Link>
-            </p>
+            <div className="fc-contact">
+              <a href="mailto:hello@savotechnologies.com">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="3.5" y="5.5" width="17" height="13" rx="2.2" />
+                  <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
+                </svg>
+                hello@savotechnologies.com
+              </a>
+              <a href="tel:+910000000000">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M6.8 3.8 9 3.2c.7-.2 1.4.2 1.7.9l1 2.4c.2.6.1 1.3-.4 1.7l-1.3 1.2a12.6 12.6 0 0 0 4.6 4.6l1.2-1.3c.4-.5 1.1-.6 1.7-.4l2.4 1c.7.3 1.1 1 .9 1.7l-.6 2.2c-.2.7-.8 1.2-1.5 1.2C11.6 18.4 5.6 12.4 5.6 5.3c0-.7.5-1.3 1.2-1.5Z" />
+                </svg>
+                +91 00000 00000
+              </a>
+              <Link className="btn-login fc-login" href="/portal/">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="5" y="10.5" width="14" height="9.5" rx="2" />
+                  <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+                </svg>
+                Client Login
+              </Link>
+            </div>
           </div>
         </div>
 

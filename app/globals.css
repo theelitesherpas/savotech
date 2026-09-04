@@ -986,6 +986,7 @@ textarea { resize: vertical; }
 .ask-points { margin-top: 1.8rem; display: grid; gap: 0.9rem; }
 .ask-points li {
   display: flex;
+  align-items: center;
   gap: 0.75rem;
   color: var(--muted-light);
   font-size: 0.96rem;
@@ -994,7 +995,6 @@ textarea { resize: vertical; }
   content: "";
   flex-shrink: 0;
   width: 18px; height: 18px;
-  margin-top: 3px;
   border-radius: 5px;
   background: var(--tint-blue);
   border: 1.5px solid var(--blue);
@@ -1357,6 +1357,9 @@ textarea { resize: vertical; }
 .est-step { padding-block: 1.15rem; }
 .est-step + .est-step { border-top: 1px dashed var(--line); }
 .est-step legend {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.98rem;
@@ -1418,7 +1421,9 @@ textarea { resize: vertical; }
   gap: 0.9rem;
 }
 .field label {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.82rem;
   font-weight: 600;
   margin-bottom: 0.4rem;
@@ -1461,8 +1466,7 @@ textarea { resize: vertical; }
 /* icons inside fields and legends */
 .field label svg {
   width: 13px; height: 13px;
-  vertical-align: -2px;
-  margin-right: 0.4rem;
+  flex-shrink: 0;
   color: var(--muted);
 }
 .f-icon { position: relative; }
@@ -1478,9 +1482,7 @@ textarea { resize: vertical; }
 .f-icon input { padding-left: 2.55rem; }
 .f-icon:focus-within > svg { color: var(--blue); }
 .legend-ico {
-  display: inline-flex;
-  vertical-align: -2px;
-  margin-right: 0.45rem;
+  flex-shrink: 0;
   width: 15px; height: 15px;
   color: var(--muted);
 }
@@ -1501,6 +1503,72 @@ textarea { resize: vertical; }
 .start-aside-ink .aside-ico { background: rgba(255, 255, 255, 0.1); color: #fff; }
 .field.has-error input { border-color: #dc4c4c; box-shadow: 0 0 0 3px rgba(220, 76, 76, 0.12); }
 .field-err { margin-top: 0.35rem; font-size: 0.78rem; color: #c73e3e; }
+
+/* contact rows with icons (light contexts) */
+.contact-lines { display: grid; gap: 0.5rem; margin-top: 0.15rem; }
+.contact-lines a {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--blue-text);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.contact-lines a:hover { color: var(--ink); }
+.contact-lines svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+/* client login button (outline, ink-aware) */
+.btn-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  border-radius: var(--r-sm);
+  padding: 0.55rem 1.05rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+}
+.btn-login svg { width: 15px; height: 15px; flex-shrink: 0; }
+.btn-login:hover {
+  background: var(--ink);
+  color: #fff;
+}
+.header-actions .btn-login { display: none; padding: 0.44rem 1.05rem; }
+@media (min-width: 1024px) {
+  .header-actions .btn-login { display: inline-flex; }
+}
+.btn-block-login { width: 100%; }
+
+/* footer contact column */
+.fc-contact { display: grid; gap: 0.55rem; margin-top: 0.9rem; }
+.fc-contact a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--green);
+  font-weight: 600;
+  font-size: 0.92rem;
+  width: fit-content;
+}
+.fc-contact a:hover { color: var(--text-light); }
+.fc-contact svg { width: 15px; height: 15px; flex-shrink: 0; }
+.fc-contact .btn-login {
+  margin-top: 0.5rem;
+  border-color: var(--line-dark);
+  color: var(--text-light);
+  width: fit-content;
+}
+.fc-contact .btn-login:hover {
+  background: var(--text-light);
+  border-color: var(--text-light);
+  color: var(--ink);
+}
 
 .est-submit-row {
   padding-top: 1.4rem;
@@ -1626,7 +1694,7 @@ textarea { resize: vertical; }
 }
 .portal-copy { min-width: 0; }
 .portal-features { margin: 1.8rem 0 2.2rem; display: grid; gap: 1.5rem; }
-.portal-features li { display: flex; gap: 1.05rem; }
+.portal-features li { display: flex; align-items: center; gap: 1.05rem; }
 .portal-features .ic {
   flex-shrink: 0;
   width: 46px; height: 46px;
@@ -1959,7 +2027,6 @@ textarea { resize: vertical; }
 .fc-item a { color: var(--muted-light); }
 .fc-item a:hover { color: #fff; }
 .fc-touch a { color: var(--green); font-weight: 600; }
-.fc-touch a + a { display: block; margin-top: 0.35rem; }
 
 .footer-news {
   display: flex;

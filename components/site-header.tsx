@@ -136,6 +136,13 @@ export default function SiteHeader() {
         </nav>
 
         <div className="header-actions">
+          <Link className="btn-login" href="/portal/">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="5" y="10.5" width="14" height="9.5" rx="2" />
+              <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+            </svg>
+            Client Login
+          </Link>
           <Link className="btn btn-primary btn-header" href="/start-your-project/">
             Start Your Project
           </Link>
@@ -210,6 +217,13 @@ export default function SiteHeader() {
             </li>
           ))}
         </ul>
+        <Link className="btn-login btn-block-login" href="/portal/" onClick={() => setMobileOpen(false)}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="5" y="10.5" width="14" height="9.5" rx="2" />
+            <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+          </svg>
+          Client Login
+        </Link>
         <Link className="btn btn-primary btn-block" href="/start-your-project/" onClick={() => setMobileOpen(false)}>
           Start Your Project
         </Link>
