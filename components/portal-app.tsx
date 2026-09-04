@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Logo from "./logo";
 
 /**
  * Client Portal demo: credential gate plus a working dashboard preview.
@@ -105,15 +104,8 @@ export default function PortalApp() {
   /* ---------------- login + forgot ---------------- */
   if (view !== "app") {
     return (
-      <div className="portal-frame">
-        <div className="pf-top">
-          <span className="pf-brand"><Logo /> Client Portal</span>
-          <Link className="pf-back" href="/">
-            ← Back to savotechnologies.com
-          </Link>
-        </div>
-
-        <div className="pf-body">
+      <div className="portal-login">
+        <div className="portal-login-left">
           <div className="pf-art" aria-hidden="true">
             <svg viewBox="0 0 560 320" fill="none">
               <circle cx="452" cy="64" r="46" stroke="rgba(16,16,20,.22)" strokeDasharray="3 7" />
@@ -152,8 +144,9 @@ export default function PortalApp() {
               <li>SSO via Okta, Entra ID or Google Workspace</li>
             </ul>
           </div>
+        </div>
 
-          <div className="portal-card">
+        <div className="portal-card">
             <div className="start-card-head">
               <h2>{view === "login" ? "Sign in" : "Reset password"}</h2>
               <p>
@@ -205,6 +198,7 @@ export default function PortalApp() {
                   <Link className="text-cta" href="/contact/">
                     Contact support
                   </Link>
+                  . Accounts are provisioned by your engagement lead on day one.
                 </p>
               </form>
             ) : (
@@ -243,12 +237,6 @@ export default function PortalApp() {
               </form>
             )}
           </div>
-        </div>
-
-        <div className="pf-bottom">
-          <span>Access is provisioned by your engagement lead on day one.</span>
-          <a href="mailto:hello@savotechnologies.com">hello@savotechnologies.com</a>
-        </div>
       </div>
     );
   }
