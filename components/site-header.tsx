@@ -141,24 +141,6 @@ const NAV: NavItem[] = [
       ["EduSpring", "/#work"],
     ],
   },
-  {
-    label: "Resources",
-    href: "/resources/",
-    flip: true,
-    feature: {
-      icon: F.resources,
-      t: "Ship notes from the field",
-      d: "Engineering practices, AI agent teardowns and delivery lessons from a decade of building.",
-      cta: "Read resources",
-      href: "/resources/",
-    },
-    children: [
-      ["Blog & Engineering Notes", "/resources/"],
-      ["Case Studies", "/#work"],
-      ["FAQs", "/#faq"],
-      ["Client Portal", "/portal/"],
-    ],
-  },
   { label: "Careers", href: "/careers/" },
   { label: "Contact Us", href: "/#contact" },
 ];
