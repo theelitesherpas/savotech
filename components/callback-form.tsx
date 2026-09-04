@@ -98,29 +98,23 @@ export default function CallbackForm() {
   return (
     <form className="call-form" onSubmit={submit} noValidate>
       <label className="sr-only" htmlFor="cbCountry">Country</label>
-      <select
-        id="cbCountry"
-        className="call-select"
-        value={country.name}
-        onChange={(e) => {
-          setCountry(COUNTRIES.find((c) => c.name === e.target.value) ?? COUNTRIES[0]);
-          setTouched(false);
-        }}
-        autoComplete="country-name"
-      >
-        {COUNTRIES.map((c) => (
-          <option key={c.iso} value={c.name}>
-            {flag(c.iso)} {c.dial} {c.name}
-          </option>
-        ))}
-      </select>
-
       <label className="sr-only" htmlFor="cbPhone">Phone number</label>
-      <div className={`call-phone${touched && !valid ? " is-invalid" : ""}`}>
-        <span className="call-dial" aria-hidden="true">
-          <span className="call-flag">{flag(country.iso)}</span>
-          {country.dial}
-        </span>
+      <div className={`call-group${touched && !valid ? " is-invalid" : ""}`}>
+        <select
+          id="cbCountry"
+          value={country.name}
+          onChange={(e) => {
+            setCountry(COUNTRIES.find((c) => c.name === e.target.value) ?? COUNTRIES[0]);
+            setTouched(false);
+          }}
+          autoComplete="country-name"
+        >
+          {COUNTRIES.map((c) => (
+            <option key={c.iso} value={c.name}>
+              {flag(c.iso)} {c.dial} {c.name}
+            </option>
+          ))}
+        </select>
         <input
           id="cbPhone"
           type="tel"
