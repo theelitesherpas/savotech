@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Reveal from "./reveal";
 import { FAQS } from "@/lib/faq-data";
 
@@ -15,6 +18,8 @@ const Caret = () => (
 );
 
 export default function Faq() {
+  const [open, setOpen] = useState(0);
+
   return (
     <section className="section section-light" id="faq">
       <div className="wrap wrap-narrow">
@@ -33,7 +38,15 @@ export default function Faq() {
         <div className="faq-list">
           {FAQS.map((f, i) => (
             <Reveal key={f.q} delay={0.03 * i}>
-              <details className="faq-item" open={i === 0}>
+              <details
+                className="faq-item"
+                open={open === i}
+                onToggle={(e) => {
+                  const el = e.target as HTMLDetailsElement;
+                  if (el.open) setOpen(i);
+                  else if (open === i) setOpen(-1);
+                }}
+              >
                 <summary>
                   {f.q}
                   <Caret />
