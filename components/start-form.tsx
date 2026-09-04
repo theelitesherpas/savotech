@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { api } from "@/lib/api";
+import { useCurrency } from "./currency-provider";
 
 const SERVICES = [
   "AI Agents",
@@ -15,7 +16,6 @@ const SERVICES = [
   "Digital Marketing",
 ];
 const PROJECT_TYPES = ["New product", "Scale an existing product", "Team extension", "Automation"];
-const BUDGETS = ["Under ₹5L", "₹5L to ₹15L", "₹15L to ₹40L", "₹40L+"];
 const TIMELINES = ["ASAP", "1 to 3 months", "3 to 6 months", "Exploring"];
 
 type Props = { onSubmitted: () => void };
@@ -78,9 +78,11 @@ const Ico = {
 };
 
 export default function StartForm({ onSubmitted }: Props) {
+  const { compact } = useCurrency();
+  const BUDGETS = [`Under ${compact(500000)}`, `${compact(500000)} to ${compact(1500000)}`, `${compact(1500000)} to ${compact(4000000)}`, `${compact(4000000)}+`];
   const [services, setServices] = useState<string[]>([]);
   const [projectType, setProjectType] = useState("New product");
-  const [budget, setBudget] = useState("₹5L to ₹15L");
+  const [budget, setBudget] = useState(1);
   const [timeline, setTimeline] = useState("1 to 3 months");
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "", notes: "", website: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -110,7 +112,7 @@ export default function StartForm({ onSubmitted }: Props) {
           source: "start-your-project",
           services,
           project_type: projectType,
-          complexity: budget,
+          complexity: BUDGETS[budget],
           timeline,
           roles: [],
           estimate_min: 0,
@@ -225,13 +227,13 @@ export default function StartForm({ onSubmitted }: Props) {
         <fieldset className="est-step">
           <legend>{Ico.wallet}Budget range</legend>
           <div className="chip-row">
-            {BUDGETS.map((b) => (
+            {BUDGETS.map((b, i) => (
               <button
                 type="button"
                 key={b}
-                className={`chip${budget === b ? " sel" : ""}`}
-                aria-pressed={budget === b}
-                onClick={() => setBudget(b)}
+                className={`chip${budget === i ? " sel" : ""}`}
+                aria-pressed={budget === i}
+                onClick={() => setBudget(i)}
               >
                 {b}
               </button>

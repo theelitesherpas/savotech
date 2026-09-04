@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "./logo";
 import CallbackForm from "./callback-form";
+import CurrencySelect from "./currency-select";
 
 const SERVICE_LINKS = [
   ["AI Development & Agents", "/services/ai-development/"],
@@ -273,6 +274,8 @@ export default function SiteFooter() {
           </div>
           <CallbackForm />
         </div>
+
+        <CurrencySelect />
 
         <div className="footer-bottom">
           <ul className="badges" aria-label="Compliance and security">

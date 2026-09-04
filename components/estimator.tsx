@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Reveal from "./reveal";
 import { api } from "@/lib/api";
+import { useCurrency } from "./currency-provider";
 import Link from "next/link";
 
 /* ------- pricing model (transparent, "affordable premium" INR) ------- */
@@ -70,7 +71,6 @@ const ROLES = [
   ["devops", "DevOps"],
 ] as const;
 
-const inr = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 });
 
 function compute(services: Set<string>, type: string, complexity: string, timeline: string, roles: Set<string>) {
   const svcSum = [...services].reduce((s, k) => s + (SERVICE_COST[k] ?? 0), 0);
@@ -92,6 +92,7 @@ function compute(services: Set<string>, type: string, complexity: string, timeli
 type Errors = Partial<Record<"name" | "email", string>>;
 
 export default function Estimator() {
+  const { price } = useCurrency();
   const [services, setServices] = useState<Set<string>>(new Set(["ai"]));
   const [type, setType] = useState("new");
   const [complexity, setComplexity] = useState("standard");
@@ -324,7 +325,7 @@ export default function Estimator() {
                 <div className="est-result-card">
                   <p className="est-result-label">Estimated project investment</p>
                   <p className="est-result-range">
-                    ₹{inr.format(result.min)} to ₹{inr.format(result.max)}
+                    {price(result.min)} to {price(result.max)}
                   </p>
                   <p className="est-result-detail">
                     {services.size} service{services.size === 1 ? "" : "s"} · {complexity} complexity ·{" "}

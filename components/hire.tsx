@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Reveal from "./reveal";
+import { useCurrency } from "./currency-provider";
 import Link from "next/link";
 
 const ROLES: { t: string; base: number; hot?: boolean; icon: React.ReactNode }[] = [
@@ -105,9 +106,9 @@ const ENG = { full: 1, part: 0.55, hourly: 1 / 160 } as const;
 type Tier = keyof typeof TIERS;
 type Eng = keyof typeof ENG;
 
-const inr = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 });
 
 export default function Hire() {
+  const { price } = useCurrency();
   const [tier, setTier] = useState<Tier>("junior");
   const [eng, setEng] = useState<Eng>("full");
 
@@ -120,7 +121,7 @@ export default function Hire() {
   const rate = (base: number) => {
     let v = base * TIERS[tier] * ENG[eng];
     v = eng === "hourly" ? Math.round(v / 50) * 50 : Math.round(v / 1000) * 1000;
-    return `₹${inr.format(v)}`;
+    return price(v, 50);
   };
 
   return (
