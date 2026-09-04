@@ -206,10 +206,10 @@ textarea { resize: vertical; }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--btn-fill, var(--ink));
+  background: var(--btn-fill, linear-gradient(90deg, #101014 0%, #101014 78%, #26262e 100%));
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn:hover::after, .btn:focus-visible::after,
 .btn-login:hover::after, .btn-login:focus-visible::after { transform: scaleX(1); }
@@ -220,15 +220,12 @@ textarea { resize: vertical; }
 .btn-primary {
   background: var(--blue);
   color: #fff;
-  border: 1.5px solid var(--blue);
   box-shadow: var(--shadow-blue);
-  --btn-fill: #fff;
-  transition: transform 0.16s ease, box-shadow 0.16s ease, color 0.22s ease 0.1s;
+  --btn-fill: linear-gradient(90deg, #161ccb 0%, #161ccb 78%, #3441ff 100%);
 }
 .btn-primary:hover {
-  color: var(--blue);
   transform: translateY(-2px);
-  box-shadow: 0 12px 26px -8px rgba(29, 40, 255, 0.35);
+  box-shadow: 0 12px 26px -8px rgba(29, 40, 255, 0.55);
 }
 .btn-primary:active { transform: translateY(0); }
 
@@ -236,8 +233,7 @@ textarea { resize: vertical; }
   color: var(--ink);
   border: 1.5px solid var(--ink);
   background: transparent;
-  --btn-fill: var(--blue);
-  transition: transform 0.16s ease, box-shadow 0.16s ease, color 0.22s ease 0.1s;
+  --btn-fill: linear-gradient(90deg, #101014 0%, #101014 78%, #26262e 100%);
 }
 .btn-outline:hover {
   color: #fff;
@@ -249,7 +245,7 @@ textarea { resize: vertical; }
 .final-cta .btn-outline {
   color: var(--text-light);
   border-color: rgba(255, 255, 255, 0.85);
-  --btn-fill: #fff;
+  --btn-fill: linear-gradient(90deg, #ffffff 0%, #ffffff 78%, #e6e8ff 100%);
 }
 .section-dark .btn-outline:hover,
 .site-footer .btn-outline:hover,
@@ -1594,7 +1590,7 @@ textarea { resize: vertical; }
   transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
 }
 .btn-login svg { width: 15px; height: 15px; flex-shrink: 0; }
-.btn-login { --btn-fill: var(--blue); }
+.btn-login { --btn-fill: linear-gradient(90deg, #101014 0%, #101014 78%, #26262e 100%); }
 .btn-login:hover {
   color: #fff;
 }
@@ -1622,7 +1618,7 @@ textarea { resize: vertical; }
   border-color: var(--line-dark);
   color: var(--text-light);
   width: fit-content;
-  --btn-fill: #fff;
+  --btn-fill: linear-gradient(90deg, #ffffff 0%, #ffffff 78%, #e6e8ff 100%);
 }
 .fc-contact .btn-login:hover {
   border-color: #fff;
@@ -1680,7 +1676,7 @@ textarea { resize: vertical; }
   margin-top: 1.6rem;
   flex-wrap: wrap;
 }
-.btn-outline-inv { color: var(--ink); border: 1.5px solid var(--ink); --btn-fill: var(--blue); }
+.btn-outline-inv { color: var(--ink); border: 1.5px solid var(--ink); --btn-fill: linear-gradient(90deg, #1d28ff 0%, #1d28ff 78%, #4d5cff 100%); }
 .btn-outline-inv:hover { border-color: var(--blue); color: #fff; transform: translateY(-2px); }
 
 /* why */
