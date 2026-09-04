@@ -75,21 +75,23 @@ const OFFICES = [
   },
 ];
 
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const TEAM = [
-  { n: "Aarav Mehta", r: "Founder & CEO", d: "Ex fintech architect. Still reviews every proposal personally.", tag: "AM" },
-  { n: "Priya Nair", r: "Head of Engineering", d: "Shipped patient systems for three hospital networks.", tag: "PN" },
-  { n: "Rohan Desai", r: "Principal Architect, AI", d: "Built the agent framework behind the Savo Intelligence desk.", tag: "RD" },
-  { n: "Sara Khan", r: "Head of Design", d: "Believes the best interface is the one you stop noticing.", tag: "SK" },
-  { n: "Vikram Rao", r: "Delivery Lead", d: "Keeps twelve client sprints honest, calmly.", tag: "VR" },
-  { n: "Ananya Iyer", r: "Client Success Lead", d: "The voice on your onboarding calls and your escalation line.", tag: "AI" },
+  { n: "Aarav Mehta", r: "Founder & CEO", d: "Ex fintech architect. Still reviews every proposal personally.", img: "aarav.jpg", in: "aarav-mehta" },
+  { n: "Priya Nair", r: "Head of Engineering", d: "Shipped patient systems for three hospital networks.", img: "priya.jpg", in: "priya-nair" },
+  { n: "Rohan Desai", r: "Principal Architect, AI", d: "Built the agent framework behind the Savo Intelligence desk.", img: "rohan.jpg", in: "rohan-desai" },
+  { n: "Sara Khan", r: "Head of Design", d: "Believes the best interface is the one you stop noticing.", img: "sara.jpg", in: "sara-khan" },
+  { n: "Vikram Rao", r: "Delivery Lead", d: "Keeps twelve client sprints honest, calmly.", img: "vikram.jpg", in: "vikram-rao" },
+  { n: "Ananya Iyer", r: "Client Success Lead", d: "The voice on your onboarding calls and your escalation line.", img: "ananya.jpg", in: "ananya-iyer" },
 ];
 
 export default function ContactPage() {
   return (
     <>
-      <section className="section section-light start-hero">
+      <section className="section section-alt start-hero contact-hero">
         <div className="wrap">
-          <div className="section-head" style={{ marginBottom: "2rem" }}>
+          <div className="section-head" style={{ marginBottom: "0.4rem" }}>
             <Reveal>
               <p className="page-kicker">Contact Us</p>
               <h1>Talk to the people who will build it.</h1>
@@ -139,7 +141,7 @@ export default function ContactPage() {
                       hello@savotechnologies.com
                     </span>
                   </a>
-                  <a className="direct-row" href="tel:+910000000000">
+                  <a className="direct-row" href="tel:+917502901234">
                     <span className="dr-ico r" aria-hidden="true">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M6.8 3.8 9 3.2c.7-.2 1.4.2 1.7.9l1 2.4c.2.6.1 1.3-.4 1.7l-1.3 1.2a12.6 12.6 0 0 0 4.6 4.6l1.2-1.3c.4-.5 1.1-.6 1.7-.4l2.4 1c.7.3 1.1 1 .9 1.7l-.6 2.2c-.2.7-.8 1.2-1.5 1.2C11.6 18.4 5.6 12.4 5.6 5.3c0-.7.5-1.3 1.2-1.5Z" />
@@ -147,12 +149,12 @@ export default function ContactPage() {
                     </span>
                     <span className="dr-text">
                       <strong>Call</strong>
-                      +91 00000 00000
+                      +91 75029 01234
                     </span>
                   </a>
                   <a
                     className="direct-row direct-wa"
-                    href="https://wa.me/910000000000?text=Hi%20Savo%20Technologies%2C%20I%20would%20like%20to%20talk%20about%20a%20project."
+                    href="https://wa.me/917502901234?text=Hi%20Savo%20Technologies%2C%20I%20would%20like%20to%20talk%20about%20a%20project."
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -208,7 +210,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="section section-light" style={{ paddingTop: 0 }} id="team">
+      <section className="section section-alt" id="team">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -226,19 +228,31 @@ export default function ContactPage() {
             {TEAM.map((m, i) => (
               <Reveal key={m.n} delay={0.04 * i}>
                 <article className="team-card">
-                  <span className={`team-avatar av-${i % 3}`} aria-hidden="true">
-                    {m.tag}
-                  </span>
+                  <div className="team-photo">
+                    <img src={`${BP}/team/${m.img}`} alt={`${m.n}, ${m.r} at Savo Technologies`} loading="lazy" />
+                  </div>
                   <h3>{m.n}</h3>
                   <p className="team-role">{m.r}</p>
                   <p className="team-bio">{m.d}</p>
-                  <a className="team-mail" href="mailto:hello@savotechnologies.com">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <rect x="3.5" y="5.5" width="17" height="13" rx="2.2" />
-                      <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
-                    </svg>
-                    Say hello
-                  </a>
+                  <div className="team-socials">
+                    <a
+                      className="ts-btn ts-in"
+                      href={`https://www.linkedin.com/in/${m.in}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${m.n} on LinkedIn`}
+                    >
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.1 1.43-2.1 2.9V21h-4V9Z" />
+                      </svg>
+                    </a>
+                    <a className="ts-btn ts-mail" href="mailto:hello@savotechnologies.com" aria-label={`Email ${m.n}`}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <rect x="3.5" y="5.5" width="17" height="13" rx="2.2" />
+                        <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
+                      </svg>
+                    </a>
+                  </div>
                 </article>
               </Reveal>
             ))}

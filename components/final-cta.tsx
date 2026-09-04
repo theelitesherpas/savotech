@@ -24,7 +24,7 @@ export default function FinalCta() {
             </a>
             <a
               className="btn btn-whatsapp btn-lg"
-              href="https://wa.me/910000000000?text=Hi%20Savo%20Technologies%2C%20I%27d%20like%20to%20discuss%20a%20project."
+              href="https://wa.me/917502901234?text=Hi%20Savo%20Technologies%2C%20I%27d%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noopener noreferrer"
             >
