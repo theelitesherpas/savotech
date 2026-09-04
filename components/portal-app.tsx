@@ -59,16 +59,6 @@ const MESSAGES = [
   { from: "Rohan D.", role: "Architect", text: "Dispute builder schema is ready for your review before we wire the UI.", time: "Yesterday" },
 ];
 
-const Assure = ({ t, d }: { t: string; d: string }) => (
-  <li>
-    <span className="pa-dot" aria-hidden="true" />
-    <div>
-      <strong>{t}</strong>
-      <span>{d}</span>
-    </div>
-  </li>
-);
-
 export default function PortalApp() {
   const [view, setView] = useState<"login" | "forgot" | "app">("login");
   const [user, setUser] = useState<string>("");
@@ -115,22 +105,54 @@ export default function PortalApp() {
   /* ---------------- login + forgot ---------------- */
   if (view !== "app") {
     return (
-      <div className="portal-shell">
-        <div className="portal-side" aria-hidden="true">
-          <Logo />
-          <div className="portal-side-body">
-            <h2>Client Portal</h2>
-            <p>Delivery, billing and your team, in one auditable place.</p>
-            <ul className="portal-assure">
-              <Assure t="Bank grade encryption" d="TLS 1.3 in transit, encrypted records at rest." />
-              <Assure t="Role based access" d="Every action attributed, every file access logged." />
-              <Assure t="SSO ready" d="Okta, Entra ID and Google Workspace on request." />
-            </ul>
-          </div>
-          <p className="portal-side-foot">Need access? Your engagement lead creates accounts on day one.</p>
+      <div className="portal-frame">
+        <div className="pf-top">
+          <span className="pf-brand"><Logo /> Client Portal</span>
+          <Link className="pf-back" href="/">
+            ← Back to savotechnologies.com
+          </Link>
         </div>
 
-        <div className="portal-main">
+        <div className="pf-body">
+          <div className="pf-art" aria-hidden="true">
+            <svg viewBox="0 0 560 320" fill="none">
+              <circle cx="452" cy="64" r="46" stroke="rgba(16,16,20,.22)" strokeDasharray="3 7" />
+              <circle cx="452" cy="64" r="17" fill="#F3B98A" />
+              <circle cx="118" cy="252" r="9" fill="#1D28FF" />
+              <circle cx="522" cy="212" r="6" fill="#2BD926" />
+              <circle cx="38" cy="96" r="5" fill="#FF1E1D" />
+              <rect x="96" y="70" width="286" height="196" rx="14" fill="#fff" stroke="#101014" strokeWidth="2.4" />
+              <path d="M96 100h286" stroke="#101014" strokeWidth="2.4" />
+              <circle cx="116" cy="85" r="4.6" fill="#1D28FF" />
+              <circle cx="132" cy="85" r="4.6" fill="#FF1E1D" />
+              <circle cx="148" cy="85" r="4.6" fill="#2BD926" />
+              <path d="M124 216l44-42 34 26 40-52 36 30 46-58" stroke="#101014" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="168" cy="174" r="5.4" fill="#1D28FF" />
+              <circle cx="242" cy="148" r="5.4" fill="#FF1E1D" />
+              <circle cx="324" cy="90" r="5.4" fill="#2BD926" />
+              <rect x="124" y="128" width="118" height="9" rx="4.5" fill="#F3B98A" />
+              <rect x="124" y="236" width="196" height="9" rx="4.5" fill="#E9E4D8" />
+              <rect x="124" y="236" width="128" height="9" rx="4.5" fill="#1D28FF" />
+              <path d="M352 240c0-24 19-44 43-44h34c24 0 43 20 43 44s-19 42-43 42h-18l-16 14v-15c-25-1-43-18-43-41Z" fill="#F3B98A" stroke="#101014" strokeWidth="2.4" strokeLinejoin="round" />
+              <circle cx="381" cy="240" r="4.4" fill="#101014" />
+              <circle cx="397" cy="240" r="4.4" fill="#101014" />
+              <circle cx="413" cy="240" r="4.4" fill="#101014" />
+            </svg>
+          </div>
+
+          <div className="pf-copy">
+            <h2>Your project, visible end to end.</h2>
+            <p>
+              Milestones, deliverables, invoices and your delivery team, in one auditable
+              place. Sign in with the email your engagement lead invited you with.
+            </p>
+            <ul className="pf-points">
+              <li>Bank grade encryption in transit and at rest</li>
+              <li>Role based access with full audit trails</li>
+              <li>SSO via Okta, Entra ID or Google Workspace</li>
+            </ul>
+          </div>
+
           <div className="portal-card">
             <div className="start-card-head">
               <h2>{view === "login" ? "Sign in" : "Reset password"}</h2>
@@ -221,6 +243,11 @@ export default function PortalApp() {
               </form>
             )}
           </div>
+        </div>
+
+        <div className="pf-bottom">
+          <span>Access is provisioned by your engagement lead on day one.</span>
+          <a href="mailto:hello@savotechnologies.com">hello@savotechnologies.com</a>
         </div>
       </div>
     );
