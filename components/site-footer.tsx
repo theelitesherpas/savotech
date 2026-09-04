@@ -33,7 +33,7 @@ const COMPANY_LINKS = [
   ["Case Studies", "/#work"],
   ["Resources & Blog", "/resources/"],
   ["Careers", "/careers/"],
-  ["Contact Us", "/#contact"],
+  ["Contact Us", "/contact/"],
 ] as const;
 
 const QUICK_LINKS = [

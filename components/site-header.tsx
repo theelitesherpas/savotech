@@ -142,7 +142,7 @@ const NAV: NavItem[] = [
     ],
   },
   { label: "Careers", href: "/careers/" },
-  { label: "Contact Us", href: "/#contact" },
+  { label: "Contact Us", href: "/contact/" },
 ];
 
 const Caret = () => (
@@ -371,7 +371,7 @@ export default function SiteHeader() {
                 </li>
               ) : (
                 <li key={n.label}>
-                  <a href={n.href}>{n.label}</a>
+                  <Link href={n.href}>{n.label}</Link>
                 </li>
               )
             )}

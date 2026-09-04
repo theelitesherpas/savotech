@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     }
 
     const source =
-      b.source === "start-your-project" || b.source === "callback" || b.source === "careers"
+      b.source === "start-your-project" || b.source === "callback" || b.source === "careers" || b.source === "contact"
         ? b.source
         : "estimator";
 

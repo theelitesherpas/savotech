@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/reveal";
 import CareersApply from "@/components/careers-form";
+import { TEAM_STATS } from "@/lib/careers-data";
 
 export const metadata: Metadata = {
   title: "Careers",
@@ -75,6 +76,15 @@ export default function CareersPage() {
             </Link>{" "}
             and tell us what you would want to build here.
           </p>
+
+          <div className="team-stats" aria-label="Team at a glance">
+            {TEAM_STATS.map((s) => (
+              <div key={s.l}>
+                <strong>{s.v}</strong>
+                <span>{s.l}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>
