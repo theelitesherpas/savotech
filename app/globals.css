@@ -528,10 +528,11 @@ textarea { resize: vertical; }
 .hero-slide {
   position: absolute;
   inset: clamp(1rem, 4vw, 1.75rem);
-  display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: clamp(2rem, 5vw, 4rem);
+  justify-content: center;
+  text-align: center;
   opacity: 0;
   visibility: hidden;
   transform: translateY(18px);
@@ -544,11 +545,13 @@ textarea { resize: vertical; }
   transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .hero-slide h1, .hero-slide h2 {
-  font-size: clamp(2.3rem, 4.8vw, 4.1rem);
+  font-size: clamp(2.5rem, 5.4vw, 4.5rem);
   font-weight: 700;
   letter-spacing: -0.032em;
-  max-width: 16ch;
+  max-width: 24ch;
+  margin-inline: auto;
   color: var(--ink);
+  text-wrap: balance;
 }
 .hero-slide .hl {
   background: linear-gradient(0deg, rgba(29, 40, 255, 0.22), rgba(29, 40, 255, 0.22)) left bottom / 100% 0.18em no-repeat;
@@ -556,62 +559,11 @@ textarea { resize: vertical; }
 }
 .hero-sub {
   margin-top: 1.4rem;
-  max-width: 54ch;
+  max-width: 58ch;
+  margin-inline: auto;
   color: var(--muted);
   font-size: clamp(0.92rem, 1.2vw, 1.02rem);
   line-height: 1.7;
-}
-
-/* the console panel: ink frame holding the animated scene */
-.hero-visual {
-  position: relative;
-  background: var(--ink);
-  border-radius: var(--r-xl);
-  padding: 44px 16px 16px;
-  border: 1px solid var(--ink);
-  box-shadow: var(--shadow-lift-lg);
-}
-.hero-visual::before {
-  content: "";
-  position: absolute;
-  top: 18px;
-  left: 20px;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--red);
-  box-shadow: 20px 0 0 var(--blue), 40px 0 0 var(--green);
-}
-.hero-visual::after {
-  content: "savotechnologies.com / agent-console";
-  position: absolute;
-  top: 13px;
-  right: 20px;
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
-  color: var(--muted-light);
-}
-.hero-visual svg { width: 100%; height: auto; max-height: 420px; }
-
-/* orbit animation */
-.orbit-ring { transform-origin: 280px 240px; animation: orbit-rotate 60s linear infinite; }
-.orbit-ring.rev { animation-direction: reverse; animation-duration: 90s; }
-@keyframes orbit-rotate { to { transform: rotate(360deg); } }
-.orbit-spin { transform-origin: 280px 240px; animation: orbit-rotate 44s linear infinite; }
-.orbit-spin.rev { animation-direction: reverse; animation-duration: 34s; }
-.orbit-spin .node { animation: orbit-counter 44s linear infinite; }
-.orbit-spin.rev .node { animation: orbit-counter 34s linear infinite reverse; }
-@keyframes orbit-counter { to { transform: rotate(-360deg); } }
-
-.stack-scene .pulse-dot { animation: dot-pulse 2.4s ease-in-out infinite; }
-.globe-scene .arc { stroke-dashoffset: 200; animation: arc-draw 6s ease-in-out infinite alternate; }
-@keyframes arc-draw { to { stroke-dashoffset: 0; } }
-.globe-scene .ping { animation: ping 2.8s cubic-bezier(0, 0, 0.2, 1) infinite; }
-.globe-scene .p2 .ping { animation-delay: 0.9s; }
-.globe-scene .p3 .ping { animation-delay: 1.8s; }
-@keyframes ping {
-  0% { transform: scale(1); opacity: 0.8; }
-  80%, 100% { transform: scale(3.2); opacity: 0; }
 }
 
 .hero-footer {
@@ -621,16 +573,16 @@ textarea { resize: vertical; }
   margin-inline: auto;
   padding: 0 clamp(1rem, 4vw, 1.75rem) 2.2rem;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
 }
-.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 .hero-assurance {
   display: flex;
   gap: 1.4rem;
   flex-wrap: wrap;
+  justify-content: center;
   color: var(--muted);
   font-size: 0.86rem;
   padding-bottom: 0.4rem;
@@ -649,6 +601,7 @@ textarea { resize: vertical; }
   position: relative;
   display: flex;
   gap: 0.5rem;
+  justify-content: center;
   max-width: var(--wrap);
   width: 100%;
   margin-inline: auto;
@@ -718,13 +671,8 @@ textarea { resize: vertical; }
 }
 .hero-grid-dots[data-active]::after { opacity: 1; }
 
-.hero-visual {
-  will-change: transform;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
-}
 @media (prefers-reduced-motion: reduce) {
   .cursor-spotlight { display: none; }
-  .hero-visual { transition: none; }
 }
 
 /* ------------------------------------------------------------ trust bar -- */
@@ -2297,9 +2245,7 @@ textarea { resize: vertical; }
 }
 
 @media (max-width: 1024px) {
-  .hero-slide { grid-template-columns: 1fr; gap: 2rem; padding-top: 1rem; }
-  .hero-visual { max-width: 520px; }
-  .hero-visual svg { max-height: 300px; margin-inline: auto; }
+  .hero-slide { padding-top: 1rem; }
   .hero-slide h1, .hero-slide h2 { max-width: 20ch; }
   .agents-grid { grid-template-columns: repeat(2, 1fr); }
   .work-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2360,7 +2306,6 @@ textarea { resize: vertical; }
   .hero-slide h1, .hero-slide h2 { font-size: clamp(1.9rem, 8.5vw, 2.5rem); }
   .brand-logo { height: 34px; }
   .brand-logo-compact { height: 38px; }
-  .hero-visual::after { display: none; }
 }
 
 @media (max-width: 380px) {

@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
  * Site-wide mouse effects:
  * 1. A soft electric-blue cursor spotlight following the pointer across the page.
  * 2. Hero dot-grid reveal: dots near the cursor light up blue (mask at --hmx/--hmy).
- * 3. Hero console parallax: the ink panel drifts gently toward the cursor.
  * Runs only for fine pointers (mouse/trackpad) and only without reduced-motion.
  * Single mousemove listener + rAF writes; zero work while idle.
  */
@@ -38,24 +37,6 @@ export default function MouseEffects() {
           field.dataset.active = "1";
         } else {
           delete field.dataset.active;
-        }
-      }
-
-      const hero = document.querySelector<HTMLElement>(".hero");
-      if (hero) {
-        const r = hero.getBoundingClientRect();
-        if (y >= r.top && y <= r.bottom) {
-          const dx = (x - (r.left + r.width / 2)) / r.width;
-          const dy = (y - (r.top + r.height / 2)) / r.height;
-          const tx = Math.max(-1, Math.min(1, dx)) * 10;
-          const ty = Math.max(-1, Math.min(1, dy)) * 8;
-          hero.querySelectorAll<HTMLElement>(".hero-visual").forEach((el) => {
-            el.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
-          });
-        } else {
-          hero.querySelectorAll<HTMLElement>(".hero-visual").forEach((el) => {
-            el.style.transform = "";
-          });
         }
       }
     };
