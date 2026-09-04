@@ -3797,23 +3797,24 @@ textarea { resize: vertical; }
 .hire-snapshot {
   position: sticky;
   top: 96px;
-  background: var(--ink);
-  color: var(--text-light);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lift);
   border-radius: var(--r-lg);
   padding: 1.8rem 1.7rem 1.9rem;
 }
-.hire-snapshot h2 { color: #fff; font-size: 1.35rem; margin: 0.4rem 0 1.1rem; }
+.hire-snapshot h2 { color: var(--ink); font-size: 1.35rem; margin: 0.4rem 0 1.1rem; }
 .hire-snapshot dl { display: grid; gap: 0.85rem; margin-bottom: 1.5rem; }
 .hire-snapshot dl > div {
   display: grid;
   grid-template-columns: 110px 1fr;
   gap: 0.8rem;
   padding-bottom: 0.85rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--line);
 }
 .hire-snapshot dl > div:last-child { border-bottom: none; padding-bottom: 0; }
-.hire-snapshot dt { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-light); }
-.hire-snapshot dd { font-size: 0.9rem; color: #fff; }
+.hire-snapshot dt { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-text); }
+.hire-snapshot dd { font-size: 0.9rem; color: var(--ink); font-weight: 600; }
 .hire-snapshot .btn { width: 100%; justify-content: center; }
 .hire-why h2 { max-width: 24ch; }
 .hire-checklist {
@@ -3902,19 +3903,17 @@ textarea { resize: vertical; }
 }
 
 /* rate comparison (ink) */
-.hire-rates { background: var(--ink); padding-top: 0; }
-.hire-rates .section-head h2 { color: #fff; }
-.hire-rates .lead { color: var(--muted-light); }
 .rate-table-wrap { overflow-x: auto; }
 .rate-table {
   width: 100%;
   min-width: 560px;
   border-collapse: separate;
   border-spacing: 0;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--white);
+  border: 1px solid var(--line);
   border-radius: var(--r-lg);
   overflow: hidden;
+  box-shadow: var(--shadow-lift);
 }
 .rate-table th {
   text-align: left;
@@ -3922,30 +3921,33 @@ textarea { resize: vertical; }
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted-light);
+  color: var(--muted);
   padding: 1rem 1.3rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
 }
-.rate-table td { padding: 0.95rem 1.3rem; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+.rate-table td { padding: 0.95rem 1.3rem; border-bottom: 1px solid var(--line); }
 .rate-table tr:last-child td { border-bottom: none; }
-.rate-table tr.is-savo td { background: rgba(43, 217, 38, 0.08); }
+.rate-table tr.is-savo td { background: var(--tint-green); }
 .rt-region { display: flex; align-items: center; gap: 0.75rem; }
 .rt-flag { font-size: 1.25rem; line-height: 1; }
-.rt-region strong { display: block; color: #fff; font-size: 0.92rem; }
-.rt-region em { font-style: normal; color: var(--muted-light); font-size: 0.76rem; }
-.rt-cost { color: #fff; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rt-region strong { display: block; color: var(--ink); font-size: 0.92rem; }
+.rt-region em { font-style: normal; color: var(--muted); font-size: 0.76rem; }
+.rt-cost { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rate-table tr.is-savo .rt-cost { color: var(--green-text); }
 .rt-pill {
   display: inline-block;
   font-size: 0.74rem;
   font-weight: 700;
   padding: 0.28rem 0.7rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--muted-light);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  color: var(--muted);
   white-space: nowrap;
 }
-.rt-pill.green { background: rgba(43, 217, 38, 0.16); color: #7ee08a; }
-.rate-note { margin-top: 1.1rem; color: var(--muted-light); font-size: 0.8rem; line-height: 1.6; }
+.rt-pill.green { background: var(--tint-green); border-color: rgba(43, 217, 38, 0.35); color: var(--green-text); }
+.rate-note { margin-top: 1.1rem; color: var(--muted); font-size: 0.8rem; line-height: 1.6; }
 
 /* 5 step process */
 .svc-process.steps-5 { grid-template-columns: repeat(5, 1fr); }

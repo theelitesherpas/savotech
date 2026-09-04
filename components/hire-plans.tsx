@@ -72,7 +72,7 @@ export default function HirePlans({ monthly, role }: { monthly: number; role: st
                   className={p.key === cycle ? "btn btn-primary" : "btn btn-login"}
                   href="/start-your-project/"
                 >
-                  Hire {role.split(" ")[0].toLowerCase() === "ai" ? "an engineer" : "a developer"}
+                  Hire now
                 </Link>
               </article>
             );

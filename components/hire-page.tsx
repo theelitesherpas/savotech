@@ -204,7 +204,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
 
       {/* ---------- plans + global rate compare: ink ---------- */}
       <HirePlans monthly={r.monthly} role={r.title} />
-      <section className="section hire-rates">
+      <section className="section section-light hire-rates">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
