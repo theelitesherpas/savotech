@@ -137,8 +137,6 @@ const NAV: NavItem[] = [
       ["GulfPay", "/#work"],
       ["Sahm AI Support Desk", "/#work"],
       ["RideLink", "/#work"],
-      ["ClearLedger", "/#work"],
-      ["EduSpring", "/#work"],
     ],
   },
   { label: "Careers", href: "/careers/" },
