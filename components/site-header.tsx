@@ -260,6 +260,7 @@ export default function SiteHeader() {
             <li
               onMouseEnter={() => {
                 keepOpen();
+                setOpenDrop(null);
                 setMegaOpen(true);
               }}
               onMouseLeave={() => closeSoon(() => setMegaOpen(false))}
