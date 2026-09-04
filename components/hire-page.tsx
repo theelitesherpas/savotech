@@ -46,42 +46,57 @@ export default function HirePageView({ role }: { role: HireRole }) {
 
   return (
     <>
-      {/* ---------- hero: ink ---------- */}
-      <section className="section section-dark start-hero svc-hero svc-hero-dark hire-hero">
+      {/* ---------- hero: light, copy overlapping the image, ink facts strip ---------- */}
+      <section className="section section-light start-hero hire-hero2">
         <div className="wrap">
-          <div className="section-head" style={{ marginBottom: "1.4rem" }}>
-            <Reveal>
-              <p className="page-kicker">
-                <Link href="/#hire" className="text-cta">Hire Resources</Link> / {r.title}
-              </p>
-              <h1>{r.tagline}</h1>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="lead">{r.intro[0]}</p>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <div className="svc-hire-ctas">
-                <Link className="btn btn-primary btn-lg" href="/start-your-project/">Hire now</Link>
-                <Link className="btn btn-ghost btn-lg" href="#plans">See plans</Link>
-                <Link className="btn btn-ghost btn-lg" href="/contact/">Talk to us</Link>
+          <div className="hh-grid">
+            <div className="hh-copy">
+              <Reveal>
+                <p className="page-kicker">
+                  <Link href="/#hire" className="text-cta">Hire Resources</Link> / {r.title}
+                </p>
+                <h1>{r.tagline}</h1>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <p className="lead">{r.intro[0]}</p>
+              </Reveal>
+              <Reveal delay={0.12}>
+                <div className="svc-hire-ctas">
+                  <Link className="btn btn-primary btn-lg" href="/start-your-project/">Hire now</Link>
+                  <Link className="btn btn-ghost btn-lg" href="#plans">See plans</Link>
+                  <Link className="btn btn-ghost btn-lg" href="/contact/">Talk to us</Link>
+                </div>
+              </Reveal>
+            </div>
+            <Reveal delay={0.1} className="hh-visual-wrap">
+              <div className="hh-visual">
+                <img src={`${BP}${r.photo}`} alt={`Work by our ${r.title}`} />
+                <span className="hh-badge" aria-hidden="true">
+                  <span className="hh-badge-dot" />
+                  Matched in 48 hours
+                </span>
               </div>
             </Reveal>
           </div>
-          <Reveal delay={0.14}>
-            <ul className="svc-stats" aria-label={`${r.title} at a glance`}>
-              {r.facts.map((f) => (
-                <li key={f.l}>
+
+          <Reveal delay={0.16}>
+            <ul className="hh-facts" aria-label={`${r.title} at a glance`}>
+              {r.facts.map((f, i) => (
+                <li key={f.l} className={`hh-fact f${i % 3}`}>
                   <strong>{f.v}</strong>
                   <span>{f.l}</span>
                 </li>
               ))}
+              <li className="hh-fact-cta">
+                <Link className="btn btn-ghost-sm" href="/careers/">They build here. Join them →</Link>
+              </li>
             </ul>
           </Reveal>
         </div>
       </section>
 
       {/* ---------- snapshot + why checklist: split panel ---------- */}
-      <section className="section section-light">
+      <section className="section section-alt">
         <div className="wrap hire-split">
           <aside className="hire-snapshot">
             <Reveal>
@@ -142,7 +157,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- solutions our role delivers ---------- */}
-      <section className="section section-alt">
+      <section className="section section-light">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -172,7 +187,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- engagement models ---------- */}
-      <section className="section section-light">
+      <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -204,7 +219,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
 
       {/* ---------- plans + global rate compare: ink ---------- */}
       <HirePlans monthly={r.monthly} role={r.title} />
-      <section className="section section-light hire-rates">
+      <section className="section section-alt hire-rates">
         <div className="wrap">
           <Reveal>
             <div className="rates-head">
@@ -220,7 +235,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- hiring process ---------- */}
-      <section className="section section-alt">
+      <section className="section section-light">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -247,7 +262,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- technologies ---------- */}
-      <section className="section section-light">
+      <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -268,7 +283,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- projects ---------- */}
-      <section className="section section-alt">
+      <section className="section section-light">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -285,7 +300,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- industries ---------- */}
-      <section className="section section-light">
+      <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -306,7 +321,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- other roles photo grid ---------- */}
-      <section className="section section-alt" id="roles">
+      <section className="section section-light" id="roles">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -339,7 +354,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- testimonials ---------- */}
-      <section className="section section-light">
+      <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -368,7 +383,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- FAQ ---------- */}
-      <section className="section section-alt" id="faq">
+      <section className="section section-light" id="faq">
         <div className="wrap wrap-narrow">
           <div className="section-head">
             <Reveal>

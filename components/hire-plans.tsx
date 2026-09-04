@@ -27,7 +27,7 @@ export default function HirePlans({ monthly, role }: { monthly: number; role: st
   const saved = Math.round(monthly * cycle.months - total);
 
   return (
-    <section className="section section-alt hire-plans" id="plans">
+    <section className="section section-light hire-plans" id="plans">
       <div className="wrap">
         <div className="plans-v2">
           <div className="plan-choices">
