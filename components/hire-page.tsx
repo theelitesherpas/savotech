@@ -90,69 +90,8 @@ export default function HirePageView({ role }: { role: HireRole }) {
         </div>
       </section>
 
-      {/* ---------- snapshot + why checklist: split panel ---------- */}
-      <section className="section section-alt">
-        <div className="wrap hire-split">
-          <aside className="hire-snapshot">
-            <Reveal>
-              <p className="page-kicker">At a glance</p>
-              <h2>The Savo standard.</h2>
-              <dl>
-                <div>
-                  <dt>Seniority</dt>
-                  <dd>Mid to senior, 5 to 10 years</dd>
-                </div>
-                <div>
-                  <dt>Timezone</dt>
-                  <dd>4+ hours daily overlap with you</dd>
-                </div>
-                <div>
-                  <dt>Trial</dt>
-                  <dd>Two weeks, paid, cancel anytime</dd>
-                </div>
-                <div>
-                  <dt>Replacement</dt>
-                  <dd>Free and instant, forever</dd>
-                </div>
-                <div>
-                  <dt>IP and code</dt>
-                  <dd>100% yours from commit one</dd>
-                </div>
-                <div>
-                  <dt>Security</dt>
-                  <dd>NDA, least privilege access</dd>
-                </div>
-              </dl>
-              <Link className="btn btn-primary" href="/start-your-project/">Get matched profiles</Link>
-            </Reveal>
-          </aside>
-          <div className="hire-why">
-            <Reveal delay={0.08}>
-              <h2>Why teams keep our {r.short.toLowerCase()} engineers for years.</h2>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <ul className="hire-checklist">
-                {r.checklist.map((c) => (
-                  <li key={c}>
-                    <span className="hc-tick" aria-hidden="true">
-                      <svg viewBox="0 0 16 16" fill="none">
-                        <path d="m3 8.6 3.2 3.2L13 4.8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </span>
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={0.16}>
-              <p className="lead">{r.intro[1]}</p>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* ---------- solutions our role delivers ---------- */}
-      <section className="section section-light">
+      <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -182,7 +121,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- engagement models ---------- */}
-      <section className="section section-alt">
+      <section className="section section-light">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -214,7 +153,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
 
       {/* ---------- plans + global rate compare: ink ---------- */}
       <HirePlans monthly={r.monthly} role={r.title} />
-      <section className="section section-alt hire-rates">
+      <section className="section section-light hire-rates">
         <div className="wrap">
           <Reveal>
             <div className="rates-head">
@@ -230,7 +169,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- hiring process ---------- */}
-      <section className="section section-light">
+      <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -257,7 +196,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- technologies ---------- */}
-      <section className="section section-alt">
+      <section className="section section-light">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -278,7 +217,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- projects ---------- */}
-      <section className="section section-light">
+      <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -295,7 +234,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- industries ---------- */}
-      <section className="section section-alt">
+      <section className="section section-light">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -316,7 +255,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- other roles photo grid ---------- */}
-      <section className="section section-light" id="roles">
+      <section className="section section-alt" id="roles">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -349,7 +288,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- testimonials ---------- */}
-      <section className="section section-alt">
+      <section className="section section-light">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -378,7 +317,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
       </section>
 
       {/* ---------- FAQ ---------- */}
-      <section className="section section-light" id="faq">
+      <section className="section section-alt" id="faq">
         <div className="wrap wrap-narrow">
           <div className="section-head">
             <Reveal>

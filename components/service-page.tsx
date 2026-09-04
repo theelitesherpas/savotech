@@ -13,10 +13,16 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
   const s = service;
   return (
     <>
-      {/* ---------- hero: paper + dots, ink accents ---------- */}
-      <section className="section section-dark start-hero svc-hero svc-hero-dark">
-        <div className="wrap">
-          <div className="section-head" style={{ marginBottom: "1.6rem" }}>
+      {/* ---------- hero: backdrop image, copy over it, ink facts strip ---------- */}
+      <section className="section section-light start-hero svc-hero2">
+        <img className="hh-bg" src={`${BP}${s.portfolio[0].img}`} alt="" aria-hidden="true" />
+        <div className="hh-bg-veil" aria-hidden="true" />
+        <div className="hh-badge" aria-hidden="true">
+          <span className="hh-badge-dot" />
+          Trusted since 2015
+        </div>
+        <div className="wrap hh-content">
+          <div className="hh-copy">
             <Reveal>
               <p className="page-kicker svc-kicker">
                 <Link href="/#services" className="text-cta">Services</Link> / {s.title}
@@ -26,22 +32,32 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
             <Reveal delay={0.08}>
               <p className="lead">{s.intro[0]}</p>
             </Reveal>
+            <Reveal delay={0.12}>
+              <div className="svc-hire-ctas">
+                <Link className="btn btn-primary btn-lg" href="/start-your-project/">Start your project</Link>
+                <Link className="btn btn-ghost btn-lg" href="#calculator">Price it now</Link>
+              </div>
+            </Reveal>
           </div>
-          <Reveal delay={0.12}>
-            <ul className="svc-stats" aria-label={`${s.title} at a glance`}>
-              {s.stats.map((st) => (
-                <li key={st.l}>
+
+          <Reveal delay={0.16}>
+            <ul className="hh-facts" aria-label={`${s.title} at a glance`}>
+              {s.stats.map((st, i) => (
+                <li key={st.l} className={`hh-fact f${i % 3}`}>
                   <strong>{st.v}</strong>
                   <span>{st.l}</span>
                 </li>
               ))}
+              <li className="hh-fact-cta">
+                <Link className="btn btn-ghost-sm" href="/contact/">Talk to an engineer →</Link>
+              </li>
             </ul>
           </Reveal>
         </div>
       </section>
 
       {/* ---------- what you get ---------- */}
-      <section className="section section-light">
+      <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -65,8 +81,8 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
         </div>
       </section>
 
-      {/* ---------- process: paper ---------- */}
-      <section className="section section-alt">
+      {/* ---------- process ---------- */}
+      <section className="section section-light">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
