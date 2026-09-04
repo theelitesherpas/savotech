@@ -207,8 +207,10 @@ export default function SiteHeader() {
     };
   }, [megaOpen, openDrop]);
 
+  const mobileNavRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
+    if (mobileOpen) mobileNavRef.current?.scrollTo({ top: 0 });
     return () => {
       document.body.style.overflow = "";
     };
@@ -402,7 +404,7 @@ export default function SiteHeader() {
         </div>
       </div>
 
-      <div className="mobile-nav" id="mobileNav" hidden={!mobileOpen}>
+      <div className="mobile-nav" id="mobileNav" ref={mobileNavRef} hidden={!mobileOpen}>
         <ul>
           <li>
             <button
