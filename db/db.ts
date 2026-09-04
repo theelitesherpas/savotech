@@ -68,16 +68,15 @@ const FALLBACK_FILE = path.join(FALLBACK_DIR, "store.json");
 
 type FallbackStore = {
   leads: (LeadRecord & { created_at: string })[];
-  newsletter: { email: string; created_at: string }[];
   chat: (ChatRecord & { created_at: string })[];
 };
 
 async function readFallback(): Promise<FallbackStore> {
   try {
-    if (!existsSync(FALLBACK_FILE)) return { leads: [], newsletter: [], chat: [] };
+    if (!existsSync(FALLBACK_FILE)) return { leads: [], chat: [] };
     return JSON.parse(await readFile(FALLBACK_FILE, "utf8")) as FallbackStore;
   } catch {
-    return { leads: [], newsletter: [], chat: [] };
+    return { leads: [], chat: [] };
   }
 }
 
@@ -112,34 +111,6 @@ export async function saveLead(lead: LeadRecord): Promise<{ ok: boolean; backend
   }
   try {
     await writeFallback((s) => s.leads.push({ ...lead, created_at: new Date().toISOString() }));
-    return { ok: true, backend: "fallback" };
-  } catch (err) {
-    console.error("[savo-db] fallback write failed:", (err as Error).message);
-    return { ok: false, backend: "none" };
-  }
-}
-
-export async function saveSubscriber(email: string): Promise<{ ok: boolean; backend: string }> {
-  const pool = getPool();
-  if (pool) {
-    try {
-      await ensureSchema(pool);
-      await pool.query(
-        `INSERT INTO newsletter_subscribers (email) VALUES ($1)
-         ON CONFLICT (email) DO NOTHING`,
-        [email],
-      );
-      return { ok: true, backend: "postgres" };
-    } catch (err) {
-      console.warn("[savo-db] Postgres write failed, using fallback store:", (err as Error).message);
-    }
-  }
-  try {
-    await writeFallback((s) => {
-      if (!s.newsletter.some((n) => n.email === email)) {
-        s.newsletter.push({ email, created_at: new Date().toISOString() });
-      }
-    });
     return { ok: true, backend: "fallback" };
   } catch (err) {
     console.error("[savo-db] fallback write failed:", (err as Error).message);

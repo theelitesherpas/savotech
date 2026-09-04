@@ -1,5 +1,5 @@
 -- Savo Technologies — homepage persistence layer (PostgreSQL)
--- Leads (instant estimator), newsletter subscribers, assistant chat logs.
+-- Leads (all public forms) and assistant chat logs.
 
 CREATE TABLE IF NOT EXISTS leads (
   id            BIGSERIAL PRIMARY KEY,
@@ -17,12 +17,6 @@ CREATE TABLE IF NOT EXISTS leads (
   estimate_min  INTEGER,
   estimate_max  INTEGER,
   created_at    TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-
-CREATE TABLE IF NOT EXISTS newsletter_subscribers (
-  id         BIGSERIAL PRIMARY KEY,
-  email      TEXT        NOT NULL UNIQUE,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE TABLE IF NOT EXISTS chat_logs (
