@@ -37,7 +37,7 @@ const COMPANY_LINKS = [
 ] as const;
 
 const QUICK_LINKS = [
-  ["Client Portal Login", "/portal/"],
+  ["Client Login", "/portal/"],
   ["Hire Developers", "/#hire"],
   ["AI Agents (PRO)", "/#ai-agents"],
   ["Get a Quote", "/#estimator"],
@@ -194,6 +194,8 @@ export default function SiteFooter() {
               <a href="mailto:hello@savotechnologies.com">hello@savotechnologies.com</a>
               <br />
               <a href="tel:+910000000000">+91 00000 00000</a>
+              <br />
+              <Link href="/portal/">Client Login</Link>
             </p>
           </div>
         </div>

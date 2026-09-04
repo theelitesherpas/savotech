@@ -4,6 +4,7 @@ import "./globals.css";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import StructuredData from "@/components/structured-data";
+import MouseEffects from "@/components/mouse-effects";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.savotechnologies.com";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -113,6 +114,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to main content
         </a>
         <SiteHeader />
+        <MouseEffects />
         <main id="main">{children}</main>
         <SiteFooter />
         <StructuredData siteUrl={ORIGIN} />
