@@ -75,7 +75,7 @@ const NAV: NavItem[] = [
       href: "/#estimator",
     },
     children: [
-      ["AI Agent Development", "/ai-agents/"],
+      ["AI Agent Development", "/services/ai-agent-development/"],
       ["Web Development", "/services/web-development/"],
       ["Mobile App Development", "/services/mobile-apps/"],
       ["UI/UX Design", "/services/ui-ux/"],

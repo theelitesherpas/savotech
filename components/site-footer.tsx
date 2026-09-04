@@ -4,7 +4,7 @@ import CallbackForm from "./callback-form";
 import CurrencySelect from "./currency-select";
 
 const SERVICE_LINKS = [
-  ["AI Development & Agents", "/services/ai-development/"],
+  ["AI Development & Agents", "/services/ai-agent-development/"],
   ["Custom Software Development", "/services/custom-software/"],
   ["Mobile App Development", "/services/mobile-apps/"],
   ["Web Development", "/services/web-development/"],

@@ -338,6 +338,69 @@ export const SERVICES: ServicePage[] = [
       ],
     },
   },
+  {
+    slug: "ai-agent-development",
+    title: "AI Agent Development",
+    kicker: "Service",
+    tagline: "AI agents that work inside your business.",
+    intro: [
+      "Customer support agents, workflow automators and knowledge copilots built on retrieval, tooling and evaluation, deployed into the channels your customers already use: web, WhatsApp, email and voice.",
+      "Every agent ships with guardrails, eval suites and cost routing, so it stays accurate and affordable long after launch week.",
+    ],
+    stats: [
+      { v: "96%", l: "tier 1 chats auto-resolved" },
+      { v: "2 to 4 wks", l: "to your first agent live" },
+      { v: "3 languages", l: "including Arabic" },
+    ],
+    deliverables: [
+      { t: "Support agents", d: "Trained on your docs and ticket history, resolving tier 1 questions across web chat, WhatsApp and email with human handoff." },
+      { t: "Knowledge copilots", d: "RAG systems over your internal documents with citations, permissions and freshness checks." },
+      { t: "Workflow automators", d: "Agents wired to your CRM, ERP and internal tools that draft, classify and route work automatically." },
+      { t: "Evals and guardrails", d: "Regression suites, hallucination checks and content policies that run on every model or prompt change." },
+    ],
+    process: [
+      { t: "Use case mapping", d: "One week identifying the queries and workflows worth automating, with volume and value data." },
+      { t: "Grounding and tooling", d: "Knowledge pipelines and safe tool interfaces: the agent can only do what you allow." },
+      { t: "Guardrails and evals", d: "Test sets from real conversations, red teaming and thresholds before any customer sees it." },
+      { t: "Deploy and improve", d: "Phased rollout, dashboards on resolution and cost, and monthly improvement cycles." },
+    ],
+    stack: [
+      { n: "Python", i: "python" }, { n: "LangChain", i: "ai" }, { n: "AI / LLMs", i: "ai" },
+      { n: "Node.js", i: "node" }, { n: "PostgreSQL", i: "postgres" }, { n: "Redis", i: "redis" },
+      { n: "GraphQL", i: "graphql" }, { n: "AWS", i: "aws" },
+    ],
+    tech: ["LangChain", "LlamaIndex", "pgvector", "Pinecone", "OpenAI compatible APIs", "FastAPI", "Redis", "WhatsApp API", "Whisper", "DeepEval", "LangSmith", "Cloudflare"],
+    portfolioCat: "ai",
+    portfolio: [
+      { name: "Sahm AI Support Desk", meta: "Arabic + English agent · GCC telecom", img: "/work/sahm.jpg", stat: "96% auto-resolved" },
+      { name: "MediBridge Health", meta: "Clinical copilot · 40+ clinics", img: "/work/medibridge.jpg", stat: "70% tickets deflected" },
+    ],
+    roles: [
+      { t: "AI / ML Engineer", rate: 120000 },
+      { t: "Backend Engineer", rate: 85000 },
+      { t: "Data Engineer", rate: 95000 },
+    ],
+    faqs: [
+      { q: "Which AI provider do you use?", a: "The stack behind our agent fleet is branded Savo Intelligence and provider agnostic: we route between models on quality, latency and cost, and you keep the freedom to change providers without rebuilding." },
+      { q: "Where does our data live?", a: "Your data stays in your infrastructure and region. Retrieval indexes, logs and eval sets live in your cloud, GDPR aligned and ready for your DPO review." },
+      { q: "How do you stop hallucinations?", a: "Grounded retrieval with citations, refusal policies for out of scope questions, and eval suites that run against every change. Agents hand off to humans instead of guessing." },
+      { q: "Can it speak Arabic?", a: "Yes. Our flagship telecom deployment runs Arabic and English side by side, with evaluation sets in both languages." },
+      { q: "What does an agent cost to run?", a: "Cost per resolved conversation is tracked from day one. Caching, model routing and context trimming typically keep it at a fraction of a human handled ticket." },
+    ],
+    knowledge: [
+      { t: "The eval suite we run before any agent meets a customer", d: "Test set design, refusal checks and regression gates, explained with real numbers.", time: "9 min read" },
+      { t: "RAG in regulated industries: citations, permissions, audit", d: "How we ground agents for healthcare and fintech without leaking across tenants.", time: "11 min read" },
+      { t: "Cutting LLM costs 60% with routing and caching", d: "The architecture that keeps per conversation costs predictable at scale.", time: "7 min read" },
+    ],
+    calc: {
+      base: [900000, 1500000],
+      opts: [
+        { label: "Agent scope", items: [["FAQ support agent", 0.8, 0.9], ["Workflow automation", 1, 1.15], ["Multi tool copilot", 1.4, 1.7]] },
+        { label: "Knowledge sources", items: [["Documents only", 0.85, 0.95], ["Docs + CRM and tickets", 1, 1.15], ["Multiple systems", 1.25, 1.45]] },
+        { label: "Channels", items: [["Web chat", 0.9, 0.95], ["Web + WhatsApp + email", 1.15, 1.3]] },
+      ],
+    },
+  },
 ];
 
 export const CLIENT_QUOTES = [
