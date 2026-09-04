@@ -126,7 +126,7 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
       <ServiceCalculator service={s} />
 
       {/* ---------- portfolio for this service ---------- */}
-      <section className="section section-light">
+      <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -155,8 +155,8 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
         </div>
       </section>
 
-      {/* ---------- hire related resources: paper ---------- */}
-      <section className="section section-alt" id="hire">
+      {/* ---------- hire related resources ---------- */}
+      <section className="section section-light" id="hire">
         <div className="wrap svc-hire-grid">
           <div>
             <Reveal>
@@ -183,7 +183,7 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
       </section>
 
       {/* ---------- what clients say ---------- */}
-      <section className="section section-light">
+      <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
             <Reveal>
@@ -212,7 +212,7 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
       </section>
 
       {/* ---------- FAQ ---------- */}
-      <section className="section section-alt" id="faq">
+      <section className="section section-light" id="faq">
         <div className="wrap wrap-narrow">
           <div className="section-head">
             <Reveal>

@@ -3442,7 +3442,7 @@ textarea { resize: vertical; }
 }
 
 /* calculator */
-.svc-calc { background: var(--paper); border-top: 1px solid var(--line); }
+.svc-calc { background: var(--white); }
 .svc-calc-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; }
 .svc-calc-copy h2 { max-width: 18ch; }
 .svc-calc-copy p { margin-top: 0.9rem; color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
@@ -3487,7 +3487,7 @@ textarea { resize: vertical; }
 .svc-hire-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 1.5rem; }
 .svc-roles { list-style: none; display: grid; gap: 0.8rem; }
 .svc-roles li {
-  background: var(--white);
+  background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--r-md);
   padding: 1rem 1.25rem;
@@ -3582,14 +3582,16 @@ textarea { resize: vertical; }
 .svc-process::before {
   content: "";
   position: absolute;
-  top: 17px; left: 0; right: 0;
+  top: 17px;
+  left: 17px;                       /* center of the first dot */
+  right: calc(25% - 17px);          /* center of the last (4th) dot */
   height: 1.5px;
   background: var(--line);
 }
 .svc-process::after {
   content: "";
   position: absolute;
-  top: 12.5px; left: 0;
+  top: 12.5px; left: 12px;
   width: 10px; height: 10px;
   border-radius: 50%;
   background: var(--blue);
@@ -3598,14 +3600,14 @@ textarea { resize: vertical; }
   z-index: 1;
 }
 @keyframes svc-flow {
-  0% { left: 0%; background: var(--blue); box-shadow: 0 0 0 4px rgba(29, 40, 255, 0.14); }
+  0% { left: 12px; background: var(--blue); box-shadow: 0 0 0 4px rgba(29, 40, 255, 0.14); }
   34% { background: var(--red); box-shadow: 0 0 0 4px rgba(255, 30, 29, 0.12); }
   67% { background: var(--green); box-shadow: 0 0 0 4px rgba(43, 217, 38, 0.12); }
-  100% { left: calc(100% - 10px); background: var(--blue); box-shadow: 0 0 0 4px rgba(29, 40, 255, 0.14); }
+  100% { left: calc(75% + 12px); background: var(--blue); box-shadow: 0 0 0 4px rgba(29, 40, 255, 0.14); }
 }
 .svc-process .svc-step-dot { background: var(--paper); position: relative; z-index: 2; }
 @media (prefers-reduced-motion: reduce) {
-  .svc-process::after { animation: none; left: calc(100% - 10px); }
+  .svc-process::after { animation: none; left: calc(75% + 12px); }
 }
 @media (max-width: 980px) {
   .svc-process::before, .svc-process::after { display: none; }
