@@ -1,0 +1,8 @@
+# Local-only tooling and review artifacts never ship to Vercel.
+.impeccable
+scripts
+.data
+site
+*.md
+!README.md
+.DS_Store
