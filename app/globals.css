@@ -67,6 +67,10 @@ html {
   overflow-anchor: none;
   scroll-padding-top: 88px;
   -webkit-text-size-adjust: 100%;
+  /* stop iOS overscroll from revealing space past the footer; if any
+     bounce survives on older iPhones it shows the footer ink, not white */
+  overscroll-behavior-y: none;
+  background: #0b0b0e;
 }
 
 body {
