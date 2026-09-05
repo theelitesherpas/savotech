@@ -30,12 +30,12 @@ export default function ScrollManager() {
     html.style.scrollBehavior = "auto";
     html.style.overflowAnchor = "none";
 
-    let frames = 0;
+    const deadline = performance.now() + 650; // assert top for ~650ms, time bounded
     let cancelled = false;
     const jump = () => {
       if (cancelled) return;
       if (window.scrollY > 0) window.scrollTo(0, 0);
-      if (++frames < 40) requestAnimationFrame(jump); // keep asserting ~600ms
+      if (performance.now() < deadline) requestAnimationFrame(jump);
     };
     requestAnimationFrame(jump);
 
