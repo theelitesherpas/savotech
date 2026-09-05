@@ -523,6 +523,8 @@ textarea { resize: vertical; }
 .mobile-acc .caret { width: 14px; height: 14px; transition: transform 0.2s ease; }
 .mobile-acc[aria-expanded="true"] .caret { transform: rotate(180deg); }
 .mobile-sub { overflow: hidden; }
+.mobile-sub[hidden] { display: none; }
+.mobile-nav { z-index: 90; }
 .mobile-sub a {
   display: flex;
   align-items: center;
@@ -4045,3 +4047,8 @@ textarea { resize: vertical; }
   font-weight: 700;
   letter-spacing: -0.028em;
 }
+
+/* mobile menu: guaranteed tap targets on every device */
+.mobile-nav > ul > li > a,
+.mobile-acc { min-height: 52px; }
+.mobile-sub a { min-height: 48px; }
