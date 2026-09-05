@@ -189,10 +189,12 @@ export default function ContactPage() {
                     <img src={`${BP}/team/${m.img}`} alt={`${m.n}, ${m.r} at Savo Technologies`} loading="lazy" />
                     <span className="team-photo-ring" aria-hidden="true" />
                   </div>
-                  <h3>{m.n}</h3>
-                  <p className="team-role">{m.r}</p>
-                  <p className="team-bio">{m.d}</p>
-                  <div className="team-socials">
+                  <div className="about-leader-head">
+                    <div>
+                      <h3>{m.n}</h3>
+                      <p className="team-role">{m.r}</p>
+                    </div>
+                    <div className="team-socials">
                     <a
                       className="ts-btn ts-in"
                       href={`https://www.linkedin.com/in/${m.in}`}
@@ -210,7 +212,9 @@ export default function ContactPage() {
                         <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
                       </svg>
                     </a>
+                    </div>
                   </div>
+                  <p className="team-bio">{m.d}</p>
                 </article>
               </Reveal>
             ))}

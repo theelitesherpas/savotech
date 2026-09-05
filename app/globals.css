@@ -3161,12 +3161,9 @@ html.rjs .reveal.in { opacity: 1; transform: none; }
   border-radius: var(--r-md);
   pointer-events: none;
 }
-.team-card h3,
-.team-card .team-role,
-.team-card .team-bio,
-.team-card .team-socials { margin-inline: 1.4rem; }
-.team-card h3 { margin-top: 1.1rem; }
-.team-card .team-socials { margin-bottom: 1.35rem; }
+.team-card .about-leader-head { margin: 1.1rem 1.4rem 0; align-items: center; justify-self: stretch; }
+.team-card .team-bio { margin-inline: 1.4rem; }
+.team-card .team-socials { margin: 0 0 1.35rem; }
 
 /* featured work: 2x2 grid of large cards */
 .work-grid-featured { grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
@@ -4455,3 +4452,7 @@ html.rjs .cs-card { animation: cs-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
   .about-leaders { grid-template-columns: 1fr; }
   .about-stats-row { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* contact team cards share the leader head row (icons beside name) */
+.team-card .about-leader-head h3,
+.team-card .about-leader-head .team-role { margin-inline: 0; }
