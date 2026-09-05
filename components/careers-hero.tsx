@@ -17,14 +17,6 @@ export default function CareersHero() {
             rails, AI agents in production. Small teams, genuine ownership, remote first
             across India.
           </p>
-          <div className="careers-hero-ctas">
-            <Link className="btn btn-primary btn-lg" href="#openings">
-              See open roles
-            </Link>
-            <Link className="btn btn-ghost btn-lg" href="mailto:careers@savotechnologies.com">
-              Write to us
-            </Link>
-          </div>
           <ul className="careers-hero-facts careers-hero-facts-row" aria-label="At a glance">
             <li>
               <strong>6</strong>
