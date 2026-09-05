@@ -19,7 +19,7 @@ export default function CaseStudiesGrid() {
 
   /* editorial rhythm: two big, one full width banner, a half, a stacked
      pair and a tall portrait, then a calm row of four, closing wide */
-  const RHYTHM = ["big", "big", "banner", "half", "tall", "small", "small", "half", "small", "small", "tall", "wide"] as const;
+  const RHYTHM = ["big", "big", "banner", "half", "tall", "small", "small", "half", "tall", "small", "small", "big", "big"] as const;
   const sizeOf = (i: number) => RHYTHM[i % RHYTHM.length];
 
   return (

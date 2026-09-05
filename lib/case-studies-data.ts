@@ -31,4 +31,5 @@ export const CASE_STUDIES: CaseStudy[] = [
   { name: "Manama Pay", cat: "mobile", img: "/work/manama.jpg", tech: ["React Native", "Plaid", "AWS"], stat: "120k downloads year one", meta: "Payments app · FinTech · Manama" },
   { name: "GreenGrid", cat: "web", img: "/work/greengrid.jpg", tech: ["React", "TimescaleDB", "Grafana"], stat: "31% energy insights gain", meta: "Grid dashboard · Energy · Ahmedabad" },
   { name: "Studio Kavya", cat: "brand", img: "/work/kavya.jpg", tech: ["Figma", "Illustrator", "Rive"], stat: "Identity + motion system", meta: "Brand identity · Fashion · Mumbai" },
+  { name: "Halcyon Travels", cat: "web", img: "/work/halcyon.jpg", tech: ["Next.js", "Node.js", "Stripe"], stat: "2.1x bookings growth", meta: "Booking platform · Travel · Jaipur" },
 ];
