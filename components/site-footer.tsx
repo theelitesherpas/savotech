@@ -142,7 +142,7 @@ export default function SiteFooter() {
               {QUICK_LINKS.map(([t, href]) => (
                 <li key={t}>
                   {href.startsWith("/#") ? (
-                    <a href={href}>{t.replace(" (PRO)", "")}{t.includes("PRO") && <> <span className="pro-badge">PRO</span></>}</a>
+                    <Link href={href}>{t.replace(" (PRO)", "")}{t.includes("PRO") && <> <span className="pro-badge">PRO</span></>}</Link>
                   ) : (
                     <Link href={href}>{t}</Link>
                   )}

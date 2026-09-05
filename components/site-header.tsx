@@ -439,18 +439,18 @@ export default function SiteHeader() {
                 <ul className="mobile-sub" hidden={openAcc !== n.label}>
                   {n.children.map(([label, href]) => (
                     <li key={label}>
-                      <a href={href} onClick={() => setMobileOpen(false)}>
+                      <Link href={href} onClick={() => setMobileOpen(false)}>
                         {label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
               </li>
             ) : (
               <li key={n.label}>
-                <a href={n.href} onClick={() => setMobileOpen(false)}>
+                <Link href={n.href} onClick={() => setMobileOpen(false)}>
                   {n.label}
-                </a>
+                </Link>
               </li>
             )
           )}
