@@ -4179,3 +4179,54 @@ textarea { resize: vertical; }
 .cs-cta-ink h2 { color: #fff; }
 .cs-cta-ink p { color: var(--muted-light); }
 .cs-cta-ink .btn-ghost { border-color: rgba(255, 255, 255, 0.45); color: #fff; }
+
+/* case studies hero: dark, spacious, giant outlined numeral */
+.cs-hero { padding-top: calc(76px + clamp(2.5rem, 6vw, 4.5rem)); padding-bottom: clamp(2.5rem, 5vw, 4rem); }
+.cs-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+.cs-hero .page-kicker { color: var(--muted-light); }
+.cs-hero h1 {
+  color: #fff;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  max-width: 13ch;
+}
+.cs-hero .lead { color: var(--muted-light); max-width: 46ch; margin-top: 1.2rem; font-size: 1.02rem; }
+.cs-hero .svc-hire-ctas { margin-top: 2rem; }
+.cs-hero .btn-ghost { border-color: rgba(255, 255, 255, 0.45); color: #fff; }
+.cs-hero-num-wrap {
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+}
+.cs-hero-num {
+  font-size: clamp(9rem, 20vw, 17rem);
+  font-weight: 800;
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.28);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.cs-hero-num-label {
+  color: var(--muted-light);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+}
+.cs-hero .hh-facts { margin-top: clamp(2.2rem, 5vw, 3.6rem); }
+
+/* more spacious bento */
+.cs-grid { gap: 1.4rem; grid-auto-rows: 285px; }
+.cs-body { left: 1.25rem; right: 1.25rem; bottom: 1.15rem; }
+.cs-cat { top: 1.05rem; left: 1.05rem; }
+
+@media (max-width: 1100px) {
+  .cs-grid { grid-auto-rows: 250px; }
+  .cs-hero-grid { grid-template-columns: 1fr; }
+  .cs-hero-num-wrap { display: none; }
+}
