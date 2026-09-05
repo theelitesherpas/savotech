@@ -64,6 +64,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-anchor: none;
   scroll-padding-top: 88px;
   -webkit-text-size-adjust: 100%;
 }

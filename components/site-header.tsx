@@ -89,13 +89,13 @@ const NAV: NavItem[] = [
   },
   {
     label: "Hire Resources",
-    href: "/#hire",
+    href: "/hire/",
     feature: {
       icon: F.hire,
       t: "A senior dev in your standup within 2 weeks",
       d: "Vetted engineers, transparent INR monthly rates and a two week trial on every engagement.",
       cta: "See roles and rates",
-      href: "/#hire",
+      href: "/hire/",
     },
     children: [
       ["AI & ML Engineers", "/hire/ai-ml-engineers/"],
@@ -122,7 +122,11 @@ const NAV: NavItem[] = [
       ["Ecommerce & Retail", "/industries/ecommerce/"],
       ["Real Estate", "/industries/real-estate/"],
       ["Logistics & Supply Chain", "/industries/logistics/"],
-      ["Energy & Utilities", "/industries/"],
+      ["Education & EdTech", "/industries/education/"],
+      ["Travel & Hospitality", "/industries/travel/"],
+      ["Manufacturing & 4.0", "/industries/manufacturing/"],
+      ["Government", "/industries/government/"],
+      ["Energy & Utilities", "/industries/energy/"],
     ],
   },
   { label: "Case Study", href: "/case-studies/" },
