@@ -17,6 +17,11 @@ export default function CaseStudiesGrid() {
   const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const visible = CASE_STUDIES.filter((c) => filter === "all" || c.cat === filter);
 
+  /* editorial rhythm: two big, one full width banner, a half, a stacked
+     pair and a tall portrait, then a calm row of four, closing wide */
+  const RHYTHM = ["big", "big", "banner", "half", "small", "small", "tall", "small", "small", "small", "small", "wide"] as const;
+  const sizeOf = (i: number) => RHYTHM[i % RHYTHM.length];
+
   return (
     <>
       <div className="cs-filters" role="tablist" aria-label="Filter case studies">
@@ -36,7 +41,7 @@ export default function CaseStudiesGrid() {
 
       <div className="cs-grid" key={filter}>
         {visible.map((c, i) => (
-          <article key={c.name} className={`cs-card${c.big ? " is-big" : ""}`} style={{ animationDelay: `${0.04 * (i % 6)}s` }}>
+          <article key={c.name} className={`cs-card is-${sizeOf(i)}`} style={{ animationDelay: `${0.04 * (i % 6)}s` }}>
             <img src={`${BP}${c.img}`} alt={`${c.name}: ${CAT_LABEL[c.cat].toLowerCase()} project`} loading="lazy" />
             <span className="cs-veil" aria-hidden="true" />
             <span className={`cs-cat c-${c.cat}`}>{CAT_LABEL[c.cat]}</span>
