@@ -37,7 +37,7 @@ export default function CaseStudiesPage() {
               </Reveal>
             </div>
             <Reveal delay={0.1} className="cs-hero-num-wrap" aria-hidden="true">
-              <span className="cs-hero-num">12</span>
+              <span className="cs-hero-num big">12</span>
               <span className="cs-hero-num-label">flagship engagements shipped</span>
             </Reveal>
           </div>

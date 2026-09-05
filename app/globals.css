@@ -4038,6 +4038,7 @@ textarea { resize: vertical; }
 /* cs-hero shared by case studies, services and hire pages */
 .cs-hero .page-kicker a { color: #9fb0ff; }
 .cs-hero .cs-hero-num-wrap { min-width: 0; }
+.cs-hero .cs-hero-num.big { font-size: clamp(9rem, 20vw, 17rem); }
 .cs-hero .cs-hero-num.sm { font-size: clamp(5.5rem, 12vw, 9rem); }
 .cs-hero .cs-hero-num.xs { font-size: clamp(4rem, 9vw, 6.5rem); letter-spacing: -0.01em; }
 @media (max-width: 1100px) {
