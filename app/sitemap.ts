@@ -41,11 +41,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
-    ...["healthcare", "fintech", "ecommerce", "logistics", "real-estate", "education"].map((slug) => ({
+    ...["healthcare", "fintech", "ecommerce", "logistics", "real-estate", "education", "travel", "manufacturing", "government", "energy"].map((slug) => ({
       url: ORIGIN + "/industries/" + slug + "/",
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
+    })),
+    ...["custom-software", "digital-marketing", "qa-testing", "product-engineering"].map((slug) => ({
+      url: ORIGIN + "/services/" + slug + "/",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...["about", "resources", "hire", "privacy", "terms"].map((slug) => ({
+      url: ORIGIN + "/" + slug + "/",
+      lastModified: new Date(),
+      changeFrequency: slug === "resources" ? ("weekly" as const) : ("monthly" as const),
+      priority: 0.7,
     })),
     ...["case-studies"].map((slug) => ({
       url: ORIGIN + "/" + slug + "/",

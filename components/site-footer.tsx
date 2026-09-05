@@ -39,7 +39,7 @@ const COMPANY_LINKS = [
 
 const QUICK_LINKS = [
   ["Client Login", "/portal/"],
-  ["Hire Developers", "/#hire"],
+  ["Hire Developers", "/hire/"],
   ["AI Agents (PRO)", "/ai-agents/"],
   ["Get a Quote", "/start-your-project/"],
   ["Ask Savo Assistant", "/#ask-savo"],

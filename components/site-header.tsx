@@ -81,6 +81,10 @@ const NAV: NavItem[] = [
       ["UI/UX Design", "/services/ui-ux/"],
       ["Cloud & DevOps", "/services/cloud-devops/"],
       ["Data & Analytics", "/services/data-analytics/"],
+      ["Custom Software", "/services/custom-software/"],
+      ["Product Engineering", "/services/product-engineering/"],
+      ["QA & Testing", "/services/qa-testing/"],
+      ["Digital Marketing & SEO", "/services/digital-marketing/"],
     ],
   },
   {

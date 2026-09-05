@@ -586,6 +586,256 @@ export const SERVICES: ServicePage[] = [
       ],
     },
   },
+  {
+    slug: "custom-software",
+    title: "Custom Software Development",
+    kicker: "Service",
+    tagline: "Software shaped to your operations, not the other way round.",
+    intro: [
+      "When off the shelf tools fight your workflow, we build the software your business actually runs on: ERPs, internal platforms, portals and the integrations that glue them together.",
+      "Eleven years of custom builds across logistics, manufacturing and finance means we model your domain before we write a line of code.",
+    ],
+    stats: [
+      { v: "60+", l: "custom systems shipped" },
+      { v: "11 yrs", l: "average lead experience" },
+      { v: "0", l: "orphaned handovers" },
+    ],
+    deliverables: [
+      { t: "Internal platforms", d: "Operations dashboards and workflow tools your team adopts without a mandate." },
+      { t: "ERP and CRM builds", d: "Systems shaped to your process, with the reports your leadership actually reads." },
+      { t: "Legacy modernization", d: "Incremental migrations off brittle systems without freezing the business." },
+      { t: "Integrations layer", d: "One clean API surface over the tools you already pay for." },
+    ],
+    process: [
+      { t: "Domain modelling", d: "We sit with your operators and map the real process, not the org chart version." },
+      { t: "Architecture blueprint", d: "A written plan with milestones, risks and costs you can hold us to." },
+      { t: "Build in slices", d: "Every sprint ends with working software in front of real users." },
+      { t: "Own it forever", d: "Your code, your cloud, your documentation. We stay on support only if you want us." },
+    ],
+    stack: [
+      { n: "TypeScript", i: "ts" }, { n: "Node.js", i: "node" }, { n: "PostgreSQL", i: "postgres" },
+      { n: "React", i: "react" }, { n: "Next.js", i: "next" }, { n: "AWS", i: "aws" },
+      { n: "GraphQL", i: "graphql" }, { n: "Redis", i: "redis" },
+    ],
+    tech: ["TypeScript", "Node.js", "PostgreSQL", "React", "Next.js", "GraphQL", "Redis", "Prisma", "Docker", "AWS", "Terraform"],
+    portfolioCat: "web",
+    portfolio: [
+      { name: "RideLink", meta: "Fleet platform · Australia", img: "/work/ridelink.jpg", stat: "12k vehicles tracked" },
+      { name: "GreenGrid", meta: "Grid analytics · Energy", img: "/work/greengrid.jpg", stat: "31% insight gain" },
+      { name: "Halcyon Travels", meta: "Booking platform · Jaipur", img: "/work/halcyon.jpg", stat: "2.1x bookings growth" },
+    ],
+    roles: [
+      { t: "Backend Engineer (Node.js)", rate: 90000 },
+      { t: "Full Stack Engineer", rate: 95000 },
+      { t: "Solutions Architect", rate: 130000 },
+    ],
+    faqs: [
+      { q: "Build vs buy, honestly?", a: "We have talked clients out of custom builds when SaaS fit. If your process is the product, custom wins. If it is commodity, we say so in week one." },
+      { q: "How do you handle legacy code?", a: "Audit first, then incremental strangler migrations with parallel running. No big bang rewrites, ever." },
+      { q: "Who maintains the system?", a: "You do, with full documentation and handover, or we do under a support contract. Both paths are priced transparently upfront." },
+      { q: "What does a custom platform cost?", a: "Internal tools start around ₹8L; complex operational platforms run ₹25L to ₹60L. The calculator below tailors a range in a minute." },
+    ],
+    knowledge: [
+      { t: "Strangler migrations that stick", d: "Moving off legacy without freezing product work.", time: "9 min read" },
+      { t: "The domain modelling week", d: "What we learn sitting with your operators before writing code.", time: "7 min read" },
+      { t: "Build vs buy: the honest matrix", d: "Six questions that settle it for most teams.", time: "6 min read" },
+    ],
+    calc: {
+      base: [150000, 400000],
+      opts: [
+        { label: "System size", items: [["Internal tool", 0.4, 0.6], ["Department platform", 1, 1.3], ["Company wide system", 4, 7]] },
+        { label: "Integrations", items: [["Standalone", 0.9, 0.95], ["A few tools", 1, 1.15], ["Deep ERP or legacy", 1.35, 1.55]] },
+        { label: "Timeline", items: [["Flexible", 0.9, 0.95], ["Standard", 1, 1], ["Urgent", 1.2, 1.35]] },
+      ],
+    },
+  },
+  {
+    slug: "digital-marketing",
+    title: "Digital Marketing & SEO",
+    kicker: "Service",
+    tagline: "Growth engineering, not guesswork.",
+    intro: [
+      "Technical SEO, performance marketing and analytics wired to the platforms we build, so every rupee of spend is measurable from click to closed deal.",
+      "We market software for a living: landing systems, programmatic SEO and funnels built by engineers, measured by dashboards your CFO can read.",
+    ],
+    stats: [
+      { v: "4.2x", l: "best paid ROAS" },
+      { v: "312%", l: "median organic growth" },
+      { v: "98", l: "avg Lighthouse score" },
+    ],
+    deliverables: [
+      { t: "Technical SEO", d: "Core Web Vitals, schema, crawl architecture and content systems that compound." },
+      { t: "Performance marketing", d: "Search and social campaigns with landing pages engineered to convert." },
+      { t: "Analytics and attribution", d: "Server side tracking and dashboards that survive privacy changes." },
+      { t: "Programmatic SEO", d: "Template driven pages that capture long tail demand at software speed." },
+    ],
+    process: [
+      { t: "Audit and baseline", d: "Technical, content and competitor audit with honest numbers on the table." },
+      { t: "Fix the foundation", d: "Speed, schema and crawl issues resolved in weeks, not quarters." },
+      { t: "Compound content", d: "Systems that publish, measure and iterate without manual bottlenecks." },
+      { t: "Report like engineers", d: "Attribution dashboards tied to revenue, refreshed automatically." },
+    ],
+    stack: [
+      { n: "Next.js", i: "next" }, { n: "React", i: "react" }, { n: "Node.js", i: "node" },
+      { n: "PostgreSQL", i: "postgres" }, { n: "Python", i: "python" }, { n: "AWS", i: "aws" },
+    ],
+    tech: ["Next.js", "React", "Node.js", "PostgreSQL", "Python", "GA4", "Search Console API", "Looker Studio", "Ahrefs", "AWS"],
+    portfolioCat: "web",
+    portfolio: [
+      { name: "Nexora Retail", meta: "Ecommerce growth · Bengaluru", img: "/work/nexora.jpg", stat: "3.2x conversion lift" },
+      { name: "Halcyon Travels", meta: "Booking growth · Jaipur", img: "/work/halcyon.jpg", stat: "2.1x bookings growth" },
+      { name: "Atlas Properties", meta: "Lead capture · Mumbai", img: "/work/kavya.jpg", stat: "2.4x site visits" },
+    ],
+    roles: [
+      { t: "SEO Engineer", rate: 70000 },
+      { t: "Growth Marketer", rate: 75000 },
+      { t: "Analytics Engineer", rate: 85000 },
+    ],
+    faqs: [
+      { q: "How fast do results come?", a: "Technical fixes show in weeks, compounding organic growth takes two to three quarters, paid shows in days. We report all three separately and honestly." },
+      { q: "Do you do social media management?", a: "We do performance social, not community management. Our strength is funnels and measurement, not posting calendars." },
+      { q: "Why engineers for marketing?", a: "Because modern SEO is site architecture, speed and structured data. Our landing pages ship at 98 Lighthouse and rank for it." },
+      { q: "What does an engagement cost?", a: "Technical SEO foundations start around ₹3L; full growth programs run ₹1.5L to ₹4L monthly. The calculator below breaks it down." },
+    ],
+    knowledge: [
+      { t: "SEO for Next.js sites in 2026", d: "Rendering, metadata and structured data done right.", time: "8 min read" },
+      { t: "Attribution without third party cookies", d: "Server side tracking that survives privacy rules.", time: "9 min read" },
+      { t: "Programmatic SEO playbooks", d: "When template pages win and when they spam.", time: "7 min read" },
+    ],
+    calc: {
+      base: [60000, 150000],
+      opts: [
+        { label: "Scope", items: [["Technical SEO only", 0.5, 0.7], ["SEO plus content", 1, 1.2], ["Full growth program", 2.2, 3]] },
+        { label: "Ad spend managed", items: [["Under ₹5L monthly", 0.9, 1], ["₹5L to ₹20L monthly", 1.1, 1.25], ["Above ₹20L monthly", 1.3, 1.5]] },
+        { label: "Timeline", items: [["Quarterly", 0.95, 1], ["Ongoing", 1, 1], ["Sprint", 1.15, 1.3]] },
+      ],
+    },
+  },
+  {
+    slug: "qa-testing",
+    title: "QA & Testing",
+    kicker: "Service",
+    tagline: "Ship fast without shipping bugs.",
+    intro: [
+      "Automated test suites, CI gates and performance harnesses that catch regressions before your users do, built into every pipeline we touch.",
+      "We do QA the engineering way: coverage you can measure, flaky tests hunted to extinction, and release gates your team actually trusts.",
+    ],
+    stats: [
+      { v: "94%", l: "defects caught pre-release" },
+      { v: "12 min", l: "median CI suite time" },
+      { v: "500+", l: "automated suites shipped" },
+    ],
+    deliverables: [
+      { t: "End to end automation", d: "Playwright and Appium suites that run on every pull request." },
+      { t: "API and contract tests", d: "Integration coverage that catches breaking changes before they deploy." },
+      { t: "Performance testing", d: "Load and soak tests with the same budgets we ship in production." },
+      { t: "Release engineering", d: "CI/CD pipelines with quality gates, canaries and instant rollbacks." },
+    ],
+    process: [
+      { t: "Audit current coverage", d: "What is tested, what is pretended to be, and what is silently broken." },
+      { t: "Build the harness", d: "Deterministic suites with seeded data and zero flake tolerance." },
+      { t: "Wire the gates", d: "Every merge runs the suite; every release needs the green light." },
+      { t: "Hunt continuously", d: "Flaky tests are quarantined and killed within a sprint, not tolerated." },
+    ],
+    stack: [
+      { n: "TypeScript", i: "ts" }, { n: "Node.js", i: "node" }, { n: "Docker", i: "docker" },
+      { n: "AWS", i: "aws" }, { n: "PostgreSQL", i: "postgres" }, { n: "Python", i: "python" },
+    ],
+    tech: ["Playwright", "Cypress", "Appium", "k6", "Jest", "Vitest", "Pact", "GitHub Actions", "Docker", "AWS"],
+    portfolioCat: "web",
+    portfolio: [
+      { name: "GulfPay", meta: "Release gates · GCC wallet", img: "/work/gulfpay.jpg", stat: "PCI DSS ready" },
+      { name: "MediBridge Health", meta: "Regression suites · Healthcare", img: "/work/medibridge.jpg", stat: "99.98% uptime" },
+      { name: "EduSpring", meta: "Load testing · EdTech", img: "/work/eduspring.jpg", stat: "200k students" },
+    ],
+    roles: [
+      { t: "QA Automation Engineer", rate: 60000 },
+      { t: "SDET", rate: 85000 },
+      { t: "Performance Engineer", rate: 95000 },
+    ],
+    faqs: [
+      { q: "Manual or automated first?", a: "Automated for anything repetitive, exploratory manual testing for anything new. We build both into one plan." },
+      { q: "Our suites are flaky. Can you fix that?", a: "That is most of our QA work. Deterministic data, proper waits and quarantine discipline typically get suites from 70% to 99% green in weeks." },
+      { q: "Do you test mobile apps?", a: "Yes, Appium suites across real device clouds for both platforms, wired into the same CI gates." },
+      { q: "What does a QA engagement cost?", a: "Suite builds start around ₹4L; ongoing QA programs run ₹80k to ₹2L monthly. The calculator tailors it below." },
+    ],
+    knowledge: [
+      { t: "Killing flaky tests for good", d: "The quarantine discipline that saves CI sanity.", time: "7 min read" },
+      { t: "Performance budgets in CI", d: "Making speed a merge gate, not a wish.", time: "6 min read" },
+      { t: "Contract testing microservices", d: "Catching breaking changes before deploy day.", time: "9 min read" },
+    ],
+    calc: {
+      base: [80000, 200000],
+      opts: [
+        { label: "Coverage", items: [["Critical paths", 0.6, 0.8], ["Full regression", 1, 1.2], ["Everything incl. perf", 2, 2.6]] },
+        { label: "Platforms", items: [["Web only", 0.9, 1], ["Web and mobile", 1.15, 1.3], ["Web, mobile and APIs", 1.35, 1.5]] },
+        { label: "Timeline", items: [["Flexible", 0.9, 0.95], ["Standard", 1, 1], ["Urgent", 1.2, 1.35]] },
+      ],
+    },
+  },
+  {
+    slug: "product-engineering",
+    title: "Product Engineering",
+    kicker: "Service",
+    tagline: "From napkin sketch to product in users hands.",
+    intro: [
+      "Full product teams that own discovery, design, engineering and iteration as one unit, for founders and companies shipping something new.",
+      "We have taken 30 products from zero to first revenue. The playbook is boring on purpose: validate, build thin, measure, repeat.",
+    ],
+    stats: [
+      { v: "30+", l: "products launched" },
+      { v: "8 wks", l: "typical MVP runway" },
+      { v: "1 team", l: "design, build, ship" },
+    ],
+    deliverables: [
+      { t: "Discovery sprints", d: "Two weeks to test the riskiest assumption before committing to build." },
+      { t: "MVP engineering", d: "The thin product that reaches real users in eight to twelve weeks." },
+      { t: "Product design", d: "Research, flows and interfaces users finish onboarding on." },
+      { t: "Iteration retainers", d: "Weekly releases driven by usage data, not opinion." },
+    ],
+    process: [
+      { t: "Validate the risk", d: "Find the assumption that kills the product and test it first." },
+      { t: "Design the thin slice", d: "The smallest lovable product, scoped in user stories you can read." },
+      { t: "Build and launch", d: "Weekly demos, staging from week two, launch in the app stores or web." },
+      { t: "Iterate on data", d: "Instrumented funnels decide what ships next, every single week." },
+    ],
+    stack: [
+      { n: "React", i: "react" }, { n: "Next.js", i: "next" }, { n: "TypeScript", i: "ts" },
+      { n: "Flutter", i: "flutter" }, { n: "Node.js", i: "node" }, { n: "PostgreSQL", i: "postgres" },
+      { n: "Firebase", i: "firebase" }, { n: "AWS", i: "aws" },
+    ],
+    tech: ["React", "Next.js", "TypeScript", "Flutter", "Node.js", "PostgreSQL", "Firebase", "Mixpanel", "Stripe", "AWS"],
+    portfolioCat: "web",
+    portfolio: [
+      { name: "Sahm AI Support Desk", meta: "Zero to launch · Telecom", img: "/work/sahm.jpg", stat: "70% tickets deflected" },
+      { name: "EduSpring", meta: "MVP to scale · EdTech", img: "/work/eduspring.jpg", stat: "200k students" },
+      { name: "ClearLedger", meta: "Product build · UK", img: "/work/clearledger.jpg", stat: "Open banking ready" },
+    ],
+    roles: [
+      { t: "Product Engineer", rate: 95000 },
+      { t: "Product Designer", rate: 80000 },
+      { t: "Tech Lead", rate: 140000 },
+    ],
+    faqs: [
+      { q: "Do you work with non-technical founders?", a: "Most of our product clients are domain experts, not engineers. We translate in plain language and own the technical decisions transparently." },
+      { q: "What is in an MVP?", a: "One core journey done exceptionally well, analytics from day one, and everything else deliberately left out. The scope document says no a lot." },
+      { q: "Who owns the product after launch?", a: "You do, fully. Most clients continue with iteration retainers, some take it in house with our handover. Both are clean exits." },
+      { q: "What does an MVP cost?", a: "Discovery is a fixed ₹2.5L. MVPs run ₹12L to ₹35L depending on platform. The calculator gives a tailored range below." },
+    ],
+    knowledge: [
+      { t: "The two week validation sprint", d: "How we test the riskiest assumption first.", time: "8 min read" },
+      { t: "MVP scoping: the art of no", d: "What we leave out and why users thank us.", time: "6 min read" },
+      { t: "Instrumenting from commit one", d: "Analytics decisions that pay off at launch.", time: "7 min read" },
+    ],
+    calc: {
+      base: [200000, 450000],
+      opts: [
+        { label: "Product stage", items: [["Validated idea", 0.6, 0.8], ["MVP build", 1, 1.2], ["Scaling product", 3, 5]] },
+        { label: "Platforms", items: [["Web only", 0.9, 1], ["Web and mobile", 1.25, 1.4], ["Plus integrations", 1.4, 1.6]] },
+        { label: "Timeline", items: [["Flexible", 0.9, 0.95], ["Standard", 1, 1], ["Urgent", 1.2, 1.35]] },
+      ],
+    },
+  },
 ];
 
 export const CLIENT_QUOTES = [
@@ -608,6 +858,8 @@ export const CLIENT_QUOTES = [
     img: "/team/client3.jpg",
   },
 ];
+
+
 
 export function getService(slug: string) {
   return SERVICES.find((s) => s.slug === slug);
