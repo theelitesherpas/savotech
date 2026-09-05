@@ -92,6 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${pjs.variable}`}>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: "try{document.documentElement.classList.add('rjs')}catch(e){}" }} />
         <CurrencyProvider>
         {/* DIRECTION CONTRACT
         THESIS: A Swiss-light engineering identity: white ground, black type, and a pure
