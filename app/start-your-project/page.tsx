@@ -58,21 +58,33 @@ const GUARANTEES = [
 export default function StartYourProjectPage() {
   return (
     <>
-      <section className="section section-light start-hero">
+      {/* ---------- hero: dark, spacious, giant numeral (case studies style) ---------- */}
+      <section className="section section-dark cs-hero">
         <div className="wrap">
-          <div className="section-head" style={{ marginBottom: "2.5rem" }}>
-            <Reveal>
-              <p className="page-kicker">Start Your Project</p>
-              <h1>Tell us what you are building.</h1>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="lead">
-                One brief is all it takes: scope, timeline and transparent INR pricing,
-                before any commitment.
-              </p>
+          <div className="cs-hero-grid">
+            <div className="cs-hero-copy">
+              <Reveal>
+                <p className="page-kicker">Start Your Project</p>
+                <h1>Tell us what you are building.</h1>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <p className="lead">
+                  One brief is all it takes: scope, timeline and transparent INR pricing,
+                  before any commitment.
+                </p>
+              </Reveal>
+            </div>
+            <Reveal delay={0.1} className="cs-hero-num-wrap" aria-hidden="true">
+              <span className="cs-hero-num lt">2min</span>
+              <span className="cs-hero-num-label">to send the brief, nothing binding</span>
             </Reveal>
           </div>
+        </div>
+      </section>
 
+      {/* ---------- guarantees on paper ---------- */}
+      <section className="section section-alt">
+        <div className="wrap">
           <Reveal delay={0.12}>
             <div className="guarantee-grid">
               {GUARANTEES.map((g, i) => (
@@ -83,7 +95,12 @@ export default function StartYourProjectPage() {
               ))}
             </div>
           </Reveal>
+        </div>
+      </section>
 
+      {/* ---------- brief + aside: white, same kit as contact ---------- */}
+      <section className="section section-light contact-form-section">
+        <div className="wrap">
           <Reveal delay={0.1}>
             <div className="start-grid">
               <div className="start-card">
