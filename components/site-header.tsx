@@ -121,24 +121,7 @@ const NAV: NavItem[] = [
       ["Energy & Utilities", "/#industries"],
     ],
   },
-  {
-    label: "Case Study",
-    href: "/case-studies/",
-    flip: true,
-    feature: {
-      icon: F.work,
-      t: "Proof, not promises",
-      d: "Six flagship case studies with numbers you can verify, from health tech to fintech.",
-      cta: "Browse featured work",
-      href: "/#work",
-    },
-    children: [
-      ["MediBridge Health", "/#work"],
-      ["GulfPay", "/#work"],
-      ["Sahm AI Support Desk", "/#work"],
-      ["RideLink", "/#work"],
-    ],
-  },
+  { label: "Case Study", href: "/case-studies/" },
   { label: "Careers", href: "/careers/" },
   { label: "Contact Us", href: "/contact/" },
 ];
