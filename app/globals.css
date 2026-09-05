@@ -3971,6 +3971,30 @@ textarea { resize: vertical; }
   .plan-cycle { flex-wrap: wrap; }
 }
 
+/* at a glance facts strip (base) */
+.hh-facts {
+  list-style: none;
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(1.8rem, 4vw, 3rem);
+  background: var(--ink);
+  border-radius: var(--r-lg);
+  padding: 1.3rem clamp(1.2rem, 3vw, 2.2rem);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem clamp(1.8rem, 4vw, 3.6rem);
+}
+.hh-fact { display: flex; align-items: baseline; gap: 0.7rem; }
+.hh-fact strong { color: #fff; font-size: 1.45rem; font-weight: 800; }
+.hh-fact span { color: var(--muted-light); font-size: 0.85rem; }
+.hh-fact.f0 strong { color: #9fb0ff; }
+.hh-fact.f1 strong { color: #ff9f9f; }
+.hh-fact.f2 strong { color: #7ee08a; }
+.hh-fact-cta { margin-left: auto; }
+.hh-fact-cta .btn-ghost-sm { border-color: rgba(255, 255, 255, 0.35); color: #fff; }
+.hh-fact-cta .btn-ghost-sm:hover { border-color: #fff; }
+
 /* case studies hero: dark, spacious, giant outlined numeral */
 .cs-hero { padding-top: calc(76px + clamp(2.5rem, 6vw, 4.5rem)); padding-bottom: clamp(2.5rem, 5vw, 4rem); }
 .cs-hero-grid {
