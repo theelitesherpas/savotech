@@ -4186,3 +4186,6 @@ html.rjs .cs-card { animation: cs-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
   .cs-card.is-wide .cs-body { display: block; }
   .cs-tech { max-height: 4rem; opacity: 1; }
 }
+
+/* contact hero numeral: "&lt;24h" is 4 glyphs, use the small size */
+.cs-hero .cs-hero-num.lt { font-size: clamp(5.5rem, 12vw, 9rem); }

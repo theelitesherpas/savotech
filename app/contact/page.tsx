@@ -90,21 +90,35 @@ const TEAM = [
 export default function ContactPage() {
   return (
     <>
-      <section className="section section-alt start-hero contact-hero">
+      {/* ---------- hero: dark, spacious, giant numeral (case studies style) ---------- */}
+      <section className="section section-dark cs-hero">
         <div className="wrap">
-          <div className="section-head" style={{ marginBottom: "1.6rem" }}>
-            <Reveal>
-              <p className="page-kicker">Contact Us</p>
-              <h1>Talk to the people who will build it.</h1>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="lead">
-                No gatekeeping, no discovery paywalls. Tell us what you are thinking about and a
-                senior consultant replies within one business day.
-              </p>
+          <div className="cs-hero-grid">
+            <div className="cs-hero-copy">
+              <Reveal>
+                <p className="page-kicker">Contact Us</p>
+                <h1>Talk to the people who will build it.</h1>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <p className="lead">
+                  No gatekeeping, no discovery paywalls. Tell us what you are thinking about
+                  and a senior consultant replies within one business day.
+                </p>
+              </Reveal>
+            </div>
+            <Reveal delay={0.1} className="cs-hero-num-wrap" aria-hidden="true">
+              <span className="cs-hero-num lt">&lt;24h</span>
+              <span className="cs-hero-num-label">first reply, every time</span>
             </Reveal>
           </div>
 
+          <Reveal delay={0.18}>
+            <ul className="hh-facts" aria-label="Contact at a glance">
+              <li className="hh-fact f0"><strong>1 day</strong><span>to a written reply</span></li>
+              <li className="hh-fact f1"><strong>30 min</strong><span>free scoping call</span></li>
+              <li className="hh-fact f2"><strong>NDA</strong><span>before you share anything</span></li>
+            </ul>
+          </Reveal>
         </div>
       </section>
 
