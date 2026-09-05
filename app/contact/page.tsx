@@ -111,14 +111,6 @@ export default function ContactPage() {
               <span className="cs-hero-num-label">first reply, every time</span>
             </Reveal>
           </div>
-
-          <Reveal delay={0.18}>
-            <ul className="hh-facts" aria-label="Contact at a glance">
-              <li className="hh-fact f0"><strong>1 day</strong><span>to a written reply</span></li>
-              <li className="hh-fact f1"><strong>30 min</strong><span>free scoping call</span></li>
-              <li className="hh-fact f2"><strong>NDA</strong><span>before you share anything</span></li>
-            </ul>
-          </Reveal>
         </div>
       </section>
 
