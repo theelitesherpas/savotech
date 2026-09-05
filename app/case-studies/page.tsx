@@ -35,12 +35,6 @@ export default function CaseStudiesPage() {
                   Filter by what you are shopping for.
                 </p>
               </Reveal>
-              <Reveal delay={0.14}>
-                <div className="svc-hire-ctas">
-                  <Link className="btn btn-primary btn-lg" href="#grid">Browse the work</Link>
-                  <Link className="btn btn-ghost btn-lg" href="/start-your-project/">Start yours</Link>
-                </div>
-              </Reveal>
             </div>
             <Reveal delay={0.1} className="cs-hero-num-wrap" aria-hidden="true">
               <span className="cs-hero-num">12</span>

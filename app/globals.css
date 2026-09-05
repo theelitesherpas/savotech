@@ -4230,3 +4230,15 @@ textarea { resize: vertical; }
   .cs-hero-grid { grid-template-columns: 1fr; }
   .cs-hero-num-wrap { display: none; }
 }
+
+/* facts strip on the dark case studies hero: white card so it never melts into the ink */
+.cs-hero .hh-facts {
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lift-lg);
+}
+.cs-hero .hh-fact strong { color: var(--ink); }
+.cs-hero .hh-fact.f0 strong { color: var(--blue-text); }
+.cs-hero .hh-fact.f1 strong { color: var(--red-text); }
+.cs-hero .hh-fact.f2 strong { color: var(--green-text); }
+.cs-hero .hh-fact span { color: var(--muted); }
