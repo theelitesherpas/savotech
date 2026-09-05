@@ -32,17 +32,6 @@ export default function IndustryPageView({ industry }: { industry: Industry }) {
               <span className="cs-hero-num-label">{ind.numeral.l}</span>
             </Reveal>
           </div>
-
-          <Reveal delay={0.18}>
-            <ul className="hh-facts" aria-label={`${ind.title} at a glance`}>
-              {ind.stats.map((s, i) => (
-                <li key={s.l} className={`hh-fact f${i % 3}`}>
-                  <strong>{s.v}</strong>
-                  <span>{s.l}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
         </div>
       </section>
 
