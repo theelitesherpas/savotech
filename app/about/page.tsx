@@ -30,10 +30,10 @@ const VALUES = [
 ];
 
 const LEADERSHIP = [
-  { name: "Arjun Savant", role: "Founder & CEO", bio: "Ex-platform engineer. Still reviews architecture on every project in week one.", img: "/team/1.jpg" },
-  { name: "Meera Kulkarni", role: "VP Engineering", bio: "Runs the delivery standard. Has shipped platforms in all three regions we serve.", img: "/team/2.jpg" },
-  { name: "Rohan Desai", role: "Head of AI", bio: "Built our first production copilot. Believes guardrails are a feature, not a limit.", img: "/team/3.jpg" },
-  { name: "Sara Mathew", role: "Head of Design", bio: "Champions WCAG AA and research led product design across every engagement.", img: "/team/4.jpg" },
+  { name: "Aarav Mehta", role: "Founder & CEO", bio: "Ex fintech architect. Still reviews every proposal personally.", img: "/team/aarav.jpg" },
+  { name: "Priya Nair", role: "Head of Engineering", bio: "Runs the delivery standard. Has shipped platforms in all three regions we serve.", img: "/team/priya.jpg" },
+  { name: "Rohan Desai", role: "Head of AI", bio: "Built our first production copilot. Believes guardrails are a feature, not a limit.", img: "/team/rohan.jpg" },
+  { name: "Sara Khan", role: "Head of Design", bio: "Champions WCAG AA and research led product design across every engagement.", img: "/team/sara.jpg" },
 ];
 
 export default function AboutPage() {

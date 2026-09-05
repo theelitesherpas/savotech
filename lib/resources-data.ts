@@ -45,8 +45,8 @@ export const ARTICLES: Article[] = [
     excerpt: "The exact performance numbers in every Savo web proposal, and how we enforce them in CI.",
     time: "6 min read",
     date: "Jan 2026",
-    author: "Meera Kulkarni",
-    role: "VP Engineering",
+    author: "Priya Nair",
+    role: "Head of Engineering",
     img: "/work/nexora.jpg",
     body: [
       { p: "Speed is a feature users can feel and search engines can measure. Rather than promising performance and hoping, we put numbers in the contract and gates in the pipeline. These are the budgets." },
@@ -93,7 +93,7 @@ export const ARTICLES: Article[] = [
     excerpt: "The questions to ask, the contracts to demand and the warning signs we would flag even about ourselves.",
     time: "7 min read",
     date: "Dec 2025",
-    author: "Arjun Savant",
+    author: "Aarav Mehta",
     role: "Founder & CEO",
     img: "/work/clearledger.jpg",
     body: [
@@ -117,8 +117,8 @@ export const ARTICLES: Article[] = [
     excerpt: "The sync patterns behind field tools with 92% driver retention across 12,000 vehicles.",
     time: "11 min read",
     date: "Dec 2025",
-    author: "Meera Kulkarni",
-    role: "VP Engineering",
+    author: "Priya Nair",
+    role: "Head of Engineering",
     img: "/work/ridelink.jpg",
     body: [
       { p: "Most field apps die in the dead zone. The ones that survive are architected for the network their users actually have, which in logistics and utilities is often no network at all." },
@@ -137,7 +137,7 @@ export const ARTICLES: Article[] = [
     excerpt: "A calmer way to budget software: ranges, milestones and the conversations estimates should trigger.",
     time: "6 min read",
     date: "Nov 2025",
-    author: "Arjun Savant",
+    author: "Aarav Mehta",
     role: "Founder & CEO",
     img: "/work/kavya.jpg",
     body: [
@@ -150,6 +150,18 @@ export const ARTICLES: Article[] = [
     ],
   },
 ];
+
+const AUTHOR_IMG: Record<string, string> = {
+  "Aarav Mehta": "/team/aarav.jpg",
+  "Priya Nair": "/team/priya.jpg",
+  "Rohan Desai": "/team/rohan.jpg",
+  "Sara Khan": "/team/sara.jpg",
+  "Vikram Rao": "/team/vikram.jpg",
+};
+
+export function authorImg(name: string) {
+  return AUTHOR_IMG[name] ?? "/team/aarav.jpg";
+}
 
 export function getArticle(slug: string) {
   return ARTICLES.find((a) => a.slug === slug);

@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/reveal";
-import { ARTICLES, getArticle } from "@/lib/resources-data";
+import { ARTICLES, getArticle, authorImg } from "@/lib/resources-data";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -39,7 +39,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           </Reveal>
           <Reveal delay={0.08}>
             <div className="res-article-byline">
-              <img src={`${BP}/team/1.jpg`} alt="" aria-hidden="true" />
+              <img src={`${BP}${authorImg(a.author)}`} alt="" aria-hidden="true" />
               <div>
                 <strong>{a.author}</strong>
                 <span>{a.role} · {a.date} · {a.time}</span>
