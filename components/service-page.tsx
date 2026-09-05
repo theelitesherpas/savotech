@@ -13,44 +13,32 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
   const s = service;
   return (
     <>
-      {/* ---------- hero: backdrop image, copy over it, ink facts strip ---------- */}
-      <section className="section section-light start-hero svc-hero2">
-        <img className="hh-bg" src={`${BP}${s.portfolio[0].img}`} alt="" aria-hidden="true" />
-        <div className="hh-bg-veil" aria-hidden="true" />
-        <div className="hh-badge" aria-hidden="true">
-          <span className="hh-badge-dot" />
-          Trusted since 2015
-        </div>
-        <div className="wrap hh-content">
-          <div className="hh-copy">
-            <Reveal>
-              <p className="page-kicker svc-kicker">
-                <Link href="/#services" className="text-cta">Services</Link> / {s.title}
-              </p>
-              <h1>{s.tagline}</h1>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="lead">{s.intro[0]}</p>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <div className="svc-hire-ctas">
-                <Link className="btn btn-primary btn-lg" href="/start-your-project/">Start your project</Link>
-                <Link className="btn btn-ghost btn-lg" href="#calculator">Price it now</Link>
-              </div>
+      {/* ---------- hero: dark, spacious, giant numeral (case studies style) ---------- */}
+      <section className="section section-dark cs-hero">
+        <div className="wrap">
+          <div className="cs-hero-grid">
+            <div className="cs-hero-copy">
+              <Reveal>
+                <p className="page-kicker">
+                  <Link href="/#services" className="text-cta">Services</Link> / {s.title}
+                </p>
+                <h1>{s.tagline}</h1>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <p className="lead">{s.intro[0]}</p>
+              </Reveal>
+            </div>
+            <Reveal delay={0.1} className="cs-hero-num-wrap" aria-hidden="true">
+              <span className={`cs-hero-num${s.stats[0].v.length > 6 ? " xs" : s.stats[0].v.length > 3 ? " sm" : ""}`}>{s.stats[0].v}</span>
+              <span className="cs-hero-num-label">{s.stats[0].l}</span>
             </Reveal>
           </div>
 
-          <Reveal delay={0.16}>
+          <Reveal delay={0.18}>
             <ul className="hh-facts" aria-label={`${s.title} at a glance`}>
-              {s.stats.map((st, i) => (
-                <li key={st.l} className={`hh-fact f${i % 3}`}>
-                  <strong>{st.v}</strong>
-                  <span>{st.l}</span>
-                </li>
-              ))}
-              <li className="hh-fact-cta">
-                <Link className="btn btn-ghost-sm" href="/contact/">Talk to an engineer →</Link>
-              </li>
+              <li className="hh-fact f0"><strong>{s.stats[1].v}</strong><span>{s.stats[1].l}</span></li>
+              <li className="hh-fact f1"><strong>{s.stats[2].v}</strong><span>{s.stats[2].l}</span></li>
+              <li className="hh-fact f2"><strong>11 yrs</strong><span>shipping since 2015</span></li>
             </ul>
           </Reveal>
         </div>

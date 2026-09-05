@@ -46,45 +46,32 @@ export default function HirePageView({ role }: { role: HireRole }) {
 
   return (
     <>
-      {/* ---------- hero: backdrop image, copy over it, ink facts strip ---------- */}
-      <section className="section section-light start-hero hire-hero2">
-        <img className="hh-bg" src={`${BP}${r.photo}`} alt="" aria-hidden="true" />
-        <div className="hh-bg-veil" aria-hidden="true" />
-        <div className="hh-badge" aria-hidden="true">
-          <span className="hh-badge-dot" />
-          Matched in 48 hours
-        </div>
-        <div className="wrap hh-content">
-          <div className="hh-copy">
-            <Reveal>
-              <p className="page-kicker">
-                <Link href="/#hire" className="text-cta">Hire Resources</Link> / {r.title}
-              </p>
-              <h1>{r.tagline}</h1>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="lead">{r.intro[0]}</p>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <div className="svc-hire-ctas">
-                <Link className="btn btn-primary btn-lg" href="/start-your-project/">Hire now</Link>
-                <Link className="btn btn-ghost btn-lg" href="#plans">See plans</Link>
-                <Link className="btn btn-ghost btn-lg" href="/contact/">Talk to us</Link>
-              </div>
+      {/* ---------- hero: dark, spacious, giant numeral (case studies style) ---------- */}
+      <section className="section section-dark cs-hero">
+        <div className="wrap">
+          <div className="cs-hero-grid">
+            <div className="cs-hero-copy">
+              <Reveal>
+                <p className="page-kicker">
+                  <Link href="/#hire" className="text-cta">Hire Resources</Link> / {r.title}
+                </p>
+                <h1>{r.tagline}</h1>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <p className="lead">{r.intro[0]}</p>
+              </Reveal>
+            </div>
+            <Reveal delay={0.1} className="cs-hero-num-wrap" aria-hidden="true">
+              <span className={`cs-hero-num${r.facts[0].v.length > 6 ? " xs" : r.facts[0].v.length > 3 ? " sm" : ""}`}>{r.facts[0].v}</span>
+              <span className="cs-hero-num-label">{r.facts[0].l}</span>
             </Reveal>
           </div>
 
-          <Reveal delay={0.16}>
+          <Reveal delay={0.18}>
             <ul className="hh-facts" aria-label={`${r.title} at a glance`}>
-              {r.facts.map((f, i) => (
-                <li key={f.l} className={`hh-fact f${i % 3}`}>
-                  <strong>{f.v}</strong>
-                  <span>{f.l}</span>
-                </li>
-              ))}
-              <li className="hh-fact-cta">
-                <Link className="btn btn-ghost-sm" href="/careers/">They build here. Join them →</Link>
-              </li>
+              <li className="hh-fact f0"><strong>{r.facts[1].v}</strong><span>{r.facts[1].l}</span></li>
+              <li className="hh-fact f1"><strong>{r.facts[2].v}</strong><span>{r.facts[2].l}</span></li>
+              <li className="hh-fact f2"><strong>48h</strong><span>to matched profiles</span></li>
             </ul>
           </Reveal>
         </div>
