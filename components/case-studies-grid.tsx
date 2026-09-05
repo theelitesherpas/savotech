@@ -42,7 +42,7 @@ export default function CaseStudiesGrid() {
       <div className="cs-grid" key={filter}>
         {visible.map((c, i) => (
           <article key={c.name} className={`cs-card is-${sizeOf(i)}`} style={{ animationDelay: `${0.04 * (i % 6)}s` }}>
-            <img src={`${BP}${c.img}`} alt={`${c.name}: ${CAT_LABEL[c.cat].toLowerCase()} project`} loading="lazy" />
+            <img src={`${BP}${c.img}`} alt={`${c.name}: ${CAT_LABEL[c.cat].toLowerCase()} project`} width={900} height={900} decoding="async" />
             <span className="cs-veil" aria-hidden="true" />
             <span className={`cs-cat c-${c.cat}`}>{CAT_LABEL[c.cat]}</span>
             <div className="cs-body">
