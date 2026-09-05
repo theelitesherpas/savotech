@@ -31,7 +31,7 @@ const INDUSTRY_LINKS = [
 
 const COMPANY_LINKS = [
   ["About Us", "/about/"],
-  ["Case Studies", "/#work"],
+  ["Case Studies", "/case-studies/"],
   ["Resources & Blog", "/resources/"],
   ["Careers", "/careers/"],
   ["Contact Us", "/contact/"],

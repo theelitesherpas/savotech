@@ -17,7 +17,7 @@ export default function SvcWork({ items }: { items: Item[] }) {
     <div className="svc-slider">
       <div className="svc-slider-track" key={page}>
         {visible.map((w) => (
-          <Link className="svc-work-big" key={w.name} href="/#work" aria-label={`${w.name} case study`}>
+          <Link className="svc-work-big" key={w.name} href="/case-studies/" aria-label={`${w.name} case study`}>
             <div className="svc-work-media">
               <img src={`${BP}${w.img}`} alt={`${w.name}, ${w.meta}`} loading="lazy" />
               <span className="work-stat">{w.stat}</span>

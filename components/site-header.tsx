@@ -123,7 +123,7 @@ const NAV: NavItem[] = [
   },
   {
     label: "Case Study",
-    href: "/#work",
+    href: "/case-studies/",
     flip: true,
     feature: {
       icon: F.work,
