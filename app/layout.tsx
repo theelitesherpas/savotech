@@ -90,7 +90,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${pjs.variable}`}>
+    <html lang="en" className={`${pjs.variable}`} suppressHydrationWarning>
       <body>
         <script dangerouslySetInnerHTML={{ __html: "try{document.documentElement.classList.add('rjs')}catch(e){}" }} />
         <CurrencyProvider>
