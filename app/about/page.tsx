@@ -175,10 +175,12 @@ export default function AboutPage() {
                   <div className="about-leader-photo">
                     <img src={`${BP}${l.img}`} alt={`${l.name}, ${l.role} at Savo Technologies`} loading="lazy" />
                   </div>
-                  <h3>{l.name}</h3>
-                  <span className="about-leader-role">{l.role}</span>
-                  <p>{l.bio}</p>
-                  <div className="team-socials">
+                  <div className="about-leader-head">
+                    <div>
+                      <h3>{l.name}</h3>
+                      <span className="about-leader-role">{l.role}</span>
+                    </div>
+                    <div className="team-socials">
                     <a
                       className="ts-btn ts-in"
                       href={`https://www.linkedin.com/in/${l.in}`}
@@ -196,7 +198,9 @@ export default function AboutPage() {
                         <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
                       </svg>
                     </a>
+                    </div>
                   </div>
+                  <p>{l.bio}</p>
                 </article>
               </Reveal>
             ))}
