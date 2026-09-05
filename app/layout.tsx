@@ -6,6 +6,7 @@ import SiteFooter from "@/components/site-footer";
 import StructuredData from "@/components/structured-data";
 import MouseEffects from "@/components/mouse-effects";
 import { CurrencyProvider } from "@/components/currency-provider";
+import ScrollManager from "@/components/scroll-manager";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.savotechnologies.com";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -94,6 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <script dangerouslySetInnerHTML={{ __html: "try{document.documentElement.classList.add('rjs')}catch(e){}" }} />
         <CurrencyProvider>
+          <ScrollManager />
         {/* DIRECTION CONTRACT
         THESIS: A Swiss-light engineering identity: white ground, black type, and a pure
         RGB tricolor (red/blue/green) as the only chroma, spent on small decisive marks
