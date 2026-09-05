@@ -97,6 +97,10 @@ export default function SiteFooter() {
                 </a>
               </li>
             </ul>
+
+            <div className="foot-ccy">
+              <CurrencySelect />
+            </div>
           </div>
 
           <nav className="foot-col" aria-label="Services">
@@ -274,9 +278,6 @@ export default function SiteFooter() {
           </div>
           <CallbackForm />
         </div>
-
-        <CurrencySelect />
-
         <div className="footer-bottom">
           <ul className="badges" aria-label="Compliance and security">
             <li>
