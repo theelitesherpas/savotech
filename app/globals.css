@@ -4356,6 +4356,7 @@ html.rjs .cs-card { animation: cs-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
 .about-leader h3 { font-size: 1.02rem; color: var(--ink); margin-top: 0.9rem; }
 .about-leader-role { font-size: 0.8rem; font-weight: 700; color: var(--blue-text); display: block; margin-top: 0.15rem; }
 .about-leader p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-top: 0.5rem; }
+.about-leader .team-socials { margin-top: 0.9rem; }
 
 /* ================= resources ================= */
 .res-featured {

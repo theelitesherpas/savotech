@@ -30,10 +30,10 @@ const VALUES = [
 ];
 
 const LEADERSHIP = [
-  { name: "Aarav Mehta", role: "Founder & CEO", bio: "Ex fintech architect. Still reviews every proposal personally.", img: "/team/aarav.jpg" },
-  { name: "Priya Nair", role: "Head of Engineering", bio: "Runs the delivery standard. Has shipped platforms in all three regions we serve.", img: "/team/priya.jpg" },
-  { name: "Rohan Desai", role: "Head of AI", bio: "Built our first production copilot. Believes guardrails are a feature, not a limit.", img: "/team/rohan.jpg" },
-  { name: "Sara Khan", role: "Head of Design", bio: "Champions WCAG AA and research led product design across every engagement.", img: "/team/sara.jpg" },
+  { name: "Aarav Mehta", role: "Founder & CEO", bio: "Ex fintech architect. Still reviews every proposal personally.", img: "/team/aarav.jpg", in: "aarav-mehta", mail: "aarav@savotechnologies.com" },
+  { name: "Priya Nair", role: "Head of Engineering", bio: "Runs the delivery standard. Has shipped platforms in all three regions we serve.", img: "/team/priya.jpg", in: "priya-nair", mail: "priya@savotechnologies.com" },
+  { name: "Rohan Desai", role: "Head of AI", bio: "Built our first production copilot. Believes guardrails are a feature, not a limit.", img: "/team/rohan.jpg", in: "rohan-desai", mail: "rohan@savotechnologies.com" },
+  { name: "Sara Khan", role: "Head of Design", bio: "Champions WCAG AA and research led product design across every engagement.", img: "/team/sara.jpg", in: "sara-khan", mail: "sara@savotechnologies.com" },
 ];
 
 export default function AboutPage() {
@@ -178,6 +178,25 @@ export default function AboutPage() {
                   <h3>{l.name}</h3>
                   <span className="about-leader-role">{l.role}</span>
                   <p>{l.bio}</p>
+                  <div className="team-socials">
+                    <a
+                      className="ts-btn ts-in"
+                      href={`https://www.linkedin.com/in/${l.in}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${l.name} on LinkedIn`}
+                    >
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.1 1.43-2.1 2.9V21h-4V9Z" />
+                      </svg>
+                    </a>
+                    <a className="ts-btn ts-mail" href={`mailto:${l.mail}`} aria-label={`Email ${l.name}`}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <rect x="3.5" y="5.5" width="17" height="13" rx="2.2" />
+                        <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
+                      </svg>
+                    </a>
+                  </div>
                 </article>
               </Reveal>
             ))}
