@@ -2885,7 +2885,6 @@ html.rjs .reveal.in { opacity: 1; transform: none; }
 .pf-points li::before { content: ""; width: 7px; height: 7px; border-radius: 2px; background: var(--blue); }
 .pf-points li:nth-child(2)::before { background: var(--red); }
 .pf-points li:nth-child(3)::before { background: var(--green); }
-.pf-body .portal-card { box-shadow: 0 24px 48px -24px rgba(16, 16, 20, 0.25); }
 @media (max-width: 980px) {
   .portal-login { grid-template-columns: 1fr; }
   .portal-login-left { justify-items: center; text-align: center; }
@@ -2917,7 +2916,6 @@ html.rjs .reveal.in { opacity: 1; transform: none; }
   max-width: 15ch;
 }
 .careers-hero-copy .lead { color: var(--muted-light); max-width: 52ch; margin-top: 1.1rem; }
-.careers-hero-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 1.8rem; }
 .careers-hero-facts {
   list-style: none;
   display: grid;
@@ -3007,8 +3005,7 @@ html.rjs .reveal.in { opacity: 1; transform: none; }
 
 /* apply panel: appears after picking a role */
 
-@media (prefers-reduced-motion: reduce) {
-}
+
 
 @media (max-width: 980px) {
   .careers-hero-wrap { grid-template-columns: 1fr; }
@@ -3044,9 +3041,6 @@ html.rjs .reveal.in { opacity: 1; transform: none; }
 .dr-text { color: var(--ink); font-size: 0.9rem; font-weight: 600; }
 .direct-wa { border-color: rgba(43, 217, 38, 0.45); background: rgba(43, 217, 38, 0.05); }
 .direct-wa:hover { border-color: var(--green-text); background: rgba(43, 217, 38, 0.09); }
-
-/* contact page: tone balance + team photos */
-.contact-hero { padding-bottom: 0; }
 .contact-form-section { padding-top: 3.4rem; padding-bottom: clamp(3.5rem, 7vw, 5.5rem); }
 .team-photo {
   width: 72px;
@@ -3256,20 +3250,6 @@ html.rjs .reveal.in { opacity: 1; transform: none; }
 .ccy-select select:focus { outline: none; border-color: var(--blue); }
 .ccy-select select option { background: #17171f; color: #f4f4f6; }
 
-/* ================= service pages ================= */
-.svc-hero { padding-bottom: 1.4rem; }
-/* dark hero variant: instant contrast on entry */
-.svc-hero-dark { background: var(--ink); }
-.svc-hero-dark .page-kicker a { color: #9fb0ff; }
-.svc-hero-dark .page-kicker { color: var(--muted-light); }
-.svc-hero-dark h1 { color: #fff; }
-.svc-hero-dark .lead { color: var(--muted-light); }
-.svc-hero-dark .svc-stats li { background: rgba(255, 255, 255, 0.045); border-color: rgba(255, 255, 255, 0.12); }
-.svc-hero-dark .svc-stats strong { color: #fff; }
-.svc-hero-dark .svc-stats span { color: var(--muted-light); }
-.svc-kicker a { color: var(--blue-text); }
-.svc-hero2 .page-kicker { color: var(--muted); }
-
 .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
 .svc-card {
   background: var(--white);
@@ -3435,7 +3415,6 @@ html.rjs .reveal.in { opacity: 1; transform: none; }
   .svc-calc-grid, .svc-hire-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .svc-stats { grid-template-columns: 1fr; }
   .svc-grid, .svc-process, .svc-stack-grid, .svc-quotes, .svc-know-grid { grid-template-columns: 1fr; }
 }
 
@@ -3652,8 +3631,6 @@ html.rjs .reveal.in { opacity: 1; transform: none; }
 .city-opt.sel { color: var(--blue-text); font-weight: 700; }
 
 /* ================= hire pages ================= */
-.hire-hero .svc-hire-ctas .btn-ghost { border-color: rgba(255, 255, 255, 0.45); color: #fff; }
-.hire-hero .svc-hire-ctas .btn-ghost:hover { color: #fff; }
 
 /* plans v2: segmented picker + spotlight (paper section) */
 .plans-v2 {
@@ -3963,17 +3940,14 @@ html.rjs .reveal.in { opacity: 1; transform: none; }
 .hire-ind:hover { color: var(--blue-text); border-color: var(--ink); }
 
 @media (max-width: 1100px) {
-  .hire-split { grid-template-columns: 1fr; }
-  .hire-snapshot { position: static; }
   .hire-solutions { grid-template-columns: repeat(2, 1fr); }
   .hire-models { grid-template-columns: 1fr; }
   .svc-process.steps-5 { grid-template-columns: repeat(2, 1fr); gap: 1.6rem 1.1rem; }
   .svc-process.steps-5::before, .svc-process.steps-5::after { display: none; }
 }
 @media (max-width: 640px) {
-  .hire-solutions, .hire-checklist { grid-template-columns: 1fr; }
+  .hire-solutions { grid-template-columns: 1fr; }
   .svc-process.steps-5 { grid-template-columns: 1fr; }
-  .plan-cycle { flex-wrap: wrap; }
 }
 
 /* at a glance facts strip (base) */
@@ -3996,9 +3970,6 @@ html.rjs .reveal.in { opacity: 1; transform: none; }
 .hh-fact.f0 strong { color: #9fb0ff; }
 .hh-fact.f1 strong { color: #ff9f9f; }
 .hh-fact.f2 strong { color: #7ee08a; }
-.hh-fact-cta { margin-left: auto; }
-.hh-fact-cta .btn-ghost-sm { border-color: rgba(255, 255, 255, 0.35); color: #fff; }
-.hh-fact-cta .btn-ghost-sm:hover { border-color: #fff; }
 
 /* case studies hero: dark, spacious, giant outlined numeral */
 .cs-hero { padding-top: calc(76px + clamp(2.5rem, 6vw, 4.5rem)); padding-bottom: clamp(2.5rem, 5vw, 4rem); }

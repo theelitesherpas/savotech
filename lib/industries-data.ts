@@ -5,7 +5,6 @@ export type Industry = {
   tagline: string;
   intro: string[];
   numeral: { v: string; l: string };
-  stats: { v: string; l: string }[];
   challenges: { t: string; d: string }[];
   solutions: { t: string; d: string }[];
   tech: string[];
@@ -28,12 +27,7 @@ export const INDUSTRIES: Industry[] = [
       "From 40 clinic patient portals to clinical copilots, our teams ship healthcare software that survives audits and real clinical use.",
     ],
     numeral: { v: "40+", l: "clinics running our software" },
-    stats: [
-      { v: "99.98%", l: "uptime maintained" },
-      { v: "70%", l: "tickets deflected by AI" },
-      { v: "HIPAA", l: "aligned from day one" },
-    ],
-    challenges: [
+      challenges: [
       { t: "Compliance load", d: "HIPAA, local data residency and audit trails slow every release cycle." },
       { t: "Clinician time", d: "Interfaces that cost nurses clicks cost hospitals money and patience." },
       { t: "Integration maze", d: "EHRs, labs and billing systems that were never designed to talk." },
@@ -79,12 +73,7 @@ export const INDUSTRIES: Industry[] = [
       "Our fintech work moves real money across India, the GCC and the UK, and has passed PCI audits and open banking reviews without drama.",
     ],
     numeral: { v: "PCI", l: "ready infrastructure, audited" },
-    stats: [
-      { v: "3 regions", l: "India, GCC and UK rails" },
-      { v: "120k", l: "downloads, year one" },
-      { v: "99.99%", l: "payment uptime" },
-    ],
-    challenges: [
+      challenges: [
       { t: "Regulatory pressure", d: "PCI, RBI and open banking rules that change under your feet." },
       { t: "Fraud and risk", d: "Real time signals needed without punishing good customers." },
       { t: "Legacy cores", d: "Banking systems older than the teams integrating with them." },
@@ -130,12 +119,7 @@ export const INDUSTRIES: Industry[] = [
       "From 3.2x conversion lifts to 200k student marketplaces, our retail work is measured in numbers your CFO cares about.",
     ],
     numeral: { v: "3.2x", l: "conversion lift, best result" },
-    stats: [
-      { v: "98", l: "avg Lighthouse score" },
-      { v: "200k", l: "marketplace users shipped" },
-      { v: "1.1s", l: "median product page load" },
-    ],
-    challenges: [
+      challenges: [
       { t: "Speed is revenue", d: "Every 100ms of load time costs conversion you paid to acquire." },
       { t: "Catalog chaos", d: "Thousands of SKUs, five systems of record, zero single truth." },
       { t: "Checkout friction", d: "Carts abandoned at the exact moment of intent." },
@@ -181,12 +165,7 @@ export const INDUSTRIES: Industry[] = [
       "We build the operational software logistics teams live in daily, offline first and accurate to the minute.",
     ],
     numeral: { v: "12k", l: "vehicles tracked live" },
-    stats: [
-      { v: "99.5%", l: "tracking accuracy" },
-      { v: "18%", l: "route cost saved" },
-      { v: "Offline", l: "first field apps" },
-    ],
-    challenges: [
+      challenges: [
       { t: "Dead zones", d: "Field apps that die exactly where the work happens." },
       { t: "ETAs that lie", d: "Customers and planners both stop trusting bad estimates." },
       { t: "Fragmented data", d: "GPS, telematics and orders in three disconnected systems." },
@@ -232,12 +211,7 @@ export const INDUSTRIES: Industry[] = [
       "From developer portals to tenant apps, we build PropTech that agents and buyers actually use.",
     ],
     numeral: { v: "2.4x", l: "site visit bookings, best lift" },
-    stats: [
-      { v: "1.2s", l: "median listing page load" },
-      { v: "60%", l: "leads captured after hours" },
-      { v: "3D", l: "tours integrated" },
-    ],
-    challenges: [
+      challenges: [
       { t: "Listing sprawl", d: "Inventory scattered across portals, sheets and WhatsApp." },
       { t: "Lead leakage", d: "Interest that arrives after hours and never gets answered." },
       { t: "Tour scheduling", d: "Calendar ping pong between agents and buyers." },
@@ -283,12 +257,7 @@ export const INDUSTRIES: Industry[] = [
       "200,000 students later, we know what makes learning software get used and what makes it get abandoned.",
     ],
     numeral: { v: "200k", l: "students on our platforms" },
-    stats: [
-      { v: "87%", l: "course completion uplift" },
-      { v: "200k", l: "learners served" },
-      { v: "Live", l: "classes at scale" },
-    ],
-    challenges: [
+      challenges: [
       { t: "Completion cliff", d: "Enrolment is easy; week three is where courses die." },
       { t: "Live at scale", d: "Video that degrades exactly when a class fills up." },
       { t: "Assessment integrity", d: "Proctoring that respects honest students." },
