@@ -14,8 +14,15 @@ const Arrow = () => (
   </svg>
 );
 
-const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] = [
+export const SERVICE_CARDS: {
+  slug: string;
+  t: string;
+  d: string;
+  href: string;
+  icon: React.ReactNode;
+}[] = [
   {
+    slug: "custom-software",
     t: "Custom Software Development",
     d: "Enterprise platforms and internal tools built for your exact workflow, stack and scale.",
     href: "/services/custom-software/",
@@ -26,6 +33,7 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
     ),
   },
   {
+    slug: "mobile-apps",
     t: "Mobile App Development",
     d: "Native iOS/Android and Flutter apps, designed and shipped to the stores.",
     href: "/services/mobile-apps/",
@@ -37,6 +45,7 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
     ),
   },
   {
+    slug: "web-development",
     t: "Web Development",
     d: "High performance websites and web applications on React, Next.js and Node.js.",
     href: "/services/web-development/",
@@ -48,6 +57,7 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
     ),
   },
   {
+    slug: "cloud-devops",
     t: "Cloud & DevOps",
     d: "AWS, Azure and GCP architecture with CI/CD, infrastructure as code and 24/7 monitoring.",
     href: "/services/cloud-devops/",
@@ -59,6 +69,7 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
     ),
   },
   {
+    slug: "data-analytics",
     t: "Data & Analytics",
     d: "Pipelines, warehouses and dashboards that turn raw data into decisions.",
     href: "/services/data-analytics/",
@@ -70,6 +81,7 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
     ),
   },
   {
+    slug: "ui-ux",
     t: "UI/UX & Brand Identity",
     d: "Research driven interfaces and identity systems users trust within seconds.",
     href: "/services/ui-ux/",
@@ -80,6 +92,7 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
     ),
   },
   {
+    slug: "digital-marketing",
     t: "Digital Marketing & SEO",
     d: "SEO, AEO and performance marketing that compounds long after launch.",
     href: "/services/digital-marketing/",
@@ -90,6 +103,7 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
     ),
   },
   {
+    slug: "qa-testing",
     t: "QA & Testing",
     d: "Automated and manual QA baked into every sprint, not bolted on after.",
     href: "/services/qa-testing/",
@@ -101,28 +115,7 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
     ),
   },
   {
-    t: "IT Consulting",
-    d: "Architecture audits, roadmaps and modernization from senior engineers.",
-    href: "/services/it-consulting/",
-    icon: (
-      <svg className="ic" viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
-        <path d="m14.8 9.2-1.9 4.7-4.7 1.9 1.9-4.7 4.7-1.9Z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    t: "Cybersecurity",
-    d: "Threat modeling, penetration testing and compliance hardening.",
-    href: "/services/cybersecurity/",
-    icon: (
-      <svg className="ic" viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="5" y="10.5" width="14" height="9.5" rx="2.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
-        <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5M12 14.5v2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-  {
+    slug: "product-engineering",
     t: "Product Engineering",
     d: "End to end product teams that design, build and iterate on your roadmap.",
     href: "/services/product-engineering/",
@@ -135,26 +128,84 @@ const SERVICES: { t: string; d: string; href: string; icon: React.ReactNode }[] 
   },
 ];
 
+/* AI service detail pages live under /ai/ and /services/ai-agent-development/ */
+export const AI_SERVICE_CARDS: {
+  slug: string;
+  t: string;
+  d: string;
+  href: string;
+  icon: React.ReactNode;
+}[] = [
+  {
+    slug: "generative-ai",
+    t: "Generative AI & LLM Integration",
+    d: "Generative AI wired into your product: copilots, content and retrieval that hold up in production.",
+    href: "/ai/generative-ai/",
+    icon: (
+      <svg className="ic" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="5.5" r="2.2" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="5.5" cy="16" r="2.2" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="18.5" cy="16" r="2.2" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M10.8 7.4 6.7 14.1M13.2 7.4l4.1 6.7M7.7 16h8.6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    slug: "ai-consulting",
+    t: "AI Consulting & Strategy",
+    d: "Vendor neutral opportunity audits, governance frameworks and costed roadmaps your board can sign.",
+    href: "/ai/consulting/",
+    icon: (
+      <svg className="ic" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+        <path d="m14.8 9.2-1.9 4.7-4.7 1.9 1.9-4.7 4.7-1.9Z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    slug: "machine-learning",
+    t: "Machine Learning & Analytics",
+    d: "Forecasting, recommendation and anomaly models monitored in production, tied to a business number.",
+    href: "/ai/machine-learning/",
+    icon: (
+      <svg className="ic" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 19.5 9 12l3.5 4.5L20 6.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M15.5 6.5H20V11" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+];
+
 export default function Services() {
   return (
     <section className="section section-light" id="services">
       <div className="wrap">
-        <div className="section-head">
-          <Reveal>
-            <h2>Full spectrum services. One accountable team.</h2>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <p className="lead">
-              From latest generation AI agent development to launch scale engineering, Savo
-              Technologies is a full spectrum custom software development company. Strategy,
-              design, build and operations stay under one roof, so nothing falls between vendors.
-            </p>
+        <div className="section-head split">
+          <div>
+            <Reveal>
+              <h2>Full spectrum services. One accountable team.</h2>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="lead">
+                From latest generation AI agent development to launch scale engineering, Savo
+                Technologies is a full spectrum custom software development company. Strategy,
+                design, build and operations stay under one roof, so nothing falls between vendors.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal delay={0.12}>
+            <Link className="text-cta" href="/services/">
+              All services
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
           </Reveal>
         </div>
 
         <div className="services-grid">
           <Reveal className="svc-feature-wrap">
-            <Link className="svc svc-feature" href="/services/ai-development/">
+            <Link className="svc svc-feature" href="/services/ai-agent-development/">
               <div className="svc-feature-visual" aria-hidden="true">
                 <svg viewBox="0 0 120 90" fill="none">
                   <circle cx="60" cy="45" r="30" stroke="rgba(255,255,255,.25)" strokeDasharray="2 5" />
@@ -176,8 +227,8 @@ export default function Services() {
             </Link>
           </Reveal>
 
-          {SERVICES.map((s, i) => (
-            <Reveal key={s.t} delay={0.05 * ((i + 1) % 4)}>
+          {SERVICE_CARDS.map((s, i) => (
+            <Reveal key={s.slug} delay={0.05 * ((i + 1) % 4)}>
               <Link className="svc" href={s.href}>
                 {s.icon}
                 <h3>{s.t}</h3>
@@ -188,6 +239,22 @@ export default function Services() {
               </Link>
             </Reveal>
           ))}
+
+          <Reveal delay={0.05 * ((SERVICE_CARDS.length + 1) % 4)}>
+            <Link className="svc" href="/services/">
+              <svg className="ic" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="4" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                <rect x="13" y="4" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                <rect x="4" y="13" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                <path d="M16.5 13v7M13 16.5h7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+              <h3>All Services</h3>
+              <p>Thirteen services across AI, engineering, design and growth, priced with the instant estimator.</p>
+              <span className="svc-link">
+                Browse the catalog <Arrow />
+              </span>
+            </Link>
+          </Reveal>
         </div>
       </div>
     </section>

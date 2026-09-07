@@ -14,6 +14,7 @@ const SERVICE_LINKS = [
   ["Digital Marketing & SEO", "/services/digital-marketing/"],
   ["QA & Testing", "/services/qa-testing/"],
   ["Product Engineering", "/services/product-engineering/"],
+  ["All Services", "/services/"],
 ] as const;
 
 const INDUSTRY_LINKS = [
@@ -27,6 +28,7 @@ const INDUSTRY_LINKS = [
   ["Manufacturing & 4.0", "/industries/manufacturing/"],
   ["Government & Public Sector", "/industries/government/"],
   ["Energy & Utilities", "/industries/energy/"],
+  ["All Industries", "/industries/"],
 ] as const;
 
 const COMPANY_LINKS = [

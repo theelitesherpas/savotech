@@ -65,7 +65,7 @@ const F = {
 const NAV: NavItem[] = [
   {
     label: "Services",
-    href: "/#services",
+    href: "/services/",
     start: true,
     feature: {
       icon: F.services,
@@ -108,13 +108,13 @@ const NAV: NavItem[] = [
   },
   {
     label: "Industries",
-    href: "/#industries",
+    href: "/industries/",
     feature: {
       icon: F.industries,
       t: "Ten sectors, one playbook",
       d: "Regulation fluent teams in healthcare, fintech and the Gulf energy economy.",
       cta: "Explore industries",
-      href: "/#industries",
+      href: "/industries/",
     },
     children: [
       ["Healthcare", "/industries/healthcare/"],

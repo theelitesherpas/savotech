@@ -830,6 +830,7 @@ textarea { resize: vertical; }
 }
 .section-head.split > div { min-width: 0; }
 .section-head.split > div:first-child { max-width: 640px; }
+.section-head.split .text-cta { flex-shrink: 0; margin-bottom: 0.55rem; }
 .lead {
   margin-top: 1.1rem;
   font-size: clamp(1rem, 1.3vw, 1.12rem);
@@ -1220,6 +1221,28 @@ textarea { resize: vertical; }
 .ind .t10 { background: var(--paper-3); color: var(--ink); }
 .ind h3 { font-size: 0.98rem; font-weight: 700; color: var(--ink); }
 .ind p { font-size: 0.82rem; line-height: 1.55; color: var(--muted); }
+
+/* all-industries hub cards: sector stat + inline CTA */
+.ind-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+.ind-stat strong {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.ind-stat span { font-size: 0.76rem; line-height: 1.4; color: var(--muted); }
+.ind-cta { margin-top: 0.6rem; font-size: 0.84rem; }
+.ind-cta svg { width: 13px; height: 13px; }
+.ind-portal { align-content: start; }
 
 /* portfolio */
 .work-grid {
