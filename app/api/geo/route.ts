@@ -5,13 +5,9 @@ import { NextResponse } from "next/server";
  * can price in the local currency on first visit.
  */
 export async function GET(req: Request) {
-  const country =
-    req.headers.get("x-vercel-ip-country") ??
-    // @ts-expect-error - geo is attached by the platform
-    req.geo?.country ??
-    "";
+  const country = req.headers.get("x-vercel-ip-country") ?? "";
   return NextResponse.json(
-    { country: String(country).slice(0, 2).toUpperCase() },
+    { country: country.slice(0, 2).toUpperCase() },
     { headers: { "cache-control": "no-store" } },
   );
 }

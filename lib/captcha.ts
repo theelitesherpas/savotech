@@ -9,10 +9,30 @@ import { createHmac, timingSafeEqual, randomBytes } from "crypto";
  */
 
 const TTL_MS = 10 * 60_000;
-const used = new Set<string>();
+
+/** token -> expiry timestamp, so consumed tokens can be purged once expired. */
+const used = new Map<string, number>();
+
+const g = globalThis as unknown as { __savoCaptchaSecret?: string };
 
 function secret(): string {
-  return process.env.CAPTCHA_SECRET ?? "savo-dev-captcha-secret-change-me";
+  const env = process.env.CAPTCHA_SECRET;
+  if (env && env.length >= 16) return env;
+  if (process.env.NODE_ENV === "production") {
+    // Never fall back to a known constant in production: an attacker reading
+    // the public repo could forge tokens. Use an ephemeral per-instance
+    // secret instead — issuing and verifying usually land on the same
+    // instance, and the rare cross-instance verify just asks for a retry.
+    if (!g.__savoCaptchaSecret) {
+      g.__savoCaptchaSecret = randomBytes(32).toString("hex");
+      console.warn(
+        "[savo-captcha] CAPTCHA_SECRET is not set; using an ephemeral per-instance secret. " +
+          "Set CAPTCHA_SECRET in the deployment environment for reliable verification.",
+      );
+    }
+    return g.__savoCaptchaSecret;
+  }
+  return "savo-dev-captcha-secret-change-me";
 }
 
 function sign(payload: string): string {
@@ -41,8 +61,11 @@ export function issueCaptcha(): { question: string; token: string } {
   const expires = Date.now() + TTL_MS;
   const payload = `${a}|${expires}`;
   const token = `${Buffer.from(payload).toString("base64url")}.${sign(payload)}`;
-  // opportunistically drop expired tokens from the used set
-  if (used.size > 500) used.clear();
+  // opportunistically purge consumed tokens whose window has passed
+  if (used.size > 500) {
+    const now = Date.now();
+    for (const [t, exp] of used) if (exp < now) used.delete(t);
+  }
   return { question: q, token };
 }
 
@@ -64,6 +87,6 @@ export function verifyCaptcha(token: unknown, answer: unknown): boolean {
   const [ans, exp] = payload.split("|");
   if (!ans || !exp || Number(exp) < Date.now()) return false;
   if (answer.trim().toUpperCase() !== ans.toUpperCase()) return false;
-  used.add(token);
+  used.set(token, Number(exp));
   return true;
 }

@@ -17,6 +17,10 @@ const buckets = new Map<string, Bucket>();
 
 export function rateLimit(key: string, limit = 6, windowMs = 10 * 60_000): boolean {
   const now = Date.now();
+  // opportunistic pruning keeps the map bounded under key spraying
+  if (buckets.size > 5000) {
+    for (const [k, b] of buckets) if (now > b.reset) buckets.delete(k);
+  }
   const b = buckets.get(key);
   if (!b || now > b.reset) {
     buckets.set(key, { count: 1, reset: now + windowMs });
