@@ -29,7 +29,10 @@ npm run test:e2e     # full E2E suite against the production build (needs Chrome
 ## Architecture
 
 ```
-app/                    # App Router routes (all static unless noted)
+app/
+  (site)/               # the existing website (chrome layout: header/footer)
+  v2/                   # standalone homepage concept at /v2 (noindex preview)
+  api/{leads,chat,captcha,geo}/   # Route Handlers (rate limited, validated)
   api/{leads,chat,captcha,geo}/   # Route Handlers (rate limited, validated)
   services/ industries/ hire/ ai/ # data-driven detail pages via shared view components
   resources/[slug]/              # SSG articles (generateStaticParams)

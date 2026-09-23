@@ -87,6 +87,9 @@ async function main() {
   const nf = await fetch(BASE + "/this-route-does-not-exist");
   check("unknown route is a real 404", nf.status === 404);
 
+  const v2 = await fetch(BASE + "/v2");
+  check("v2 concept homepage renders", v2.status === 200 && (await v2.text()).includes("Intelligence"));
+
   const robots = await (await fetch(BASE + "/robots.txt")).text();
   check("robots disallows /api", /Disallow: \/api\//.test(robots));
   const sitemap = await (await fetch(BASE + "/sitemap.xml")).text();
