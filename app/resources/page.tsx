@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Reveal from "@/components/reveal";
 import { ARTICLES } from "@/lib/resources-data";
+import Image from "next/image";
+import { asset } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Resources & Blog",
@@ -10,7 +12,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/resources/" },
 };
 
-const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const CATS = ["All", "Engineering", "AI", "Design", "Delivery"] as const;
 
 export default function ResourcesPage() {
@@ -47,7 +48,7 @@ export default function ResourcesPage() {
           <Reveal>
             <Link className="res-featured" href={`/resources/${featured.slug}/`}>
               <div className="res-featured-media">
-                <img src={`${BP}${featured.img}`} alt="" aria-hidden="true" />
+                <Image src={asset(featured.img)} alt="" aria-hidden="true" width={900} height={600} priority sizes="(max-width: 900px) 100vw, 880px" />
               </div>
               <div className="res-featured-body">
                 <span className="res-cat c-ai">Featured · {featured.cat}</span>
@@ -83,7 +84,7 @@ export default function ResourcesPage() {
               <Reveal key={a.slug} delay={0.05 * i}>
                 <Link className="res-card" href={`/resources/${a.slug}/`}>
                   <div className="res-card-media">
-                    <img src={`${BP}${a.img}`} alt="" loading="lazy" aria-hidden="true" />
+                    <Image src={asset(a.img)} alt="" aria-hidden="true" width={420} height={280} loading="lazy" sizes="(max-width: 700px) 100vw, 340px" />
                     <span className={`res-cat ${a.cat === "AI" ? "c-ai" : a.cat === "Design" ? "c-design" : a.cat === "Delivery" ? "c-delivery" : "c-eng"}`}>{a.cat}</span>
                   </div>
                   <div className="res-card-body">

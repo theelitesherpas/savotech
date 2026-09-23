@@ -13,6 +13,8 @@ import Testimonials from "@/components/testimonials";
 import Faq from "@/components/faq";
 import Careers from "@/components/careers";
 import FinalCta from "@/components/final-cta";
+import { JsonLd, faqSchema } from "@/components/json-ld";
+import { FAQS } from "@/lib/faq-data";
 
 /**
  * Savo Technologies homepage.
@@ -22,6 +24,7 @@ import FinalCta from "@/components/final-cta";
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={faqSchema(FAQS)} />
       <Hero />
       <TrustBar />
       <Services />

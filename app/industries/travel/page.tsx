@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import IndustryPageView from "@/components/industry-page";
-import { getIndustry } from "@/lib/industries-data";
+import { mustGetIndustry } from "@/lib/industries-data";
 
-const ind = getIndustry("travel")!;
+const ind = mustGetIndustry("travel");
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Travel & Hospitality Software Development",
   description: "Travel software by Savo Technologies: direct booking engines, channel management and guest apps that turn browsing into confirmed bookings with measurable occupancy gains.",
-  alternates: { canonical: "/industries/travel/" },
-};
+  path: "/industries/travel/",
+});
 
 export default function Page() {
   return <IndustryPageView industry={ind} />;

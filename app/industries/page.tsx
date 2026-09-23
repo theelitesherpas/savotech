@@ -1,20 +1,15 @@
 import Link from "next/link";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Reveal from "@/components/reveal";
 import { INDUSTRY_CARDS } from "@/components/industries";
 import { INDUSTRIES } from "@/lib/industries-data";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "All Industries | Software Delivery Across Ten Sectors",
-  description:
-    "Savo Technologies delivers software for healthcare, fintech, ecommerce, logistics, real estate, education, travel, manufacturing, government and energy. Explore outcomes and compliance per sector.",
-  alternates: { canonical: "/industries/" },
-  openGraph: {
-    title: "All Industries | Savo Technologies",
-    description:
-      "Ten sectors, one delivery standard. Regulation fluent teams and shipped outcomes in every industry we serve.",
-  },
-};
+  description: "Savo Technologies delivers software for healthcare, fintech, ecommerce, logistics, real estate, education, travel, manufacturing, government and energy. Explore outcomes and compliance per sector.",
+  path: "/industries/",
+  ogDescription: "Ten sectors, one delivery standard. Regulation fluent teams and shipped outcomes in every industry we serve.",
+});
 
 const Arrow = () => (
   <svg viewBox="0 0 16 16" aria-hidden="true">

@@ -1,18 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import IndustryPageView from "@/components/industry-page";
-import { getIndustry } from "@/lib/industries-data";
+import { mustGetIndustry } from "@/lib/industries-data";
 
-const ind = getIndustry("healthcare")!;
+const ind = mustGetIndustry("healthcare");
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Healthcare Software Development",
   description: "Healthcare software by Savo Technologies: HIPAA aligned patient portals, telehealth and clinical copilots with the uptime clinicians trust. See outcomes, compliance and work.",
-  alternates: { canonical: "/industries/healthcare/" },
-  openGraph: {
-    title: "Healthcare Software Development | Savo Technologies",
-    description: "Healthcare software by Savo Technologies: HIPAA aligned patient portals, telehealth and clinical copilots with the uptime clinicians trust. See outcomes, compliance and work.",
-  },
-};
+  path: "/industries/healthcare/",
+});
 
 export default function Page() {
   return <IndustryPageView industry={ind} />;

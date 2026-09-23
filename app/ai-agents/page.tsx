@@ -1,19 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import Reveal from "@/components/reveal";
 import { AGENTS } from "@/lib/agents-data";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Meet Our AI Agents",
-  description:
-    "Six production ready AI agents from Savo Technologies: SalesBot, SupportAgent, RecruitAI, InsightAgent, ContentAgent and OpsAgent. Trained on your data, guarded by enterprise security, deployed in 2 to 4 weeks.",
-  alternates: { canonical: "/ai-agents/" },
-  openGraph: {
-    title: "Meet Our AI Agents | Savo Technologies",
-    description:
-      "Six production ready AI agents, trained on your data and deployed in 2 to 4 weeks. Human handoff, audit logs and enterprise security as standard.",
-  },
-};
+  description: "Six production ready AI agents from Savo Technologies: SalesBot, SupportAgent, RecruitAI, InsightAgent, ContentAgent and OpsAgent. Trained on your data, guarded by enterprise security, deployed in 2 to 4 weeks.",
+  path: "/ai-agents/",
+  ogDescription: "Six production ready AI agents, trained on your data and deployed in 2 to 4 weeks. Human handoff, audit logs and enterprise security as standard.",
+});
 
 const PROCESS = [
   { t: "Discover", d: "Workshop maps the agent to your stack, data and success metrics." },

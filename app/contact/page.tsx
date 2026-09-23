@@ -1,20 +1,16 @@
-import type { Metadata } from "next";
+import { pageMetadata, asset } from "@/lib/seo";
 import Link from "next/link";
 import Reveal from "@/components/reveal";
 import ContactForm from "@/components/contact-form";
 import DirectChannels from "@/components/direct-channels";
+import Image from "next/image";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact Us",
-  description:
-    "Talk to the engineers who will build it. Message Savo Technologies, book a call back, or reach the team in Indore, Ahmedabad, Dubai, London and Sydney. One business day reply.",
-  alternates: { canonical: "/contact/" },
-  openGraph: {
-    title: "Contact Us | Savo Technologies",
-    description:
-      "Message us, book a call back or meet the team. One business day reply, NDA on request.",
-  },
-};
+  description: "Talk to the engineers who will build it. Message Savo Technologies, book a call back, or reach the team in Indore, Ahmedabad, Dubai, London and Sydney. One business day reply.",
+  path: "/contact/",
+  ogDescription: "Message us, book a call back or meet the team. One business day reply, NDA on request.",
+});
 
 const OFFICES = [
   {
@@ -76,7 +72,6 @@ const OFFICES = [
   },
 ];
 
-const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const TEAM = [
   { n: "Aarav Mehta", r: "Founder & CEO", d: "Ex fintech architect. Still reviews every proposal personally.", img: "aarav.jpg", in: "aarav-mehta" },
@@ -186,7 +181,7 @@ export default function ContactPage() {
               <Reveal key={m.n} delay={0.04 * i}>
                 <article className="team-card">
                   <div className="team-photo">
-                    <img src={`${BP}/team/${m.img}`} alt={`${m.n}, ${m.r} at Savo Technologies`} loading="lazy" />
+                    <Image src={asset(`/team/${m.img}`)} alt={`${m.n}, ${m.r} at Savo Technologies`} width={300} height={450} loading="lazy" sizes="120px" />
                     <span className="team-photo-ring" aria-hidden="true" />
                   </div>
                   <div className="about-leader-head">

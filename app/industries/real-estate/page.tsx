@@ -1,18 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import IndustryPageView from "@/components/industry-page";
-import { getIndustry } from "@/lib/industries-data";
+import { mustGetIndustry } from "@/lib/industries-data";
 
-const ind = getIndustry("real-estate")!;
+const ind = mustGetIndustry("real-estate");
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Real Estate & PropTech Software Development",
   description: "PropTech software by Savo Technologies: listings platforms, virtual tours and property management suites that turn browsing into booked site visits.",
-  alternates: { canonical: "/industries/real-estate/" },
-  openGraph: {
-    title: "Real Estate & PropTech Software Development | Savo Technologies",
-    description: "PropTech software by Savo Technologies: listings platforms, virtual tours and property management suites that turn browsing into booked site visits.",
-  },
-};
+  path: "/industries/real-estate/",
+});
 
 export default function Page() {
   return <IndustryPageView industry={ind} />;

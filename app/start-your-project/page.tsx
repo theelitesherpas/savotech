@@ -1,20 +1,15 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import Reveal from "@/components/reveal";
 import StartYourProjectPanel from "@/components/start-panel";
 import DirectChannels from "@/components/direct-channels";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Start Your Project",
-  description:
-    "Tell Savo Technologies what you are building. Send a project brief and a senior engineer replies within one business day with scope, timeline and an INR estimate. AI agents, web platforms, mobile apps and dedicated teams.",
-  alternates: { canonical: "/start-your-project/" },
-  openGraph: {
-    title: "Start Your Project | Savo Technologies",
-    description:
-      "Send a project brief. A senior engineer replies within one business day with scope, timeline and an INR estimate.",
-  },
-};
+  description: "Tell Savo Technologies what you are building. Send a project brief and a senior engineer replies within one business day with scope, timeline and an INR estimate. AI agents, web platforms, mobile apps and dedicated teams.",
+  path: "/start-your-project/",
+  ogDescription: "Send a project brief. A senior engineer replies within one business day with scope, timeline and an INR estimate.",
+});
 
 const NEXT_STEPS = [
   { t: "Within 24 hours", d: "A senior engineer, not a sales rep, reads your brief and replies with first questions." },

@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import IndustryPageView from "@/components/industry-page";
-import { getIndustry } from "@/lib/industries-data";
+import { mustGetIndustry } from "@/lib/industries-data";
 
-const ind = getIndustry("energy")!;
+const ind = mustGetIndustry("energy");
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Energy & Utilities Software Development",
   description: "Energy software by Savo Technologies: grid analytics, smart metering platforms and asset monitoring that turn utility telemetry into decisions.",
-  alternates: { canonical: "/industries/energy/" },
-};
+  path: "/industries/energy/",
+});
 
 export default function Page() {
   return <IndustryPageView industry={ind} />;

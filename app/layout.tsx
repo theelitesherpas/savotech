@@ -7,10 +7,9 @@ import StructuredData from "@/components/structured-data";
 import MouseEffects from "@/components/mouse-effects";
 import { CurrencyProvider } from "@/components/currency-provider";
 import ScrollManager from "@/components/scroll-manager";
+import { SITE_ORIGIN } from "@/lib/seo";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.savotechnologies.com";
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const ORIGIN = SITE_URL + BASE_PATH;
+const ORIGIN = SITE_ORIGIN;
 
 const pjs = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -122,7 +121,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <MouseEffects />
         <main id="main">{children}</main>
         <SiteFooter />
-        <StructuredData siteUrl={ORIGIN} />
+        <StructuredData />
         </CurrencyProvider>
       </body>
     </html>

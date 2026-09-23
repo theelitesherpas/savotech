@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import Reveal from "./reveal";
+import Image from "next/image";
+import { asset } from "@/lib/seo";
 
 const Arrow = () => (
   <svg viewBox="0 0 16 16" aria-hidden="true">
@@ -15,8 +17,6 @@ const Arrow = () => (
     />
   </svg>
 );
-
-type Cat = "web" | "mobile" | "ai";
 
 const FEATURED: {
   name: string;
@@ -34,7 +34,7 @@ const FEATURED: {
     desc: "Patient engagement portal serving 40+ clinics: appointments, records and telehealth in one flow.",
     stat: "40+ clinics live",
     tags: ["React", "Node.js", "PostgreSQL", "AWS"],
-    href: "/case-studies/medibridge/",
+    href: "/case-studies/",
     img: "/work/medibridge.jpg",
     alt: "MediBridge Health patient portal on a clinician tablet",
   },
@@ -44,7 +44,7 @@ const FEATURED: {
     desc: "GCC first digital wallet and payments super app with KYC, transfers and bill pay under one thumb.",
     stat: "PCI DSS ready",
     tags: ["Flutter", "Node.js", "PostgreSQL", "PCI DSS"],
-    href: "/case-studies/gulfpay/",
+    href: "/case-studies/",
     img: "/work/gulfpay.jpg",
     alt: "GulfPay digital wallet app on a phone",
   },
@@ -54,7 +54,7 @@ const FEATURED: {
     desc: "Arabic and English support agent for a GCC telecom, with 96% of tier 1 chats resolved without a human.",
     stat: "96% auto-resolved",
     tags: ["Python", "LangChain", "RAG", "WhatsApp API"],
-    href: "/case-studies/sahm-ai/",
+    href: "/case-studies/",
     img: "/work/sahm.jpg",
     alt: "AI assistant handling multilingual customer chats",
   },
@@ -64,7 +64,7 @@ const FEATURED: {
     desc: "Live fleet tracking across Australia with live ETAs, route alerts and driver scorecards.",
     stat: "12k vehicles tracked",
     tags: ["Flutter", "Firebase", "Maps API", "Cloud Functions"],
-    href: "/case-studies/ridelink/",
+    href: "/case-studies/",
     img: "/work/ridelink.jpg",
     alt: "City streets tracked by the RideLink fleet app",
   },
@@ -91,7 +91,7 @@ export default function Portfolio() {
             <Reveal key={p.name} delay={0.06 * (i % 2)}>
               <article className="work-card">
                 <Link className="work-media" href={p.href} aria-label={`${p.name} case study`}>
-                  <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${p.img}`} alt={p.alt} loading="lazy" />
+                  <Image src={asset(p.img)} alt={p.alt} width={900} height={600} loading="lazy" sizes="(max-width: 860px) 100vw, 420px" />
                   <span className="work-stat">{p.stat}</span>
                 </Link>
                 <div className="work-body">

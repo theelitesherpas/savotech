@@ -1,21 +1,16 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import Reveal from "@/components/reveal";
 import CareersHero from "@/components/careers-hero";
 import CareersRoles from "@/components/careers-roles";
 import { TEAM_STATS } from "@/lib/careers-data";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Careers",
-  description:
-    "Open engineering and design roles at Savo Technologies: frontend, backend, AI and ML, mobile, DevOps and UI/UX. Remote first in India, INR salaries, honest hiring in four steps.",
-  alternates: { canonical: "/careers/" },
-  openGraph: {
-    title: "Careers | Savo Technologies",
-    description:
-      "Open engineering and design roles. Remote first in India, INR salaries, honest hiring in four steps.",
-  },
-};
+  description: "Open engineering and design roles at Savo Technologies: frontend, backend, AI and ML, mobile, DevOps and UI/UX. Remote first in India, INR salaries, honest hiring in four steps.",
+  path: "/careers/",
+  ogDescription: "Open engineering and design roles. Remote first in India, INR salaries, honest hiring in four steps.",
+});
 
 export default function CareersPage() {
   return (

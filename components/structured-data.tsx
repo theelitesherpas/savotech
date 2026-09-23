@@ -1,7 +1,9 @@
-import { FAQS } from "@/lib/faq-data";
+import { absoluteUrl } from "@/lib/seo";
+import { siteConfig } from "@/config/site";
 
-/** Organization + ProfessionalService + WebSite + FAQPage JSON-LD (AEO/GEO). */
-export default function StructuredData({ siteUrl }: { siteUrl: string }) {
+/** Organization + ProfessionalService + WebSite JSON-LD (AEO/GEO), site-wide. */
+export default function StructuredData() {
+  const siteUrl = absoluteUrl("/").replace(/\/$/, "");
   const data = {
     "@context": "https://schema.org",
     "@graph": [
@@ -10,21 +12,19 @@ export default function StructuredData({ siteUrl }: { siteUrl: string }) {
         "@id": `${siteUrl}/#org`,
         name: "Savo Technologies",
         alternateName: ["Savo", "Savo Tech", "Savo Technologies Pvt Ltd", "Savo Technologies Private Limited"],
-        legalName: "Savo Technologies Private Limited",
+        legalName: siteConfig.legalName,
         url: siteUrl,
         logo: `${siteUrl}/savotech-logo.svg`,
-        foundingDate: "2016",
+        foundingDate: siteConfig.foundingYear,
         slogan: "AI agents, web platforms and mobile apps, engineered by one accountable team.",
         description:
           "Savo Technologies is a 10-year global technology company specializing in AI agent development, website design and development, mobile app development, and full spectrum digital and software services.",
-        email: "hello@savotechnologies.com",
-        telephone: "+91-00000-00000",
+        email: siteConfig.email,
+        telephone: siteConfig.phoneE164,
         address: {
           "@type": "PostalAddress",
-          streetAddress: "Placeholder address, confirm with client",
           addressLocality: "Indore",
           addressRegion: "Madhya Pradesh",
-          postalCode: "452010",
           addressCountry: "IN",
         },
         areaServed: [
@@ -83,15 +83,6 @@ export default function StructuredData({ siteUrl }: { siteUrl: string }) {
         alternateName: ["Savo", "Savo Tech"],
         publisher: { "@id": `${siteUrl}/#org` },
         inLanguage: "en",
-      },
-      {
-        "@type": "FAQPage",
-        "@id": `${siteUrl}/#faq`,
-        mainEntity: FAQS.map((f) => ({
-          "@type": "Question",
-          name: f.q,
-          acceptedAnswer: { "@type": "Answer", text: f.a },
-        })),
       },
     ],
   };

@@ -4,8 +4,10 @@ import HirePlans from "./hire-plans";
 import HireRateCompare from "./hire-rate-compare";
 import SvcWork from "./svc-work";
 import { HIRE_ROLES, CLIENT_QUOTES, type HireRole } from "@/lib/hire-data";
+import Image from "next/image";
+import { asset } from "@/lib/seo";
+import { JsonLd, breadcrumbSchema, faqSchema } from "./json-ld";
 
-const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const MODELS = [
   {
@@ -46,6 +48,12 @@ export default function HirePageView({ role }: { role: HireRole }) {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Hire Developers", path: "/hire/" },
+        { name: `Hire ${r.title}`, path: `/hire/${r.slug}/` },
+      ])} />
+      <JsonLd data={faqSchema(r.faqs)} />
       {/* ---------- hero: dark, spacious, giant numeral (case studies style) ---------- */}
       <section className="section section-dark cs-hero">
         <div className="wrap">
@@ -256,7 +264,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
             {others.map((o, i) => (
               <Reveal key={o.slug} delay={0.05 * i}>
                 <Link className="role-photo-card" href={`/hire/${o.slug}/`}>
-                  <img src={`${BP}${o.photo}`} alt={`Hire ${o.title}`} loading="lazy" />
+                  <Image src={asset(o.photo)} alt={`Hire ${o.title}`} width={900} height={600} loading="lazy" sizes="(max-width: 860px) 100vw, 300px" />
                   <span className="role-photo-veil" aria-hidden="true" />
                   <span className="role-photo-body">
                     <strong>{o.title}</strong>
@@ -289,7 +297,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
                   <blockquote>“{q.quote}”</blockquote>
                   <figcaption>
                     <span className="svc-quote-photo">
-                      <img src={`${BP}${q.img}`} alt={q.name} loading="lazy" />
+                      <Image src={asset(q.img)} alt={q.name} width={300} height={300} loading="lazy" sizes="64px" />
                     </span>
                     <span>
                       <strong>{q.name}</strong>
@@ -341,7 +349,7 @@ export default function HirePageView({ role }: { role: HireRole }) {
               <Reveal key={k.t} delay={0.05 * i}>
                 <article className="svc-know-card">
                   <div className="svc-know-media">
-                    <img src={`${BP}${r.portfolio[i % r.portfolio.length].img}`} alt="" loading="lazy" aria-hidden="true" />
+                    <Image src={asset(r.portfolio[i % r.portfolio.length].img)} alt="" aria-hidden="true" width={900} height={600} loading="lazy" sizes="280px" />
                   </div>
                   <span className="svc-know-time">{k.time}</span>
                   <h3>{k.t}</h3>

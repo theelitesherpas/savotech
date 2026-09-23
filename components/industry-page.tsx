@@ -2,8 +2,10 @@ import Link from "next/link";
 import Reveal from "./reveal";
 import SvcWork from "./svc-work";
 import { INDUSTRIES, type Industry } from "@/lib/industries-data";
+import Image from "next/image";
+import { asset } from "@/lib/seo";
+import { JsonLd, breadcrumbSchema, faqSchema } from "./json-ld";
 
-const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 /** Shared template for every dedicated industry page. */
 export default function IndustryPageView({ industry }: { industry: Industry }) {
@@ -12,6 +14,12 @@ export default function IndustryPageView({ industry }: { industry: Industry }) {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Industries", path: "/industries/" },
+        { name: ind.title, path: `/industries/${ind.slug}/` },
+      ])} />
+      <JsonLd data={faqSchema(ind.faqs)} />
       {/* ---------- hero: dark, spacious, giant numeral ---------- */}
       <section className="section section-dark cs-hero">
         <div className="wrap">
@@ -180,7 +188,7 @@ export default function IndustryPageView({ industry }: { industry: Industry }) {
             {others.map((o, i) => (
               <Reveal key={o.slug} delay={0.04 * i}>
                 <Link className="ind-other-tile" href={`/industries/${o.slug}/`}>
-                  <img src={`${BP}${o.photo}`} alt={`${o.title} work by Savo`} loading="lazy" />
+                  <Image src={asset(o.photo)} alt={`${o.title} work by Savo`} width={900} height={600} loading="lazy" sizes="(max-width: 860px) 100vw, 300px" />
                   <span className="role-photo-veil" aria-hidden="true" />
                   <span className="role-photo-body">
                     <strong>{o.title}</strong>
@@ -233,7 +241,7 @@ export default function IndustryPageView({ industry }: { industry: Industry }) {
               <Reveal key={k.t} delay={0.05 * i}>
                 <article className="svc-know-card know-light">
                   <div className="svc-know-media">
-                    <img src={`${BP}${ind.cases[i % ind.cases.length].img}`} alt="" loading="lazy" aria-hidden="true" />
+                    <Image src={asset(ind.cases[i % ind.cases.length].img)} alt="" aria-hidden="true" width={900} height={600} loading="lazy" sizes="280px" />
                   </div>
                   <span className="svc-know-time">{k.time}</span>
                   <h3>{k.t}</h3>

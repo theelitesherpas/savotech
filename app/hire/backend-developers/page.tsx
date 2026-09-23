@@ -1,18 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import HirePageView from "@/components/hire-page";
-import { getHireRole } from "@/lib/hire-data";
+import { mustGetHireRole } from "@/lib/hire-data";
 
-const r = getHireRole("backend-developers")!;
+const r = mustGetHireRole("backend-developers");
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Hire Backend Developers",
   description: "Hire dedicated backend developers from Savo Technologies: Node.js, Python and Go APIs, PostgreSQL and regulated experience, matched in 48 hours with a two week paid trial. Transparent rates.",
-  alternates: { canonical: "/hire/backend-developers/" },
-  openGraph: {
-    title: "Hire Backend Developers | Savo Technologies",
-    description: "Hire dedicated backend developers from Savo Technologies: Node.js, Python and Go APIs, PostgreSQL and regulated experience, matched in 48 hours with a two week paid trial. Transparent rates.",
-  },
-};
+  path: "/hire/backend-developers/",
+});
 
 export default function Page() {
   return <HirePageView role={r} />;

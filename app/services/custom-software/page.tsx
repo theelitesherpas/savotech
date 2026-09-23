@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import ServicePageView from "@/components/service-page";
-import { getService } from "@/lib/services-data";
+import { mustGetService } from "@/lib/services-data";
 
-const svc = getService("custom-software")!;
+const svc = mustGetService("custom-software");
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: svc.title,
   description: svc.tagline + " " + svc.intro[0],
-  alternates: { canonical: "/services/custom-software/" },
-};
+  path: "/services/custom-software/",
+});
 
 export default function Page() {
   return <ServicePageView service={svc} />;

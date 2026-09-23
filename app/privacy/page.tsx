@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import LegalPageView from "@/components/legal-page";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy",
   description: "How Savo Technologies collects, uses and protects your data, written in plain language.",
-  alternates: { canonical: "/privacy/" },
-};
+  path: "/privacy/",
+});
 
 export default function PrivacyPage() {
   return (

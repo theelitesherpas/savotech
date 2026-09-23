@@ -1,18 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import IndustryPageView from "@/components/industry-page";
-import { getIndustry } from "@/lib/industries-data";
+import { mustGetIndustry } from "@/lib/industries-data";
 
-const ind = getIndustry("education")!;
+const ind = mustGetIndustry("education");
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Education & EdTech Software Development",
   description: "EdTech software by Savo Technologies: LMS platforms, live classrooms and assessment engines serving 200,000 students with measurable completion gains.",
-  alternates: { canonical: "/industries/education/" },
-  openGraph: {
-    title: "Education & EdTech Software Development | Savo Technologies",
-    description: "EdTech software by Savo Technologies: LMS platforms, live classrooms and assessment engines serving 200,000 students with measurable completion gains.",
-  },
-};
+  path: "/industries/education/",
+});
 
 export default function Page() {
   return <IndustryPageView industry={ind} />;

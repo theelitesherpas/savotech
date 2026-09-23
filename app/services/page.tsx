@@ -1,20 +1,15 @@
 import Link from "next/link";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Reveal from "@/components/reveal";
 import { SERVICE_CARDS, AI_SERVICE_CARDS } from "@/components/services";
 import { INDUSTRY_CARDS } from "@/components/industries";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "All Services | AI, Software, Design & Growth",
-  description:
-    "Browse every Savo Technologies service: AI agent development, generative AI, machine learning, web and mobile engineering, UI/UX, cloud, QA and digital marketing. Instant price estimates on every service page.",
-  alternates: { canonical: "/services/" },
-  openGraph: {
-    title: "All Services | Savo Technologies",
-    description:
-      "Thirteen services across AI, engineering, design and growth. Strategy, build and operations under one accountable team.",
-  },
-};
+  description: "Browse every Savo Technologies service: AI agent development, generative AI, machine learning, web and mobile engineering, UI/UX, cloud, QA and digital marketing. Instant price estimates on every service page.",
+  path: "/services/",
+  ogDescription: "Thirteen services across AI, engineering, design and growth. Strategy, build and operations under one accountable team.",
+});
 
 const Arrow = () => (
   <svg viewBox="0 0 16 16" aria-hidden="true">

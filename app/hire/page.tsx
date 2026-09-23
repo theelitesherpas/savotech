@@ -1,16 +1,15 @@
 import Link from "next/link";
-import type { Metadata } from "next";
+import { pageMetadata, asset } from "@/lib/seo";
 import Reveal from "@/components/reveal";
 import { HIRE_ROLES } from "@/lib/hire-data";
+import Image from "next/image";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Hire Developers",
-  description:
-    "Hire vetted AI, frontend, backend, full stack, mobile and DevOps engineers from Savo Technologies. Matched in 48 hours, two week trial, transparent monthly rates.",
-  alternates: { canonical: "/hire/" },
-};
+  description: "Hire vetted AI, frontend, backend, full stack, mobile and DevOps engineers from Savo Technologies. Matched in 48 hours, two week trial, transparent monthly rates.",
+  path: "/hire/",
+});
 
-const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const MODELS = [
   { t: "Dedicated developer", d: "One engineer embedded in your team, your tools, your standups. Monthly, cancel with 30 days notice.", n: "01" },
@@ -61,7 +60,7 @@ export default function HireIndexPage() {
               <Reveal key={h.slug} delay={0.05 * i}>
                 <Link className="hire-index-card" href={`/hire/${h.slug}/`}>
                   <div className="hire-index-media">
-                    <img src={`${BP}${h.photo}`} alt="" loading="lazy" aria-hidden="true" />
+                    <Image src={asset(h.photo)} alt="" aria-hidden="true" width={900} height={600} loading="lazy" sizes="(max-width: 760px) 100vw, 360px" />
                   </div>
                   <div className="hire-index-body">
                     <h3>{h.title}</h3>

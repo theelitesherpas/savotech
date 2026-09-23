@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { asset } from "@/lib/seo";
 
 type Item = { name: string; meta: string; img: string; stat: string };
 
@@ -10,7 +12,6 @@ export default function SvcWork({ items }: { items: Item[] }) {
   const perPage = 2;
   const pages = Math.max(1, Math.ceil(items.length / perPage));
   const [page, setPage] = useState(0);
-  const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const visible = items.slice(page * perPage, page * perPage + perPage);
 
   return (
@@ -19,7 +20,7 @@ export default function SvcWork({ items }: { items: Item[] }) {
         {visible.map((w) => (
           <Link className="svc-work-big" key={w.name} href="/case-studies/" aria-label={`${w.name} case study`}>
             <div className="svc-work-media">
-              <img src={`${BP}${w.img}`} alt={`${w.name}, ${w.meta}`} loading="lazy" />
+              <Image src={asset(w.img)} alt={`${w.name}, ${w.meta}`} width={900} height={600} loading="lazy" sizes="(max-width: 860px) 100vw, 320px" />
               <span className="work-stat">{w.stat}</span>
             </div>
             <div className="svc-work-body">

@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { CASE_FILTERS, CASE_STUDIES, type CaseCat } from "@/lib/case-studies-data";
+import Image from "next/image";
+import { asset } from "@/lib/seo";
 
 const CAT_LABEL: Record<CaseCat, string> = {
   web: "Web platform",
@@ -14,7 +16,6 @@ const CAT_LABEL: Record<CaseCat, string> = {
 /** Bento grid of case studies: flagship work big, the rest compact, filterable. */
 export default function CaseStudiesGrid() {
   const [filter, setFilter] = useState<"all" | CaseCat>("all");
-  const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const visible = CASE_STUDIES.filter((c) => filter === "all" || c.cat === filter);
 
   /* editorial rhythm: two big, one full width banner, a half, a stacked
@@ -42,7 +43,7 @@ export default function CaseStudiesGrid() {
       <div className="cs-grid" key={filter}>
         {visible.map((c, i) => (
           <article key={c.name} className={`cs-card is-${sizeOf(i)}`} style={{ animationDelay: `${0.04 * (i % 6)}s` }}>
-            <img src={`${BP}${c.img}`} alt={`${c.name}: ${CAT_LABEL[c.cat].toLowerCase()} project`} width={900} height={900} decoding="async" />
+            <Image src={asset(c.img)} alt={`${c.name}: ${CAT_LABEL[c.cat].toLowerCase()} project`} width={900} height={900} loading="lazy" sizes="(max-width: 860px) 100vw, 420px" />
             <span className="cs-veil" aria-hidden="true" />
             <span className={`cs-cat c-${c.cat}`}>{CAT_LABEL[c.cat]}</span>
             <div className="cs-body">

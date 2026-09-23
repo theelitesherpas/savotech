@@ -1,15 +1,14 @@
 import Link from "next/link";
-import type { Metadata } from "next";
+import { pageMetadata, asset } from "@/lib/seo";
 import Reveal from "@/components/reveal";
+import Image from "next/image";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "About Us",
-  description:
-    "Savo Technologies: one accountable team engineering AI agents, web platforms and mobile apps since 2016. Our story, values, leadership and how we work.",
-  alternates: { canonical: "/about/" },
-};
+  description: "Savo Technologies: one accountable team engineering AI agents, web platforms and mobile apps since 2016. Our story, values, leadership and how we work.",
+  path: "/about/",
+});
 
-const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const MILESTONES = [
   { year: "2016", t: "Two engineers, one promise", d: "Savo starts in a Jaipur office with a simple rule: every client talks to the people building their software." },
@@ -96,7 +95,7 @@ export default function AboutPage() {
               </Reveal>
             </div>
             <Reveal delay={0.1} className="about-story-media">
-              <img src={`${BP}/work/medibridge.jpg`} alt="The Savo team shipping a client platform" />
+              <Image src={asset("/work/medibridge.jpg")} alt="The Savo team shipping a client platform" width={900} height={600} priority sizes="(max-width: 1000px) 100vw, 520px" />
               <div className="about-media-note">
                 <strong>Jaipur to everywhere</strong>
                 <span>Remote first since 2020, delivery standard unchanged.</span>
@@ -173,7 +172,7 @@ export default function AboutPage() {
               <Reveal key={l.name} delay={0.05 * i}>
                 <article className="about-leader">
                   <div className="about-leader-photo">
-                    <img src={`${BP}${l.img}`} alt={`${l.name}, ${l.role} at Savo Technologies`} loading="lazy" />
+                    <Image src={asset(l.img)} alt={`${l.name}, ${l.role} at Savo Technologies`} width={280} height={420} loading="lazy" sizes="140px" />
                   </div>
                   <div className="about-leader-head">
                     <div>

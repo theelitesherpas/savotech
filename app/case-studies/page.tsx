@@ -1,21 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import Reveal from "@/components/reveal";
 import CaseStudiesGrid from "@/components/case-studies-grid";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Case Studies",
-  description:
-    "Web platforms, mobile apps, AI agents and brand identities built by Savo Technologies across healthcare, fintech, logistics, retail and energy in India, the GCC, UK and Australia.",
-  alternates: { canonical: "/case-studies/" },
-  openGraph: {
-    title: "Case Studies | Savo Technologies",
-    description:
-      "A decade of shipped work: filterable portfolio of web, mobile, AI and brand projects with the numbers clients let us publish.",
-  },
-};
-
-const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  description: "Web platforms, mobile apps, AI agents and brand identities built by Savo Technologies across healthcare, fintech, logistics, retail and energy in India, the GCC, UK and Australia.",
+  path: "/case-studies/",
+  ogDescription: "A decade of shipped work: filterable portfolio of web, mobile, AI and brand projects with the numbers clients let us publish.",
+});
 
 export default function CaseStudiesPage() {
   return (

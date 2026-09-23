@@ -1,18 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import IndustryPageView from "@/components/industry-page";
-import { getIndustry } from "@/lib/industries-data";
+import { mustGetIndustry } from "@/lib/industries-data";
 
-const ind = getIndustry("ecommerce")!;
+const ind = mustGetIndustry("ecommerce");
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Ecommerce & Retail Software Development",
   description: "Ecommerce and retail software by Savo Technologies: headless storefronts, PIM and marketplace platforms with measurable conversion lifts. See the numbers.",
-  alternates: { canonical: "/industries/ecommerce/" },
-  openGraph: {
-    title: "Ecommerce & Retail Software Development | Savo Technologies",
-    description: "Ecommerce and retail software by Savo Technologies: headless storefronts, PIM and marketplace platforms with measurable conversion lifts. See the numbers.",
-  },
-};
+  path: "/industries/ecommerce/",
+});
 
 export default function Page() {
   return <IndustryPageView industry={ind} />;

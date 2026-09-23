@@ -5,11 +5,29 @@ import SvcRoles from "./svc-roles";
 import SvcWork from "./svc-work";
 import { CLIENT_QUOTES, type ServicePage } from "@/lib/services-data";
 import { ICONS } from "./service-icons";
+import Image from "next/image";
+import { asset } from "@/lib/seo";
+import { JsonLd, breadcrumbSchema, serviceSchema, faqSchema } from "./json-ld";
 
-const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 /** Shared template for every dedicated service page. */
 export default function ServicePageView({ service }: { service: ServicePage }) {
+  const s = service;
+  return (
+    <>
+      <JsonLd data={serviceSchema(s)} />
+      <JsonLd data={breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Services", path: "/services/" },
+        { name: s.title, path: `/services/${s.slug}/` },
+      ])} />
+      <JsonLd data={faqSchema(s.faqs)} />
+      <ServicePageBody service={service} />
+    </>
+  );
+}
+
+function ServicePageBody({ service }: { service: ServicePage }) {
   const s = service;
   return (
     <>
@@ -189,7 +207,7 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
                   <blockquote>“{q.quote}”</blockquote>
                   <figcaption>
                     <span className="svc-quote-photo">
-                      <img src={`${BP}${q.img}`} alt={q.name} loading="lazy" />
+                      <Image src={asset(q.img)} alt={q.name} width={300} height={300} loading="lazy" sizes="64px" />
                     </span>
                     <span>
                       <strong>{q.name}</strong>
@@ -241,7 +259,7 @@ export default function ServicePageView({ service }: { service: ServicePage }) {
               <Reveal key={k.t} delay={0.05 * i}>
                 <article className="svc-know-card">
                   <div className="svc-know-media">
-                    <img src={`${BP}${s.portfolio[i % s.portfolio.length].img}`} alt="" loading="lazy" aria-hidden="true" />
+                    <Image src={asset(s.portfolio[i % s.portfolio.length].img)} alt="" aria-hidden="true" width={900} height={600} loading="lazy" sizes="280px" />
                   </div>
                   <span className="svc-know-time">{k.time}</span>
                   <h3>{k.t}</h3>

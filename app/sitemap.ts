@@ -1,99 +1,53 @@
 import type { MetadataRoute } from "next";
+import { absoluteUrl } from "@/lib/seo";
+import { AI_SERVICE_SLUGS } from "@/config/navigation";
+import { SERVICES } from "@/lib/services-data";
+import { INDUSTRIES } from "@/lib/industries-data";
+import { HIRE_ROLES } from "@/lib/hire-data";
+import { ARTICLES } from "@/lib/resources-data";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.savotechnologies.com";
-const ORIGIN = SITE_URL + (process.env.NEXT_PUBLIC_BASE_PATH ?? "");
-
+/**
+ * Sitemap generated from the same data modules that render the site, so new
+ * service/industry/role/article pages can never drift out of the sitemap.
+ * Private routes (client portal) and API endpoints are excluded.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+
+  const page = (path: string, priority: number, changeFrequency: "weekly" | "monthly" = "monthly") => ({
+    url: absoluteUrl(path),
+    lastModified: now,
+    changeFrequency,
+    priority,
+  });
+
   return [
-    {
-      url: ORIGIN + "/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: ORIGIN + "/start-your-project/",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: ORIGIN + "/ai-agents/",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: ORIGIN + "/services/",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: ORIGIN + "/industries/",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: ORIGIN + "/careers/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: ORIGIN + "/contact/",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    ...["ai-agent-development", "web-development", "mobile-apps", "ui-ux", "cloud-devops", "data-analytics"].map((slug) => ({
-      url: ORIGIN + "/services/" + slug + "/",
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-    ...["healthcare", "fintech", "ecommerce", "logistics", "real-estate", "education", "travel", "manufacturing", "government", "energy"].map((slug) => ({
-      url: ORIGIN + "/industries/" + slug + "/",
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-    ...["custom-software", "digital-marketing", "qa-testing", "product-engineering"].map((slug) => ({
-      url: ORIGIN + "/services/" + slug + "/",
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-    ...["about", "resources", "hire", "privacy", "terms"].map((slug) => ({
-      url: ORIGIN + "/" + slug + "/",
-      lastModified: new Date(),
-      changeFrequency: slug === "resources" ? ("weekly" as const) : ("monthly" as const),
-      priority: 0.7,
-    })),
-    ...["case-studies"].map((slug) => ({
-      url: ORIGIN + "/" + slug + "/",
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-    ...["ai-ml-engineers", "frontend-developers", "backend-developers", "full-stack-developers", "mobile-developers", "devops-qa-engineers"].map((slug) => ({
-      url: ORIGIN + "/hire/" + slug + "/",
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-    ...["generative-ai", "consulting", "machine-learning"].map((slug) => ({
-      url: ORIGIN + "/ai/" + slug + "/",
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-    {
-      url: ORIGIN + "/portal/",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.4,
-    },
+    // Core + conversion pages
+    page("/", 1, "weekly"),
+    page("/start-your-project/", 0.9),
+    page("/ai-agents/", 0.9),
+    page("/services/", 0.9),
+    page("/industries/", 0.9),
+    page("/case-studies/", 0.8),
+    page("/careers/", 0.8, "weekly"),
+    page("/contact/", 0.8),
+    page("/about/", 0.7),
+    page("/resources/", 0.7, "weekly"),
+    page("/hire/", 0.8),
+    page("/privacy/", 0.3),
+    page("/terms/", 0.3),
+
+    // AI service detail pages
+    page("/ai/generative-ai/", 0.8),
+    page("/ai/consulting/", 0.8),
+    page("/ai/machine-learning/", 0.8),
+
+    // Data-driven detail pages
+    ...SERVICES.filter((s) => !AI_SERVICE_SLUGS.has(s.slug)).map((s) => page(`/services/${s.slug}/`, 0.8)),
+    ...INDUSTRIES.map((i) => page(`/industries/${i.slug}/`, 0.8)),
+    ...HIRE_ROLES.map((r) => page(`/hire/${r.slug}/`, 0.8)),
+
+    // Resource articles
+    ...ARTICLES.map((a) => page(`/resources/${a.slug}/`, 0.6, "weekly")),
   ];
 }
