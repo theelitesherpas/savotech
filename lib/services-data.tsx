@@ -865,6 +865,13 @@ export function getService(slug: string) {
   return SERVICES.find((s) => s.slug === slug);
 }
 
+/** Build-time lookup for statically routed pages: fails loudly with the missing slug. */
+export function mustGetService(slug: string): ServicePage {
+  const s = getService(slug);
+  if (!s) throw new Error(`[services-data] no service with slug "${slug}"`);
+  return s;
+}
+
 export const HireLink = ({ children }: { children: React.ReactNode }) => (
   <Link href="/#hire" className="text-cta">{children}</Link>
 );

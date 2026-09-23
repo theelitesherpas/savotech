@@ -385,4 +385,11 @@ export function getHireRole(slug: string) {
   return HIRE_ROLES.find((r) => r.slug === slug);
 }
 
+/** Build-time lookup for statically routed pages: fails loudly with the missing slug. */
+export function mustGetHireRole(slug: string): HireRole {
+  const r = getHireRole(slug);
+  if (!r) throw new Error(`[hire-data] no hire role with slug "${slug}"`);
+  return r;
+}
+
 export type { ReactNode };

@@ -482,3 +482,10 @@ export const INDUSTRIES: Industry[] = [
 export function getIndustry(slug: string) {
   return INDUSTRIES.find((i) => i.slug === slug);
 }
+
+/** Build-time lookup for statically routed pages: fails loudly with the missing slug. */
+export function mustGetIndustry(slug: string): Industry {
+  const i = getIndustry(slug);
+  if (!i) throw new Error(`[industries-data] no industry with slug "${slug}"`);
+  return i;
+}
