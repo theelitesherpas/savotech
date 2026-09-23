@@ -1,15 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import SiteHeader from "@/components/site-header";
-import SiteFooter from "@/components/site-footer";
-import StructuredData from "@/components/structured-data";
-import MouseEffects from "@/components/mouse-effects";
-import { CurrencyProvider } from "@/components/currency-provider";
-import ScrollManager from "@/components/scroll-manager";
-import { SITE_ORIGIN } from "@/lib/seo";
 
-const ORIGIN = SITE_ORIGIN;
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.savotechnologies.com";
+const ORIGIN = SITE_URL + (process.env.NEXT_PUBLIC_BASE_PATH ?? "");
 
 const pjs = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -93,8 +87,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${pjs.variable}`} suppressHydrationWarning>
       <body>
         <script dangerouslySetInnerHTML={{ __html: "try{document.documentElement.classList.add('rjs')}catch(e){}" }} />
-        <CurrencyProvider>
-          <ScrollManager />
         {/* DIRECTION CONTRACT
         THESIS: A Swiss-light engineering identity: white ground, black type, and a pure
         RGB tricolor (red/blue/green) as the only chroma, spent on small decisive marks
@@ -114,15 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         pixels); code-led. Stack: Next.js + PostgreSQL per user instruction.
         FINISH: unreviewed and undocumented is unfinished; this build ends with the finish
         review, the verdict, DESIGN.md, and every shipping raster carrying its provenance */}
-        <a className="skip-link" href="#main">
-          Skip to main content
-        </a>
-        <SiteHeader />
-        <MouseEffects />
-        <main id="main">{children}</main>
-        <SiteFooter />
-        <StructuredData />
-        </CurrencyProvider>
+        {children}
       </body>
     </html>
   );
