@@ -3,49 +3,8 @@ import Logo from "./logo";
 import CallbackForm from "./callback-form";
 import CurrencySelect from "./currency-select";
 
-const SERVICE_LINKS = [
-  ["AI Development & Agents", "/services/ai-agent-development/"],
-  ["Custom Software Development", "/services/custom-software/"],
-  ["Mobile App Development", "/services/mobile-apps/"],
-  ["Web Development", "/services/web-development/"],
-  ["Cloud & DevOps", "/services/cloud-devops/"],
-  ["Data & Analytics", "/services/data-analytics/"],
-  ["UI/UX & Brand Identity", "/services/ui-ux/"],
-  ["Digital Marketing & SEO", "/services/digital-marketing/"],
-  ["QA & Testing", "/services/qa-testing/"],
-  ["Product Engineering", "/services/product-engineering/"],
-  ["All Services", "/services/"],
-] as const;
-
-const INDUSTRY_LINKS = [
-  ["Healthcare", "/industries/healthcare/"],
-  ["FinTech & Banking", "/industries/fintech/"],
-  ["Ecommerce & Retail", "/industries/ecommerce/"],
-  ["Real Estate & PropTech", "/industries/real-estate/"],
-  ["Logistics & Supply Chain", "/industries/logistics/"],
-  ["Education & EdTech", "/industries/education/"],
-  ["Travel & Hospitality", "/industries/travel/"],
-  ["Manufacturing & 4.0", "/industries/manufacturing/"],
-  ["Government & Public Sector", "/industries/government/"],
-  ["Energy & Utilities", "/industries/energy/"],
-  ["All Industries", "/industries/"],
-] as const;
-
-const COMPANY_LINKS = [
-  ["About Us", "/about/"],
-  ["Case Studies", "/case-studies/"],
-  ["Resources & Blog", "/resources/"],
-  ["Careers", "/careers/"],
-  ["Contact Us", "/contact/"],
-] as const;
-
-const QUICK_LINKS = [
-  ["Client Login", "/portal/"],
-  ["Hire Developers", "/hire/"],
-  ["AI Agents (PRO)", "/ai-agents/"],
-  ["Get a Quote", "/start-your-project/"],
-  ["Ask Savo Assistant", "/#ask-savo"],
-] as const;
+import { FOOTER_NAV } from "@/config/navigation";
+import { siteConfig } from "@/config/site";
 
 export default function SiteFooter() {
   return (
@@ -108,7 +67,7 @@ export default function SiteFooter() {
           <nav className="foot-col" aria-label="Services">
             <h3>Services</h3>
             <ul>
-              {SERVICE_LINKS.map(([t, href]) => (
+              {FOOTER_NAV.services.map(({ label: t, href }) => (
                 <li key={t}>
                   <Link href={href}>{t}</Link>
                 </li>
@@ -119,7 +78,7 @@ export default function SiteFooter() {
           <nav className="foot-col" aria-label="Industries">
             <h3>Industries</h3>
             <ul>
-              {INDUSTRY_LINKS.map(([t, href]) => (
+              {FOOTER_NAV.industries.map(({ label: t, href }) => (
                 <li key={t}>
                   <Link href={href}>{t}</Link>
                 </li>
@@ -130,7 +89,7 @@ export default function SiteFooter() {
           <nav className="foot-col" aria-label="Company and resources">
             <h3>Company</h3>
             <ul>
-              {COMPANY_LINKS.map(([t, href]) => (
+              {FOOTER_NAV.company.map(({ label: t, href }) => (
                 <li key={t}>
                   <Link href={href}>{t}</Link>
                 </li>
@@ -141,7 +100,7 @@ export default function SiteFooter() {
           <nav className="foot-col" aria-label="Quick links">
             <h3>Quick Links</h3>
             <ul>
-              {QUICK_LINKS.map(([t, href]) => (
+              {FOOTER_NAV.quick.map(({ label: t, href }) => (
                 <li key={t}>
                   {href.startsWith("/#") ? (
                     <Link href={href}>{t.replace(" (PRO)", "")}{t.includes("PRO") && <> <span className="pro-badge">PRO</span></>}</Link>
@@ -249,14 +208,14 @@ export default function SiteFooter() {
           <div className="fc-item fc-touch">
             <h3>Talk to us</h3>
             <div className="fc-contact">
-              <a href="mailto:hello@savotechnologies.com">
+              <a href={`mailto:${siteConfig.email}`}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <rect x="3.5" y="5.5" width="17" height="13" rx="2.2" />
                   <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
                 </svg>
                 hello@savotechnologies.com
               </a>
-              <a href="tel:+917502901234">
+              <a href={`tel:${siteConfig.phoneE164}`}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M6.8 3.8 9 3.2c.7-.2 1.4.2 1.7.9l1 2.4c.2.6.1 1.3-.4 1.7l-1.3 1.2a12.6 12.6 0 0 0 4.6 4.6l1.2-1.3c.4-.5 1.1-.6 1.7-.4l2.4 1c.7.3 1.1 1 .9 1.7l-.6 2.2c-.2.7-.8 1.2-1.5 1.2C11.6 18.4 5.6 12.4 5.6 5.3c0-.7.5-1.3 1.2-1.5Z" />
                 </svg>

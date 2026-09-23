@@ -3,6 +3,13 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Logo from "./logo";
+import {
+  AI_LINKS,
+  SERVICE_LINKS,
+  INDUSTRY_LINKS,
+  HIRE_LINKS,
+  HEADER_SHORT_LABELS,
+} from "@/config/navigation";
 
 type Feature = {
   icon: React.ReactNode;
@@ -62,6 +69,10 @@ const F = {
   ),
 };
 
+/** Canonical links with the header's (few) shortened labels applied. */
+const short = (links: { label: string; href: string }[]): [string, string][] =>
+  links.map((l) => [HEADER_SHORT_LABELS[l.href] ?? l.label, l.href]);
+
 const NAV: NavItem[] = [
   {
     label: "Services",
@@ -74,18 +85,7 @@ const NAV: NavItem[] = [
       cta: "Open the estimator",
       href: "/#estimator",
     },
-    children: [
-      ["AI Agent Development", "/services/ai-agent-development/"],
-      ["Web Development", "/services/web-development/"],
-      ["Mobile App Development", "/services/mobile-apps/"],
-      ["UI/UX Design", "/services/ui-ux/"],
-      ["Cloud & DevOps", "/services/cloud-devops/"],
-      ["Data & Analytics", "/services/data-analytics/"],
-      ["Custom Software", "/services/custom-software/"],
-      ["Product Engineering", "/services/product-engineering/"],
-      ["QA & Testing", "/services/qa-testing/"],
-      ["Digital Marketing & SEO", "/services/digital-marketing/"],
-    ],
+    children: short(SERVICE_LINKS),
   },
   {
     label: "Hire Resources",
@@ -97,14 +97,7 @@ const NAV: NavItem[] = [
       cta: "See roles and rates",
       href: "/hire/",
     },
-    children: [
-      ["AI & ML Engineers", "/hire/ai-ml-engineers/"],
-      ["Frontend Developers", "/hire/frontend-developers/"],
-      ["Backend Developers", "/hire/backend-developers/"],
-      ["Full Stack Developers", "/hire/full-stack-developers/"],
-      ["Mobile Developers", "/hire/mobile-developers/"],
-      ["DevOps & QA Engineers", "/hire/devops-qa-engineers/"],
-    ],
+    children: short(HIRE_LINKS),
   },
   {
     label: "Industries",
@@ -116,18 +109,7 @@ const NAV: NavItem[] = [
       cta: "Explore industries",
       href: "/industries/",
     },
-    children: [
-      ["Healthcare", "/industries/healthcare/"],
-      ["FinTech & Banking", "/industries/fintech/"],
-      ["Ecommerce & Retail", "/industries/ecommerce/"],
-      ["Real Estate", "/industries/real-estate/"],
-      ["Logistics & Supply Chain", "/industries/logistics/"],
-      ["Education & EdTech", "/industries/education/"],
-      ["Travel & Hospitality", "/industries/travel/"],
-      ["Manufacturing & 4.0", "/industries/manufacturing/"],
-      ["Government", "/industries/government/"],
-      ["Energy & Utilities", "/industries/energy/"],
-    ],
+    children: short(INDUSTRY_LINKS),
   },
   { label: "Case Study", href: "/case-studies/" },
   { label: "Careers", href: "/careers/" },
@@ -168,7 +150,6 @@ export default function SiteHeader() {
     if (!megaOpen && !openDrop) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
-      if (closeTimer.current) clearTimeout(closeTimer.current);
       if (megaOpen) {
         setMegaOpen(false);
         megaBtnRef.current?.focus();
@@ -181,7 +162,6 @@ export default function SiteHeader() {
     };
     const onClick = (e: MouseEvent) => {
       const t = e.target as Node;
-      if (closeTimer.current) clearTimeout(closeTimer.current);
       if (megaOpen && megaRef.current && !megaRef.current.contains(t) && !megaBtnRef.current?.contains(t)) setMegaOpen(false);
       if (openDrop) {
         const btn = dropRefs.current[openDrop];
@@ -208,17 +188,18 @@ export default function SiteHeader() {
   }, [mobileOpen]);
 
   // grace timer: keep the panel open briefly when the mouse leaves,
-  // so diagonal moves between the button and the submenu never close it
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const keepOpen = () => {
-    if (closeTimer.current) {
-      clearTimeout(closeTimer.current);
-      closeTimer.current = null;
-    }
-  };
+  // so diagonal moves between the button and the submenu never close it.
+  // Stored in state: clearTimeout runs inside the state updater, so the
+  // latest pending timer is always cancelled without mutating a ref.
+  const [, setCloseTimer] = useState<ReturnType<typeof setTimeout> | null>(null);
+  const keepOpen = () =>
+    setCloseTimer((t) => {
+      if (t) clearTimeout(t);
+      return null;
+    });
   const closeSoon = (close: () => void) => {
     keepOpen();
-    closeTimer.current = setTimeout(close, 160);
+    setCloseTimer(setTimeout(close, 160));
   };
 
   return (
@@ -255,19 +236,12 @@ export default function SiteHeader() {
                 <div className="mega-grid">
                   <div className="mega-col">
                     <p className="mega-title">AI Services</p>
-                    <Link className="mega-link" href="/ai-agents/">
-                      <span>AI Agents</span>
-                      <span className="pro-badge">PRO</span>
-                    </Link>
-                    <Link className="mega-link" href="/ai/generative-ai/">
-                      <span>Generative AI &amp; LLM Integration</span>
-                    </Link>
-                    <Link className="mega-link" href="/ai/consulting/">
-                      <span>AI Consulting &amp; Strategy</span>
-                    </Link>
-                    <Link className="mega-link" href="/ai/machine-learning/">
-                      <span>Machine Learning &amp; Analytics</span>
-                    </Link>
+                    {AI_LINKS.map((l) => (
+                      <Link className="mega-link" href={l.href} key={l.href}>
+                        <span>{l.label}</span>
+                        {l.pro && <span className="pro-badge">PRO</span>}
+                      </Link>
+                    ))}
                   </div>
                   <div className="mega-feature">
                     <p className="mega-title">Flagship</p>
@@ -407,26 +381,13 @@ export default function SiteHeader() {
               <Caret />
             </button>
             <ul className="mobile-sub" hidden={openAcc !== "AI"}>
-              <li>
-                <Link href="/ai-agents/" onClick={() => setMobileOpen(false)}>
-                  AI Agents <span className="pro-badge">PRO</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/ai/generative-ai/" onClick={() => setMobileOpen(false)}>
-                  Generative AI &amp; LLM Integration
-                </Link>
-              </li>
-              <li>
-                <Link href="/ai/consulting/" onClick={() => setMobileOpen(false)}>
-                  AI Consulting &amp; Strategy
-                </Link>
-              </li>
-              <li>
-                <Link href="/ai/machine-learning/" onClick={() => setMobileOpen(false)}>
-                  Machine Learning &amp; Analytics
-                </Link>
-              </li>
+              {AI_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} onClick={() => setMobileOpen(false)}>
+                    {l.label} {l.pro && <span className="pro-badge">PRO</span>}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </li>
           {NAV.map((n) =>

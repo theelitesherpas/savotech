@@ -4,107 +4,37 @@ import { useState } from "react";
 import Reveal from "./reveal";
 import { api } from "@/lib/api";
 import { useCurrency } from "./currency-provider";
+import {
+  SERVICES,
+  TYPES,
+  COMPLEXITIES,
+  TIMELINES,
+  ROLES,
+  computeEstimate,
+  type ServiceKey,
+  type TypeKey,
+  type ComplexityKey,
+  type TimelineKey,
+  type RoleKey,
+} from "@/lib/estimator/pricing";
 import Link from "next/link";
-
-/* ------- pricing model (transparent, "affordable premium" INR) ------- */
-const SERVICE_COST: Record<string, number> = {
-  ai: 500000,
-  web: 250000,
-  mobile: 350000,
-  software: 400000,
-  cloud: 150000,
-  data: 200000,
-  uiux: 100000,
-  marketing: 80000,
-  qa: 60000,
-};
-const TYPE_MULT: Record<string, number> = { new: 1, redesign: 0.6, mvp: 0.7, enterprise: 1.6 };
-const COMPLEXITY_MULT: Record<string, number> = { lean: 0.7, standard: 1, complex: 1.6 };
-const TIMELINE_MULT: Record<string, number> = { flexible: 0.95, standard: 1, urgent: 1.3 };
-const COMPLEXITY_MONTHS: Record<string, number> = { lean: 2, standard: 4, complex: 7 };
-const ROLE_MONTHLY: Record<string, number> = {
-  pm: 100000,
-  designer: 70000,
-  devs: 85000,
-  ai: 120000,
-  qa: 60000,
-  devops: 95000,
-};
-
-const SERVICES = [
-  ["ai", "AI Agent Development"],
-  ["web", "Web Development"],
-  ["mobile", "Mobile App"],
-  ["software", "Custom Software"],
-  ["cloud", "Cloud & DevOps"],
-  ["data", "Data & Analytics"],
-  ["uiux", "UI/UX Design"],
-  ["marketing", "Marketing & SEO"],
-  ["qa", "QA & Testing"],
-] as const;
-
-const TYPES = [
-  ["new", "New build", "From zero to launch"],
-  ["redesign", "Redesign", "Modernize what exists"],
-  ["mvp", "MVP", "Validate fast, then scale"],
-  ["enterprise", "Enterprise", "Platform built to scale"],
-] as const;
-
-const COMPLEXITIES = [
-  ["lean", "Lean", "Few screens, standard integrations"],
-  ["standard", "Standard", "Typical product breadth"],
-  ["complex", "Complex", "Deep logic, many integrations"],
-] as const;
-
-const TIMELINES = [
-  ["flexible", "Flexible", "3 to 6 months"],
-  ["standard", "Standard", "2 to 3 months"],
-  ["urgent", "Urgent", "4 to 8 weeks"],
-] as const;
-
-const ROLES = [
-  ["pm", "Project Manager"],
-  ["designer", "Designer"],
-  ["devs", "Developers"],
-  ["ai", "AI Engineer"],
-  ["qa", "QA"],
-  ["devops", "DevOps"],
-] as const;
-
-
-function compute(services: Set<string>, type: string, complexity: string, timeline: string, roles: Set<string>) {
-  const svcSum = [...services].reduce((s, k) => s + (SERVICE_COST[k] ?? 0), 0);
-  const svcBase = services.size > 1 ? svcSum * 0.88 : svcSum; // overlap discount
-  const rolesCost = [...roles].reduce((s, k) => s + (ROLE_MONTHLY[k] ?? 0), 0) * COMPLEXITY_MONTHS[complexity];
-  let total = (svcBase * TYPE_MULT[type] * COMPLEXITY_MULT[complexity] * TIMELINE_MULT[timeline]) + rolesCost;
-  total = Math.max(total, 150000);
-  const round10k = (v: number) => Math.round(v / 10000) * 10000;
-  const months = COMPLEXITY_MONTHS[complexity];
-  const durText =
-    timeline === "urgent" ? `≈ ${Math.max(1, months - 1)} to ${months} months (compressed)` : `≈ ${months} to ${months + 2} months`;
-  return {
-    min: round10k(total * 0.9),
-    max: round10k(total * 1.25),
-    durText,
-  };
-}
 
 type Errors = Partial<Record<"name" | "email", string>>;
 
 export default function Estimator() {
   const { price } = useCurrency();
-  const [services, setServices] = useState<Set<string>>(new Set(["ai"]));
-  const [type, setType] = useState("new");
-  const [complexity, setComplexity] = useState("standard");
-  const [timeline, setTimeline] = useState("standard");
-  const [roles, setRoles] = useState<Set<string>>(new Set());
+  const [services, setServices] = useState<Set<ServiceKey>>(new Set(["ai"]));
+  const [type, setType] = useState<TypeKey>("new");
+  const [complexity, setComplexity] = useState<ComplexityKey>("standard");
+  const [timeline, setTimeline] = useState<TimelineKey>("standard");
+  const [roles, setRoles] = useState<Set<RoleKey>>(new Set());
   const [notes, setNotes] = useState("");
   const [lead, setLead] = useState({ name: "", email: "", phone: "", company: "" });
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
-  const [result, setResult] = useState<{ min: number; max: number; durText: string } | null>(null);
+  const [result, setResult] = useState<ReturnType<typeof computeEstimate> | null>(null);
 
-  const toggleSet = (set: Set<string>, v: string, apply: (s: Set<string>) => void) => {
+  const toggleSet = <T extends string>(set: Set<T>, v: T, apply: (s: Set<T>) => void) => {
     const next = new Set(set);
     if (next.has(v)) next.delete(v);
     else next.add(v);
@@ -120,7 +50,7 @@ export default function Estimator() {
     if (Object.keys(errs).length) return;
 
     setSubmitting(true);
-    const est = compute(services, type, complexity, timeline, roles);
+    const est = computeEstimate({ services, type, complexity, timeline, roles });
     try {
       await fetch(api("/api/leads"), {
         method: "POST",
@@ -165,7 +95,7 @@ export default function Estimator() {
               <fieldset className="est-step">
                 <legend>Which services do you need?</legend>
                 <div className="chip-row" id="estServices">
-                  {SERVICES.map(([v, label]) => (
+                  {SERVICES.map(({ key: v, label }) => (
                     <button
                       key={v}
                       type="button"
@@ -182,10 +112,10 @@ export default function Estimator() {
               <fieldset className="est-step">
                 <legend>Project type</legend>
                 <div className="opt-row" id="estType">
-                  {TYPES.map(([v, strong, span]) => (
+                  {TYPES.map(({ key: v, label, hint }) => (
                     <button key={v} type="button" className={optBtn(type === v)} onClick={() => setType(v)}>
-                      <strong>{strong}</strong>
-                      <span>{span}</span>
+                      <strong>{label}</strong>
+                      <span>{hint}</span>
                     </button>
                   ))}
                 </div>
@@ -194,10 +124,10 @@ export default function Estimator() {
               <fieldset className="est-step">
                 <legend>Complexity &amp; scope</legend>
                 <div className="opt-row" id="estComplexity">
-                  {COMPLEXITIES.map(([v, strong, span]) => (
+                  {COMPLEXITIES.map(({ key: v, label, hint }) => (
                     <button key={v} type="button" className={optBtn(complexity === v)} onClick={() => setComplexity(v)}>
-                      <strong>{strong}</strong>
-                      <span>{span}</span>
+                      <strong>{label}</strong>
+                      <span>{hint}</span>
                     </button>
                   ))}
                 </div>
@@ -206,10 +136,10 @@ export default function Estimator() {
               <fieldset className="est-step">
                 <legend>Timeline</legend>
                 <div className="opt-row" id="estTimeline">
-                  {TIMELINES.map(([v, strong, span]) => (
+                  {TIMELINES.map(({ key: v, label, hint }) => (
                     <button key={v} type="button" className={optBtn(timeline === v)} onClick={() => setTimeline(v)}>
-                      <strong>{strong}</strong>
-                      <span>{span}</span>
+                      <strong>{label}</strong>
+                      <span>{hint}</span>
                     </button>
                   ))}
                 </div>
@@ -218,7 +148,7 @@ export default function Estimator() {
               <fieldset className="est-step">
                 <legend>Team roles needed</legend>
                 <div className="chip-row" id="estRoles">
-                  {ROLES.map(([v, label]) => (
+                  {ROLES.map(({ key: v, label }) => (
                     <button
                       key={v}
                       type="button"
