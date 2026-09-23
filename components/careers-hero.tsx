@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import HeroGridDots from "./hero-grid-dots";
 
 /** Careers hero: ink band over the dot grid with a highlighted code window. */
@@ -47,7 +46,7 @@ export default function CareersHero() {
           </div>
           <pre className="cw-body">
             <code>
-              <span className="c-com">// savo technologies is hiring</span>{"\n"}
+              <span className="c-com">{"// savo technologies is hiring"}</span>{"\n"}
               <span className="c-kw">const</span> <span className="c-var">you</span> = {"{"}{"\n"}
               {"  "}<span className="c-key">curious</span>: <span className="c-bool">true</span>,{"\n"}
               {"  "}<span className="c-key">ships</span>: <span className="c-str">&quot;weekly&quot;</span>,{"\n"}
@@ -59,7 +58,7 @@ export default function CareersHero() {
               {"    "}role: <span className="c-var">ROLES</span>.<span className="c-prop">open</span>,{"\n"}
               {"    "}mode: <span className="c-str">&quot;remote&quot;</span>,{"\n"}
               {"  "}{"}"});{"\n"}
-              {"  "}<span className="c-com">// personal reply within 2 business days</span>{"\n"}
+              {"  "}<span className="c-com">{"// personal reply within 2 business days"}</span>{"\n"}
               {"}"}
               <span className="cw-caret" />
             </code>

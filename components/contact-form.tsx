@@ -219,7 +219,6 @@ export default function ContactForm() {
       />
 
       <CaptchaField
-        token={captchaToken}
         answer={captchaAnswer}
         onToken={setCaptchaToken}
         onAnswer={(v) => {

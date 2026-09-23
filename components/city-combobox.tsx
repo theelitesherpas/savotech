@@ -62,6 +62,7 @@ export default function CityCombobox({
           aria-expanded={open}
           aria-controls="cfCityList"
           aria-autocomplete="list"
+          aria-invalid={invalid || undefined}
           autoComplete="off"
           value={value}
           placeholder="Search your city, e.g. Pune"

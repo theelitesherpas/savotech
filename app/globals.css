@@ -740,7 +740,7 @@ textarea { resize: vertical; }
   to { transform: scaleX(1); }
 }
 
-/* mouse effects (see mouse-effects.tsx) */
+/* mouse effects (see mouse-effects.tsx) — hidden for touch and reduced-motion users */
 .cursor-spotlight {
   position: fixed;
   inset: 0;
@@ -766,7 +766,7 @@ textarea { resize: vertical; }
 }
 .hero-grid-dots[data-active]::after { opacity: 1; }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
   .cursor-spotlight { display: none; }
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 
 /**
@@ -58,23 +58,47 @@ const MESSAGES = [
   { from: "Rohan D.", role: "Architect", text: "Dispute builder schema is ready for your review before we wire the UI.", time: "Yesterday" },
 ];
 
+const PORTAL_KEY = "savo-portal-user";
+
+/** Saved login name is an external store: hydrates empty, adopts localStorage after hydration. */
+const emptySubscribe = () => () => {};
+function readSavedUser(): string {
+  try {
+    return localStorage.getItem(PORTAL_KEY) ?? "";
+  } catch {
+    return "";
+  }
+}
+
 export default function PortalApp() {
-  const [view, setView] = useState<"login" | "forgot" | "app">("login");
-  const [user, setUser] = useState<string>("");
+  // `overrideView`/`overrideUser` are set by user actions (login/logout); the
+  // saved demo session (localStorage) is adopted post-hydration without a
+  // hydration mismatch or a cascading render.
+  const savedUser = useSyncExternalStore(
+    emptySubscribe,
+    () => readSavedUser(),
+    () => "",
+  );
+  const [overrideView, setOverrideView] = useState<"login" | "forgot" | "app" | null>(null);
+  const [overrideUser, setOverrideUser] = useState<string | null>(null);
+  const view: "login" | "forgot" | "app" = overrideView ?? (savedUser ? "app" : "login");
+  const user = overrideUser ?? savedUser;
+  /** "Remember me" decides whether the demo session persists across visits. */
+  const persist = useCallback((next: string) => {
+    try {
+      if (next) localStorage.setItem(PORTAL_KEY, next);
+      else localStorage.removeItem(PORTAL_KEY);
+    } catch {
+      /* storage unavailable (private mode): session simply won't persist */
+    }
+  }, []);
+  const setView = setOverrideView;
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [remember, setRemember] = useState(true);
   const [error, setError] = useState("");
   const [attempts, setAttempts] = useState(0);
   const [sent, setSent] = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("savo-portal-user");
-    if (saved) {
-      setUser(saved);
-      setView("app");
-    }
-  }, []);
 
   const login = (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,14 +112,15 @@ export default function PortalApp() {
       setError("Enter a valid work email and a password of at least 6 characters.");
       return;
     }
-    setUser(email.split("@")[0].replace(/[._]/g, " "));
-    if (remember) localStorage.setItem("savo-portal-user", email.split("@")[0].replace(/[._]/g, " "));
+    const name = email.split("@")[0].replace(/[._]/g, " ");
+    setOverrideUser(name);
+    persist(remember ? name : "");
     setView("app");
   };
 
   const logout = () => {
-    localStorage.removeItem("savo-portal-user");
-    setUser("");
+    persist("");
+    setOverrideUser(null);
     setEmail("");
     setPass("");
     setView("login");

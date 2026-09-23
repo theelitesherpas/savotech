@@ -316,7 +316,6 @@ export default function CareersForm({ initialRole }: { initialRole?: string }) {
       <input className="hp-field" type="text" name="website" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
       <CaptchaField
-        token={captchaToken}
         answer={captchaAnswer}
         onToken={setCaptchaToken}
         onAnswer={(v) => {

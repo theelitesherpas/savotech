@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import StartForm from "./start-form";
 
 export default function StartYourProjectPanel() {
@@ -20,9 +21,9 @@ export default function StartYourProjectPanel() {
           suggested call slot. Want numbers while you wait?
         </p>
         <div className="est-result-ctas">
-          <a className="btn btn-outline-inv" href="/#estimator">
+          <Link className="btn btn-outline-inv" href="/#estimator">
             Get an instant estimate
-          </a>
+          </Link>
         </div>
       </div>
     );

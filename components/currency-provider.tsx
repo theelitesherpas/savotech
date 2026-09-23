@@ -1,9 +1,9 @@
 "use client";
 
-import { createContext, useCallback, useContext, useMemo, useState } from "react";
-import { useEffect } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useSyncExternalStore } from "react";
 import {
   CCY_COOKIE,
+  DEFAULT_CURRENCY,
   ccyFromCountry,
   getCurrency,
   price as priceOf,
@@ -32,30 +32,45 @@ function readCookie(): string | undefined {
     ?.split("=")[1];
 }
 
-export function CurrencyProvider({ children }: { children: React.ReactNode }) {
-  // start from the default so server and client paint identically,
-  // then adopt the cookie (or geo detection) right after mount
-  const [ccy, setCcy] = useState<Currency>(() => getCurrency(null));
+/**
+ * The currency cookie is an external store. useSyncExternalStore hydrates
+ * with the server snapshot (INR) and adopts the cookie value right after
+ * hydration without a cascading render or a hydration mismatch.
+ */
+const CCY_EVENT = "savo:ccy";
 
-  const setCode = useCallback((code: CurrencyCode) => {
-    document.cookie = `${CCY_COOKIE}=${code}; max-age=${60 * 60 * 24 * 365}; path=/; samesite=lax`;
-    setCcy(getCurrency(code));
+function subscribeCcy(onChange: () => void) {
+  window.addEventListener(CCY_EVENT, onChange);
+  return () => window.removeEventListener(CCY_EVENT, onChange);
+}
+
+function getSnapshot(): string {
+  return readCookie() ?? DEFAULT_CURRENCY;
+}
+
+function getServerSnapshot(): string {
+  return DEFAULT_CURRENCY;
+}
+
+export function CurrencyProvider({ children }: { children: React.ReactNode }) {
+  const code = useSyncExternalStore(subscribeCcy, getSnapshot, getServerSnapshot);
+  const ccy = getCurrency(code);
+
+  const setCode = useCallback((next: CurrencyCode) => {
+    document.cookie = `${CCY_COOKIE}=${next}; max-age=${60 * 60 * 24 * 365}; path=/; samesite=lax`;
+    window.dispatchEvent(new Event(CCY_EVENT));
   }, []);
 
-  // first visit: detect currency from the visitor's network location
+  // First visit (no cookie yet): detect currency from the visitor's network
+  // location. Runs entirely async, after hydration.
   useEffect(() => {
-    const saved = readCookie();
-    if (saved) {
-      const c = getCurrency(saved);
-      if (c.code !== "INR") setCcy(c);
-      return;
-    }
+    if (readCookie()) return;
     let alive = true;
     fetch(api("/api/geo"))
       .then((r) => r.json() as Promise<{ country: string }>)
       .then(({ country }) => {
-        const code = ccyFromCountry(country);
-        if (alive && code) setCode(code);
+        const detected = ccyFromCountry(country);
+        if (alive && detected) setCode(detected);
       })
       .catch(() => undefined);
     return () => {

@@ -1,54 +1,61 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useState } from "react";
 import { api } from "@/lib/api";
 
 /**
  * Human check: fetches a server-signed challenge (math or type the word),
  * posts the answer with the form. Refreshable, accessible, and every
- * token works exactly once.
+ * token works exactly once. `challenge` is bumped to (re)fetch; all state
+ * updates happen after the first await, so mounting never cascades renders.
  */
 export default function CaptchaField({
-  token,
   answer,
   onToken,
   onAnswer,
 }: {
-  token: string;
   answer: string;
   onToken: (v: string) => void;
   onAnswer: (v: string) => void;
 }) {
   const [question, setQuestion] = useState("");
-  const [busy, setBusy] = useState(false);
+  const [busy, setBusy] = useState(true);
   const [failed, setFailed] = useState(false);
+  const [challenge, setChallenge] = useState(0);
 
-  // keep callbacks in refs so a new parent render never refetches the challenge
-  const onTokenRef = useRef(onToken);
-  onTokenRef.current = onToken;
-  const onAnswerRef = useRef(onAnswer);
-  onAnswerRef.current = onAnswer;
-
-  const load = useCallback(async () => {
-    setBusy(true);
-    setFailed(false);
-    try {
-      const res = await fetch(api("/api/captcha"));
-      if (!res.ok) throw new Error("failed");
-      const data = (await res.json()) as { question: string; token: string };
-      setQuestion(data.question);
-      onTokenRef.current(data.token);
-      onAnswerRef.current("");
-    } catch {
-      setFailed(true);
-    } finally {
-      setBusy(false);
-    }
-  }, []);
+  // Effect events keep the latest parent callbacks without refetching the
+  // challenge on every parent render (React 19 useEffectEvent).
+  const onTokenEvent = useEffectEvent(onToken);
+  const onAnswerEvent = useEffectEvent(onAnswer);
 
   useEffect(() => {
-    void load();
-  }, [load]);
+    let alive = true;
+    void (async () => {
+      try {
+        const res = await fetch(api("/api/captcha"));
+        if (!res.ok) throw new Error("failed");
+        const data = (await res.json()) as { question: string; token: string };
+        if (!alive) return;
+        setQuestion(data.question);
+        onTokenEvent(data.token);
+        onAnswerEvent("");
+        setFailed(false);
+      } catch {
+        if (alive) setFailed(true);
+      } finally {
+        if (alive) setBusy(false);
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, [challenge]);
+
+  const refresh = () => {
+    setBusy(true);
+    setFailed(false);
+    setChallenge((c) => c + 1);
+  };
 
   return (
     <fieldset className="est-step captcha-step">
@@ -71,7 +78,7 @@ export default function CaptchaField({
           aria-label="Captcha answer"
           required
         />
-        <button type="button" className="captcha-refresh" onClick={() => void load()} aria-label="New challenge">
+        <button type="button" className="captcha-refresh" onClick={refresh} aria-label="New challenge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M20 11a8 8 0 1 0-2.3 5.7" />
             <path d="M20 4.5V11h-6" />

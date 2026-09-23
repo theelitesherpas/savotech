@@ -1,22 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 /**
  * Site-wide mouse effects:
  * 1. A soft electric-blue cursor spotlight following the pointer across the page.
  * 2. Hero dot-grid reveal: dots near the cursor light up blue (mask at --hmx/--hmy).
- * Runs only for fine pointers (mouse/trackpad) and only without reduced-motion.
- * Single mousemove listener + rAF writes; zero work while idle.
+ *
+ * The spotlight element always renders and is hidden by CSS for coarse pointers
+ * and reduced-motion users, so no client-only state is needed. The mousemove
+ * listener runs only for fine pointers without reduced-motion:
+ * single listener + rAF writes; zero work while idle.
  */
 export default function MouseEffects() {
-  const [enabled, setEnabled] = useState(false);
-
   useEffect(() => {
     const fine = window.matchMedia("(pointer: fine)").matches;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!fine || reduced) return;
-    setEnabled(true);
 
     let x = -500;
     let y = -500;
@@ -54,6 +54,5 @@ export default function MouseEffects() {
     return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
-  if (!enabled) return null;
   return <div className="cursor-spotlight" aria-hidden="true" />;
 }
